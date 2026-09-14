@@ -1,4 +1,4 @@
-<title>The Pakistani Dastarkhwan</title>
+<title>Halal Kitchen</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
@@ -307,6 +307,8 @@
   [data-course="bread"]{--course-a:var(--green);--course-b:var(--green-deep);}
   [data-course="dessert"]{--course-a:var(--saffron);--course-b:#D9B45A;}
   [data-course="drink"]{--course-a:var(--green);--course-b:var(--paper-2);}
+  [data-course="salad"]{--course-a:var(--green);--course-b:#8FBF9F;}
+  [data-course="soup"]{--course-a:var(--saffron);--course-b:var(--chili);}
 
   .card-body{padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px;flex:1;}
   .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
@@ -337,6 +339,7 @@
     color:var(--ink);
   }
   .badge.time{font-family:'IBM Plex Mono',monospace;color:var(--green-deep);}
+  .badge.country{font-weight:700;}
   .badge.health-light{color:var(--green-deep);}
   .badge.health-indulgent{color:var(--chili);}
   .spice-dots{display:inline-flex;gap:2px;}
@@ -378,6 +381,15 @@
   .modal .card-region{margin-top:6px;}
   .modal .badge-row{margin-top:14px;}
   .modal-desc{padding:6px 28px 0;color:var(--ink-soft);font-size:0.95rem;}
+  .modal-occasions{padding:12px 28px 0;display:flex;flex-wrap:wrap;gap:6px;}
+  .modal-occasions span{
+    font-size:0.7rem;
+    font-weight:600;
+    padding:3px 9px;
+    border-radius:999px;
+    background:var(--green-deep);
+    color:#F6F0E1;
+  }
   .modal-body{padding:20px 28px 30px;display:grid;grid-template-columns:1fr 1.3fr;gap:26px;}
   @media (max-width:520px){.modal-body{grid-template-columns:1fr;}}
   .modal-body h3{
@@ -434,12 +446,12 @@
 
 <header class="hero">
   <div class="wrap hero-inner">
-    <div class="eyebrow">A field guide to home cooking</div>
-    <h1>The Pakistani Dastarkhwan</h1>
-    <p class="lede">A hundred-plus recipes pulled straight from the everyday spread — from karahi and biryani to nihari that simmers all night. Filter by protein, richness, time on the stove, or course to find what to cook tonight.</p>
+    <div class="eyebrow">A world of halal home cooking</div>
+    <h1>Halal Kitchen</h1>
+    <p class="lede">Halal recipes from Pakistan to Mexico — Lebanese mezze, Iraqi stews, Iranian kebabs, Turkish grills, Moroccan tagines, Indian curries, Gulf rice, and American classics, all cooked without pork or alcohol. Filter by country, occasion, protein, or time on the stove to find what to cook next.</p>
     <div class="hero-stats">
       <div class="stat"><b id="statTotal">—</b><span>recipes</span></div>
-      <div class="stat"><b>8</b><span>courses, rice to dessert</span></div>
+      <div class="stat"><b id="statCountries">—</b><span>countries & cuisines</span></div>
       <div class="stat"><b id="statQuick">—</b><span>ready in 30 min or less</span></div>
       <div class="stat"><b id="statVeg">—</b><span>vegetarian</span></div>
     </div>
@@ -476,7 +488,7 @@
 
 <footer>
   <div class="stripe"></div>
-  <div class="wrap">Recipes reflect common home-cooking methods and proportions across Pakistani households — regional versions vary from kitchen to kitchen. Adjust chili and salt to taste.</div>
+  <div class="wrap">Every recipe here is prepared without pork or alcohol. Methods and proportions reflect common home cooking in each country represented — regional versions vary from kitchen to kitchen, so adjust chili, salt and sweetness to taste.</div>
 </footer>
 
 <div class="backdrop" id="backdrop">
@@ -489,6 +501,7 @@
       <div class="badge-row" id="modalBadges"></div>
     </div>
     <p class="modal-desc" id="modalDesc"></p>
+    <div class="modal-occasions" id="modalOccasions"></div>
     <div class="modal-body">
       <div>
         <h3>Ingredients</h3>
@@ -915,21 +928,419 @@
       desc:"A tangy, spiced cumin-mint water, drunk chilled as a digestive and refresher, especially popular for iftar.",
       ing:["Fresh mint and coriander leaves","Roasted cumin powder, black salt, black pepper","Tamarind pulp or lemon juice","Chilled water, ice"],
       steps:["Blend mint, coriander, roasted cumin, black salt, pepper and tamarind pulp with a little water into a smooth paste.","Strain if a clearer drink is preferred.","Dilute with chilled water to taste.","Serve over ice, garnished with a mint sprig."]},
+    {id:"butter-chicken",name:"Butter Chicken",course:"curry",meat:"chicken",health:"indulgent",time:50,spice:"mild",region:"Delhi",country:"india",servings:5,
+      desc:"Tandoor-roasted chicken simmered in a velvety tomato-butter gravy — India's best-known export to the world.",
+      ing:["Chicken, boneless, marinated and tandoor-roasted or grilled, 1 kg","Tomatoes, puréed, 4","Butter and cream","Ginger-garlic paste, kashmiri red chili powder","Kasuri methi (dried fenugreek leaves), garam masala"],
+      steps:["Purée the tomatoes and simmer with butter, ginger-garlic paste and chili powder until thick and deep red.","Blend the gravy smooth for a silky texture, then return to the pan.","Add the roasted chicken pieces and simmer in the gravy for 10 minutes.","Stir in cream, kasuri methi and a final knob of butter.","Serve with naan or steamed rice."]},
+    {id:"hyderabadi-biryani",name:"Hyderabadi Chicken Biryani",course:"rice",meat:"chicken",health:"indulgent",time:80,spice:"hot",region:"Hyderabad",country:"india",servings:6,
+      desc:"A Deccan biryani built on a yogurt-marinated chicken and fried onions, layered and sealed on dum.",
+      ing:["Chicken, 1 kg, marinated in yogurt, ginger-garlic and chili overnight","Basmati rice, 500 g, soaked","Fried onions, mint and coriander","Saffron soaked in milk","Ghee, whole garam spices"],
+      steps:["Marinate the chicken well in advance in yogurt, chili and spices.","Parboil the soaked rice with whole spices until nearly done, then drain.","Layer the marinated chicken with rice, herbs and fried onions in a heavy pot.","Drizzle saffron milk and ghee over the top, seal the lid tightly with dough or foil, and cook on dum for 25–30 minutes.","Rest, then fold gently and serve."]},
+    {id:"rogan-josh",name:"Rogan Josh",course:"curry",meat:"mutton",health:"indulgent",time:70,spice:"hot",region:"Kashmir",country:"india",servings:5,
+      desc:"A Kashmiri mutton curry defined by its deep red color, traditionally from Kashmiri chilies rather than heat alone.",
+      ing:["Mutton, bone-in, 1 kg","Yogurt, 1/2 cup","Kashmiri red chili powder (for color), ginger powder (saunth)","Fennel powder, whole garam spices","Mustard oil"],
+      steps:["Sear the mutton in hot mustard oil with whole spices until browned.","Add yogurt gradually, stirring to prevent curdling.","Stir in Kashmiri chili powder, fennel and ginger powder.","Cover and simmer on low heat until the mutton is very tender and the oil floats to the top.","Serve with steamed rice."]},
+    {id:"dum-aloo",name:"Dum Aloo",course:"curry",meat:"vegetarian",health:"light",time:40,spice:"medium",region:"Kashmir",country:"india",servings:4,
+      desc:"Baby potatoes fried until golden, then slow-cooked in a yogurt-based Kashmiri gravy.",
+      ing:["Baby potatoes, 500 g, boiled and lightly pricked","Yogurt, 1/2 cup","Kashmiri chili powder, fennel powder, ginger powder","Whole garam spices, oil"],
+      steps:["Shallow-fry the boiled potatoes until golden on all sides.","Whisk the yogurt with chili powder, fennel and ginger powder.","Temper whole spices in oil, then add the yogurt mixture and cook until it thickens.","Add the fried potatoes and simmer on low heat (dum) until they soak up the gravy.","Serve with naan or rice."]},
+    {id:"vada-pav",name:"Vada Pav",course:"snack",meat:"vegetarian",health:"indulgent",time:30,spice:"medium",region:"Mumbai",country:"india",servings:4,
+      desc:"A spiced potato fritter tucked into a soft bun with chutneys — Mumbai's iconic street-food sandwich.",
+      ing:["Potatoes, boiled and mashed, 500 g","Gram flour (besan), for the batter","Mustard seeds, curry leaves, green chilies, ginger","Pav (soft buns), garlic chutney, oil for deep frying"],
+      steps:["Temper mustard seeds, curry leaves, ginger and green chilies in oil, then mix into the mashed potato.","Shape into balls and dip in a seasoned gram-flour batter.","Deep-fry until golden and crisp.","Split the pav buns, spread with garlic chutney, and tuck in a hot vada.","Serve immediately with fried green chilies."]},
+    {id:"masala-dosa",name:"Masala Dosa",course:"snack",meat:"vegetarian",health:"light",time:45,spice:"mild",region:"South India",country:"india",servings:4,
+      desc:"A crisp, fermented rice-and-lentil crepe folded around a spiced potato filling — South India's signature breakfast.",
+      ing:["Dosa batter (fermented rice and urad daal), store-bought or homemade","Potatoes, boiled and mashed, 4","Onion, mustard seeds, curry leaves, turmeric","Oil, coconut chutney and sambar to serve"],
+      steps:["Temper mustard seeds, curry leaves and onion in oil, then add turmeric and mashed potato to make the filling.","Heat a flat griddle and spread a ladle of batter into a thin, wide circle.","Drizzle oil around the edges and cook until crisp and golden underneath.","Place a portion of potato filling in the center and fold the dosa over.","Serve hot with coconut chutney and sambar."]},
+    {id:"pav-bhaji",name:"Pav Bhaji",course:"snack",meat:"vegetarian",health:"indulgent",time:40,spice:"medium",region:"Mumbai",country:"india",servings:4,
+      desc:"A thick, buttery mashed-vegetable curry served with toasted buns — a beloved Mumbai street-food plate.",
+      ing:["Mixed vegetables (potatoes, peas, carrots, capsicum, cauliflower), 4 cups, boiled","Onion, tomatoes, and pav bhaji masala","Butter, generously","Pav (soft buns), lemon and chopped onion to serve"],
+      steps:["Sauté onion and tomatoes in butter, then add pav bhaji masala.","Add the boiled vegetables and mash them roughly into the masala as they cook.","Simmer, adding butter and water as needed, until thick and well combined.","Toast the pav buns in butter on a griddle.","Serve the bhaji hot with the toasted buns, a lemon wedge and chopped onion."]},
+    {id:"mysore-pak",name:"Mysore Pak",course:"dessert",meat:"vegetarian",health:"indulgent",time:30,spice:"mild",region:"Mysore, South India",country:"india",servings:8,
+      desc:"A rich, porous gram-flour and ghee sweet with a melt-in-the-mouth texture, from the royal kitchens of Mysore.",
+      ing:["Gram flour (besan), 1 cup","Sugar, 1.5 cups, and water","Ghee, a generous amount, kept warm"],
+      steps:["Make a sugar syrup with sugar and water, heated to a one-string consistency.","Gradually whisk in the gram flour to avoid lumps.","Add warm ghee little by little while stirring constantly over low heat, letting it absorb before adding more.","Continue until the mixture turns porous and starts to leave the sides of the pan.","Pour into a greased tray, cool slightly, and cut into squares."]},
+    {id:"hummus",name:"Hummus",course:"snack",meat:"vegetarian",health:"light",time:15,spice:"mild",region:"Levant",country:"mediterranean",servings:6,
+      desc:"A creamy chickpea and tahini dip, one of the most recognized dishes of the eastern Mediterranean table.",
+      ing:["Chickpeas, 2 cups, boiled (or 2 cans)","Tahini, 1/3 cup","Lemon juice, garlic, cumin","Olive oil, paprika for garnish"],
+      steps:["Blend the chickpeas, tahini, lemon juice, garlic and cumin until smooth, adding water as needed for consistency.","Taste and adjust lemon and salt.","Spread onto a plate, creating a shallow well in the center.","Drizzle generously with olive oil and a dusting of paprika.","Serve with warm pita bread."]},
+    {id:"falafel",name:"Falafel",course:"snack",meat:"vegetarian",health:"light",time:40,spice:"medium",region:"Levant/Egypt",country:"mediterranean",servings:6,
+      desc:"Crisp, herb-flecked fried chickpea patties, a cornerstone of Mediterranean vegetarian street food.",
+      ing:["Dried chickpeas, 2 cups, soaked overnight (not boiled)","Onion, garlic, parsley and coriander, chopped","Cumin, coriander seed, baking soda","Oil for deep frying"],
+      steps:["Blend the soaked (uncooked) chickpeas with onion, garlic and herbs into a coarse, moldable paste.","Mix in the spices and a little baking soda, then rest the mixture for 30 minutes.","Shape into small balls or patties.","Deep-fry until deep golden and crisp on the outside.","Serve in pita with tahini sauce and salad."]},
+    {id:"baba-ganoush",name:"Baba Ganoush",course:"snack",meat:"vegetarian",health:"light",time:35,spice:"mild",region:"Levant",country:"mediterranean",servings:4,
+      desc:"Smoky charred eggplant blended with tahini and lemon — a smokier cousin of hummus.",
+      ing:["Eggplants, 2 large","Tahini, 3 tbsp","Lemon juice, garlic, cumin","Olive oil, pomegranate seeds for garnish (optional)"],
+      steps:["Char the eggplants directly over a flame or under a hot broiler until the skin blisters and the flesh softens.","Scoop out the smoky flesh and drain any excess liquid.","Mash or blend with tahini, lemon juice, garlic and cumin.","Spread onto a plate and drizzle with olive oil.","Serve with pita bread, garnished with pomegranate seeds if using."]},
+    {id:"tabbouleh",name:"Tabbouleh Salad",course:"salad",meat:"vegetarian",health:"light",time:25,spice:"mild",region:"Levant",country:"mediterranean",servings:4,
+      desc:"A bright, herb-forward salad where parsley, not bulgur, is the main event.",
+      ing:["Parsley, very finely chopped, 3 cups","Fine bulgur, 2 tbsp, soaked","Tomatoes, finely diced, and mint, chopped","Lemon juice, olive oil"],
+      steps:["Soak the bulgur briefly in water until softened, then drain well.","Finely chop the parsley, mint and tomatoes.","Combine everything with the softened bulgur.","Dress generously with lemon juice and olive oil.","Chill briefly and serve with lettuce leaves for scooping."]},
+    {id:"chicken-souvlaki",name:"Chicken Souvlaki Skewers",course:"kebab",meat:"chicken",health:"light",time:35,spice:"mild",region:"Eastern Mediterranean",country:"mediterranean",servings:4,
+      desc:"Lemon-and-oregano marinated chicken skewers, grilled until charred — a Mediterranean grilling classic.",
+      ing:["Chicken, boneless, cubed, 1 kg","Olive oil, lemon juice, garlic","Dried oregano, salt and pepper","Skewers"],
+      steps:["Whisk olive oil, lemon juice, garlic and oregano into a marinade.","Marinate the chicken for at least 1 hour.","Thread onto skewers.","Grill over charcoal or on a hot grill pan, turning, until charred and cooked through.","Serve with flatbread, salad and a garlic-yogurt sauce."]},
+    {id:"dolma",name:"Dolma (Stuffed Grape Leaves)",course:"snack",meat:"vegetarian",health:"light",time:60,spice:"mild",region:"Eastern Mediterranean",country:"mediterranean",servings:6,
+      desc:"Grape leaves rolled tightly around a herbed rice filling, simmered until tender — a patient, communal dish.",
+      ing:["Grape leaves, jarred or fresh, blanched","Rice, short-grain, 1 cup","Tomatoes, onion, parsley, mint, chopped","Olive oil, lemon juice"],
+      steps:["Mix the rice with chopped tomato, onion, parsley, mint and olive oil.","Lay a grape leaf flat, place a spoon of filling near the stem, and roll tightly, tucking in the sides.","Layer the rolls snugly in a pot, seam-side down.","Add water and lemon juice to just cover, weigh down with a plate, and simmer gently for 40–45 minutes.","Serve warm or at room temperature."]},
+    {id:"mediterranean-baklava",name:"Baklava",course:"dessert",meat:"vegetarian",health:"indulgent",time:55,spice:"mild",region:"Eastern Mediterranean",country:"mediterranean",servings:10,
+      desc:"Layers of paper-thin pastry and chopped nuts, baked until crisp and soaked in a light honey syrup.",
+      ing:["Phyllo pastry sheets","Walnuts or pistachios, chopped, 2 cups","Butter or ghee, melted","Sugar, water, honey, lemon juice for the syrup"],
+      steps:["Layer sheets of phyllo in a tray, brushing each with melted butter, building up several layers.","Spread a layer of chopped nuts, then continue layering and buttering more phyllo on top.","Cut into diamonds before baking, then bake until golden and crisp.","Make a syrup of sugar, water, honey and lemon juice.","Pour the warm syrup over the hot baklava as soon as it comes out of the oven and let it soak in."]},
+    {id:"mediterranean-shawarma",name:"Chicken Shawarma",course:"kebab",meat:"chicken",health:"everyday",time:45,spice:"medium",region:"Eastern Mediterranean",country:"mediterranean",servings:5,
+      desc:"Spice-marinated chicken stacked and roasted, then shaved thin and wrapped — a Mediterranean fast-food icon.",
+      ing:["Chicken thighs, boneless, 1 kg","Yogurt, and shawarma spice blend (cumin, paprika, turmeric, cinnamon)","Garlic, lemon juice","Pita or flatbread, garlic sauce, pickles"],
+      steps:["Marinate the chicken in yogurt, shawarma spices, garlic and lemon juice for at least 4 hours.","Stack the marinated pieces on a vertical skewer or spread on a tray, and roast or grill until charred at the edges and cooked through.","Slice the chicken thinly once rested.","Warm the flatbread and spread with garlic sauce.","Fill with the sliced chicken, pickles and salad, then wrap."]},
+    {id:"kibbeh",name:"Kibbeh",course:"snack",meat:"beef",health:"indulgent",time:60,spice:"medium",region:"Lebanon",country:"lebanon",servings:6,
+      desc:"Torpedo-shaped bulgur shells stuffed with spiced minced meat, fried until deeply golden.",
+      ing:["Fine bulgur, 1 cup, soaked","Minced beef, 500 g, divided for shell and filling","Onion, pine nuts (for filling)","Cinnamon, allspice, oil for deep frying"],
+      steps:["Blend the soaked bulgur with half the minced beef, onion and spices into a smooth, moldable shell paste.","Cook the remaining beef with onion, pine nuts and spices for the filling.","Shape the shell paste into hollow torpedoes, stuff with filling, and seal.","Deep-fry until deep golden brown.","Serve hot with yogurt or a squeeze of lemon."]},
+    {id:"manakish",name:"Manakish Za'atar",course:"bread",meat:"vegetarian",health:"everyday",time:35,spice:"mild",region:"Lebanon",country:"lebanon",servings:6,
+      desc:"A flatbread topped with za'atar and olive oil, baked until crisp — the Lebanese breakfast staple.",
+      ing:["Flatbread dough (similar to pizza dough)","Za'atar spice blend, 4 tbsp","Olive oil, 4 tbsp"],
+      steps:["Divide the dough into rounds and roll out thin.","Mix za'atar with olive oil into a spreadable paste.","Spread generously over each round of dough.","Bake in a hot oven until the edges are golden and the base is cooked through.","Serve warm, often with labneh, olives and tomatoes."]},
+    {id:"fattoush",name:"Fattoush Salad",course:"salad",meat:"vegetarian",health:"light",time:20,spice:"mild",region:"Lebanon",country:"lebanon",servings:4,
+      desc:"A crunchy mixed salad tossed with crisp toasted pita and a tangy sumac dressing.",
+      ing:["Mixed greens, tomato, cucumber, radish, chopped","Pita bread, toasted or fried until crisp, broken up","Sumac, lemon juice, olive oil","Pomegranate molasses (optional)"],
+      steps:["Chop all the vegetables and toss together in a large bowl.","Toast or lightly fry the pita pieces until crisp.","Whisk lemon juice, olive oil, sumac and pomegranate molasses into a dressing.","Toss the salad with the dressing just before serving.","Scatter the crisp pita on top and serve immediately."]},
+    {id:"shish-taouk",name:"Shish Taouk",course:"kebab",meat:"chicken",health:"light",time:35,spice:"mild",region:"Lebanon",country:"lebanon",servings:4,
+      desc:"Garlicky, yogurt-marinated chicken skewers, a Lebanese grill-house staple served with garlic sauce.",
+      ing:["Chicken, boneless, cubed, 1 kg","Yogurt, tomato paste, garlic","Lemon juice, paprika, dried thyme","Skewers"],
+      steps:["Whisk yogurt, tomato paste, garlic, lemon juice and spices into a marinade.","Marinate the chicken for at least 2 hours.","Thread onto skewers.","Grill over charcoal, turning, until charred and cooked through.","Serve with garlic sauce (toum), pickles and flatbread."]},
+    {id:"moujadara",name:"Moujadara",course:"dal",meat:"vegetarian",health:"light",time:45,spice:"mild",region:"Lebanon",country:"lebanon",servings:4,
+      desc:"Lentils and rice cooked together and topped with deeply caramelized onions — humble and deeply satisfying.",
+      ing:["Brown or green lentils, 1 cup","Rice, 1/2 cup","Onions, thinly sliced, a generous amount, for caramelizing","Cumin, olive oil"],
+      steps:["Boil the lentils until just tender.","Slowly caramelize the sliced onions in olive oil until deep golden and sweet — this takes patience.","Add the rice and cumin to the lentils along with water, and cook until the rice is tender and the water absorbed.","Fold in half the caramelized onions.","Top with the remaining onions before serving."]},
+    {id:"kafta-kebab",name:"Kafta Kebab",course:"kebab",meat:"beef",health:"everyday",time:30,spice:"medium",region:"Lebanon",country:"lebanon",servings:4,
+      desc:"Minced meat blended with onion and parsley, shaped onto skewers and grilled — a Levantine grill-house essential.",
+      ing:["Minced beef (or lamb), 500 g","Onion and parsley, finely chopped","Allspice, cinnamon, cumin","Skewers"],
+      steps:["Mix the minced meat thoroughly with onion, parsley and spices.","Knead well until the mixture holds together.","Shape onto flat skewers.","Grill over charcoal, turning, until charred and cooked through.","Serve with flatbread, grilled tomatoes and tahini sauce."]},
+    {id:"knafeh",name:"Knafeh",course:"dessert",meat:"vegetarian",health:"indulgent",time:45,spice:"mild",region:"Lebanon/Palestine",country:"lebanon",servings:8,
+      desc:"Shredded pastry baked over a layer of soft cheese, soaked in rosewater syrup and topped with crushed pistachio.",
+      ing:["Shredded phyllo (kataifi), 500 g","Soft, mild white cheese (or a mozzarella-ricotta mix)","Butter or ghee, melted","Sugar, water and rosewater for the syrup, crushed pistachios"],
+      steps:["Toss the shredded phyllo with melted butter until well coated.","Press half into a tray, layer the cheese on top, and cover with the remaining phyllo.","Bake until the top is golden and crisp.","Prepare a light syrup with sugar, water and rosewater.","Invert onto a plate, drench with syrup, and garnish with crushed pistachios."]},
+    {id:"lebanese-rice-vermicelli",name:"Lebanese Rice with Vermicelli",course:"rice",meat:"vegetarian",health:"everyday",time:25,spice:"mild",region:"Lebanon",country:"lebanon",servings:4,
+      desc:"A simple everyday rice pilaf toasted with broken vermicelli for a nutty aroma — the Lebanese table's daily rice.",
+      ing:["Basmati rice, 2 cups, rinsed","Vermicelli noodles, broken into short pieces, 1/2 cup","Butter or oil","Salt, water or stock"],
+      steps:["Toast the broken vermicelli in butter until golden brown.","Add the rinsed rice and stir to coat in the butter.","Add measured water or stock and salt, and bring to a boil.","Cover and simmer on low heat until the rice is tender and fluffy.","Serve alongside any stew or grilled meat."]},
+    {id:"timman-iraqi-rice",name:"Timman (Iraqi Rice)",course:"rice",meat:"vegetarian",health:"everyday",time:35,spice:"mild",region:"Iraq",country:"iraq",servings:5,
+      desc:"Fragrant Iraqi spiced rice, the everyday base for nearly every Iraqi meal, often studded with vermicelli or nuts.",
+      ing:["Basmati rice, 2 cups, soaked","Whole cardamom, cinnamon, cloves","Vermicelli or fried nuts (optional)","Ghee or oil, salt"],
+      steps:["Toast the whole spices (and vermicelli, if using) in ghee briefly.","Add the soaked, drained rice and stir to coat.","Add measured water and salt, and bring to a boil.","Cover and simmer on low heat until the rice is tender and fluffy.","Fluff gently and serve alongside any Iraqi stew."]},
+    {id:"masgouf",name:"Masgouf",course:"kebab",meat:"fish",health:"light",time:50,spice:"mild",region:"Iraq",country:"iraq",servings:4,
+      desc:"Whole fish, butterflied and grilled slowly beside an open fire — considered Iraq's national dish.",
+      ing:["A whole freshwater fish (such as carp), butterflied","Olive oil, turmeric, tamarind paste","Salt, and dried lime powder (loomi) if available"],
+      steps:["Butterfly the fish and rub generously with olive oil, turmeric, tamarind and salt.","Skewer or clamp it open on a rack.","Grill slowly, skin-side toward the coals first, until the flesh is cooked through and lightly charred.","Baste occasionally with more oil during grilling.","Serve with flatbread and grilled tomatoes."]},
+    {id:"kubba",name:"Kubba",course:"snack",meat:"beef",health:"indulgent",time:60,spice:"medium",region:"Iraq",country:"iraq",servings:6,
+      desc:"Iraq's own bulgur-and-meat dumpling, often simmered in a tangy broth rather than fried.",
+      ing:["Fine bulgur or rice, soaked, for the shell","Minced beef, for shell and filling","Onion, pine nuts, for filling","Tamarind or tomato broth (if simmering rather than frying)"],
+      steps:["Prepare the shell dough from bulgur (or rice) blended with a portion of minced beef.","Cook the remaining beef with onion, pine nuts and spices for the filling.","Shape the shell around the filling into balls or discs.","Either deep-fry until golden, or gently simmer in a seasoned tomato-tamarind broth until cooked through.","Serve hot, with the broth if simmered."]},
+    {id:"quzi",name:"Quzi",course:"rice",meat:"mutton",health:"indulgent",time:180,spice:"mild",region:"Iraq",country:"iraq",servings:8,
+      desc:"A festive dish of slow-cooked lamb served over richly spiced rice with nuts and raisins — a centerpiece for gatherings.",
+      ing:["Lamb or mutton, bone-in, 1.5 kg","Basmati rice, 3 cups","Whole garam spices, ginger-garlic paste","Fried nuts and raisins, ghee"],
+      steps:["Slow-cook the lamb with whole spices and ginger-garlic paste until completely tender, reserving the stock.","Cook the rice in the reserved lamb stock with more whole spices until fluffy.","Arrange the rice on a large platter and place the tender lamb on top.","Scatter fried nuts and raisins generously over everything.","Serve family-style for a gathering."]},
+    {id:"iraqi-kebab",name:"Iraqi Kebab",course:"kebab",meat:"beef",health:"everyday",time:30,spice:"medium",region:"Iraq",country:"iraq",servings:4,
+      desc:"Minced beef skewers seasoned simply with onion and parsley, grilled over open flame.",
+      ing:["Minced beef, 500 g","Onion and parsley, finely chopped","Baharat spice blend, salt","Skewers"],
+      steps:["Mix the minced beef with onion, parsley and baharat spice blend.","Knead well and rest briefly.","Shape onto flat skewers.","Grill over charcoal, turning, until charred and cooked through.","Serve with flatbread, grilled tomato and onion."]},
+    {id:"iraqi-adas-soup",name:"Iraqi Lentil Soup (Adas)",course:"soup",meat:"vegetarian",health:"light",time:35,spice:"mild",region:"Iraq",country:"iraq",servings:4,
+      desc:"A comforting, cumin-scented red lentil soup, brightened with a squeeze of lemon.",
+      ing:["Split red lentils, 1 cup","Onion, carrot, and cumin","Turmeric, lemon juice","Fried onion or croutons for garnish"],
+      steps:["Sauté the onion and carrot until softened.","Add the lentils, turmeric and enough water or stock; bring to a boil.","Simmer until the lentils are completely soft, then blend until smooth.","Stir in cumin and a squeeze of lemon juice.","Serve hot, garnished with fried onion or croutons."]},
+    {id:"kleicha",name:"Kleicha",course:"dessert",meat:"vegetarian",health:"indulgent",time:50,spice:"mild",region:"Iraq",country:"iraq",servings:10,
+      desc:"Iraq's national cookie — a tender shortbread wrapped around a spiced date filling.",
+      ing:["Flour, butter or ghee, for the dough","Yeast or baking powder, sugar, cardamom, milk","Dates, pitted and mashed, for the filling","Nigella or sesame seeds, for topping"],
+      steps:["Make a soft, slightly sweet dough with flour, butter, sugar, cardamom and milk.","Mash the dates into a smooth, moldable filling.","Flatten a piece of dough, place date filling in the center, and seal into a ball or a stamped disc.","Top with nigella or sesame seeds.","Bake until lightly golden and firm."]},
+    {id:"chelo-kebab",name:"Chelo Kebab",course:"kebab",meat:"beef",health:"everyday",time:40,spice:"mild",region:"Iran",country:"iran",servings:4,
+      desc:"Iran's national dish: buttery saffron rice served alongside long, thin skewers of seasoned ground meat.",
+      ing:["Minced beef (or lamb), 500 g, and grated onion","Saffron, basmati rice","Butter, sumac to serve","Skewers"],
+      steps:["Mix the minced meat with grated onion, salt and pepper, and knead until smooth and sticky.","Mold onto wide, flat skewers.","Grill over charcoal, turning, until browned and cooked through.","Cook the rice, steaming it so the base forms a golden crust, and finish with saffron-infused butter.","Serve the kebab over the rice, sprinkled with sumac."]},
+    {id:"fesenjan",name:"Fesenjan",course:"curry",meat:"chicken",health:"indulgent",time:75,spice:"mild",region:"Iran",country:"iran",servings:5,
+      desc:"A rich, tangy-sweet Persian stew of chicken simmered in ground walnuts and pomegranate molasses.",
+      ing:["Chicken pieces, 1 kg","Walnuts, ground, 2 cups","Pomegranate molasses, 1/2 cup","Onion, sugar, to balance"],
+      steps:["Toast the ground walnuts in a dry pan until fragrant, then simmer with water to release their oil.","Sauté the onion, then add the chicken and brown lightly.","Add the walnut mixture and pomegranate molasses, and simmer gently.","Cook low and slow until the sauce is thick, dark and glossy, adjusting sugar for balance.","Serve over saffron rice."]},
+    {id:"ghormeh-sabzi",name:"Ghormeh Sabzi",course:"curry",meat:"beef",health:"everyday",time:90,spice:"mild",region:"Iran",country:"iran",servings:5,
+      desc:"Iran's beloved herb stew, built on a generous mix of sautéed greens, dried limes and tender beef.",
+      ing:["Beef, cubed, 500 g","Mixed fresh herbs (parsley, coriander, fenugreek leaves, chives), a large bunch, chopped","Dried limes (loomi), pierced","Kidney beans, cooked, and onion"],
+      steps:["Slowly sauté the chopped herbs in oil until deeply fragrant and dark, developing their flavor.","Brown the beef with onion in a separate pot.","Combine the beef and sautéed herbs, add dried limes and kidney beans, and cover with water.","Simmer gently for over an hour until the beef is very tender and the stew has thickened.","Serve over rice."]},
+    {id:"tahdig",name:"Tahdig",course:"rice",meat:"vegetarian",health:"indulgent",time:55,spice:"mild",region:"Iran",country:"iran",servings:5,
+      desc:"Persian rice prized for its crisp, golden crust — often the most contested part of the meal.",
+      ing:["Basmati rice, 2 cups, soaked","Yogurt or a thin layer of sliced potato (for the crust)","Saffron, dissolved in hot water","Butter or oil"],
+      steps:["Parboil the soaked rice until about halfway cooked, then drain.","Mix a portion of the rice with yogurt and saffron water and spread it over the base of a pot with oil (or line with sliced potato).","Mound the remaining rice on top in a pyramid shape.","Cover and steam on low heat until the rice is fluffy and the base has crisped into a golden crust.","Invert onto a platter, crust-side up, to serve."]},
+    {id:"zereshk-polo",name:"Zereshk Polo ba Morgh",course:"rice",meat:"chicken",health:"everyday",time:60,spice:"mild",region:"Iran",country:"iran",servings:5,
+      desc:"Saffron rice studded with tart barberries, served with a simple saffron-turmeric braised chicken.",
+      ing:["Chicken pieces, 1 kg","Basmati rice, 2 cups, soaked","Dried barberries (zereshk), rinsed","Saffron, turmeric, sugar, butter"],
+      steps:["Braise the chicken with onion, turmeric and saffron water until tender.","Parboil the soaked rice and layer it to steam with butter until fluffy.","Quickly sauté the barberries in butter with a little sugar, being careful not to burn them.","Fold the barberries through part of the rice.","Serve the rice with the braised chicken alongside."]},
+    {id:"ash-reshteh",name:"Ash Reshteh",course:"soup",meat:"vegetarian",health:"light",time:60,spice:"mild",region:"Iran",country:"iran",servings:6,
+      desc:"A hearty Persian noodle and herb soup with beans, traditionally topped with fried mint and a whey-based sauce.",
+      ing:["Persian noodles (reshteh) or thick flat noodles","Mixed beans and lentils, cooked","Fresh herbs (parsley, spinach, coriander, chives), chopped","Fried onion, fried mint in oil, for garnish"],
+      steps:["Cook the beans and lentils until tender in a large pot of water.","Add the chopped herbs and simmer until wilted and the soup has thickened.","Add the noodles and cook until tender.","Fry mint in oil separately until fragrant.","Serve the soup topped with fried onion and the fried mint oil."]},
+    {id:"bastani-sonnati",name:"Bastani Sonnati (Persian Saffron Ice Cream)",course:"dessert",meat:"vegetarian",health:"indulgent",time:30,spice:"mild",region:"Iran",country:"iran",servings:6,
+      desc:"A dense, chewy saffron-and-rosewater ice cream studded with pistachio and threads of frozen cream.",
+      ing:["Full-fat milk and cream","Sugar, saffron, dissolved in hot water","Rosewater","Chopped pistachios, and salep or cornstarch (for chewiness)"],
+      steps:["Heat the milk with a little cornstarch or salep slurry until slightly thickened.","Stir in sugar, saffron water and rosewater.","Cool the mixture completely, then churn in an ice-cream maker (or freeze, stirring occasionally).","Fold in chopped pistachios and thin ribbons of clotted cream if available.","Freeze until firm and serve garnished with more pistachio."]},
+    {id:"adana-kebab",name:"Adana Kebab",course:"kebab",meat:"beef",health:"everyday",time:30,spice:"hot",region:"Turkey",country:"turkey",servings:4,
+      desc:"Hand-minced, hand-shaped spicy kebab from southeastern Turkey, grilled on wide flat skewers.",
+      ing:["Minced beef or lamb, hand-chopped with a little fat, 600 g","Red pepper flakes, sumac","Onion, finely chopped","Wide flat skewers"],
+      steps:["Knead the minced meat with red pepper flakes, onion and salt until sticky and well combined.","Mold firmly onto wide flat skewers, pressing into a long, thin shape.","Grill over hot charcoal, turning, until charred outside and cooked through.","Rest briefly.","Serve over flatbread with grilled vegetables and a sprinkle of sumac."]},
+    {id:"iskender-kebab",name:"Iskender Kebab",course:"kebab",meat:"beef",health:"indulgent",time:45,spice:"medium",region:"Bursa, Turkey",country:"turkey",servings:4,
+      desc:"Thin-sliced döner-style meat over cubed bread, drenched in tomato sauce and browned butter, with yogurt on the side.",
+      ing:["Thinly sliced marinated beef (döner-style)","Flatbread, cubed","Tomato sauce, plain yogurt","Butter, browned"],
+      steps:["Cook the marinated beef slices on a hot griddle or under a grill until browned and cooked through.","Toast the cubed bread lightly and arrange on a plate.","Layer the meat over the bread and pour warm tomato sauce over the top.","Add a generous dollop of yogurt on the side.","Finish with a drizzle of hot browned butter just before serving."]},
+    {id:"turkish-pide",name:"Turkish Pide",course:"bread",meat:"beef",health:"everyday",time:45,spice:"mild",region:"Turkey",country:"turkey",servings:4,
+      desc:"A boat-shaped, oven-baked flatbread topped with spiced minced meat and cheese, pinched at the edges.",
+      ing:["Pide or pizza dough","Minced beef, onion, tomato, green pepper, chopped","Cheese (kashkaval or mozzarella, optional)","Egg wash"],
+      steps:["Roll the dough into a long oval and pinch up the edges to form a boat shape.","Mix the minced beef with onion, tomato and pepper, and spread down the center.","Brush the edges with egg wash.","Bake in a very hot oven until the crust is golden and the filling is cooked through.","Slice and serve hot."]},
+    {id:"manti",name:"Manti",course:"snack",meat:"beef",health:"indulgent",time:70,spice:"mild",region:"Turkey",country:"turkey",servings:6,
+      desc:"Tiny, hand-folded dumplings filled with spiced minced meat, boiled and topped with garlic yogurt and paprika butter.",
+      ing:["Flour dough, rolled very thin and cut into small squares","Minced beef, onion, finely chopped, for filling","Yogurt, garlic, for the sauce","Butter, paprika or red pepper flakes"],
+      steps:["Place a small amount of minced beef and onion filling in the center of each dough square.","Pinch the corners together tightly to seal into tiny parcels.","Boil the dumplings in salted water or stock until they float and are cooked through.","Whisk yogurt with garlic and spoon generously over the drained dumplings.","Finish with a drizzle of butter melted with paprika."]},
+    {id:"mercimek-corbasi",name:"Mercimek Corbasi",course:"soup",meat:"vegetarian",health:"light",time:35,spice:"mild",region:"Turkey",country:"turkey",servings:4,
+      desc:"A silky, lemon-brightened red lentil soup, one of the most common starters on Turkish tables.",
+      ing:["Split red lentils, 1 cup","Onion, carrot, potato","Cumin, paprika","Butter, lemon wedges to serve"],
+      steps:["Sauté the onion, carrot and potato briefly in butter.","Add the lentils, cumin and enough water or stock; bring to a boil.","Simmer until everything is very soft, then blend until smooth.","Adjust the consistency with more stock if needed.","Finish with a paprika butter drizzle and serve with lemon wedges."]},
+    {id:"turkish-baklava",name:"Turkish Baklava",course:"dessert",meat:"vegetarian",health:"indulgent",time:60,spice:"mild",region:"Gaziantep, Turkey",country:"turkey",servings:10,
+      desc:"Turkey's version of the classic layered pastry, typically built with pistachios and a lighter, less spiced syrup.",
+      ing:["Phyllo pastry sheets","Pistachios, finely chopped, 2 cups","Butter, melted","Sugar, water and lemon juice for the syrup"],
+      steps:["Layer phyllo sheets in a tray, brushing each generously with melted butter.","Spread chopped pistachios evenly partway through the layering, then continue layering more phyllo on top.","Cut into diamond shapes before baking, then bake until golden and crisp.","Prepare a light sugar syrup with lemon juice.","Pour the cooled syrup over the hot baklava so it soaks in evenly."]},
+    {id:"lokum",name:"Turkish Delight (Lokum)",course:"dessert",meat:"vegetarian",health:"indulgent",time:50,spice:"mild",region:"Turkey",country:"turkey",servings:10,
+      desc:"A chewy, powdered-sugar-dusted confection, often rosewater or citrus scented, studded with nuts.",
+      ing:["Sugar, water, and cornstarch (as the setting agent)","Lemon juice or rosewater, for flavor","Chopped pistachios or hazelnuts (optional)","Powdered sugar and cornstarch, for dusting"],
+      steps:["Make a sugar syrup by dissolving sugar in water and simmering until clear.","Separately, cook a cornstarch-water paste until thick, then slowly whisk in the hot sugar syrup.","Continue cooking the combined mixture on low heat, stirring often, until very thick and glossy, about 45 minutes.","Stir in rosewater or lemon juice and nuts, then pour into a dusted tray to set overnight.","Cut into cubes and toss in powdered sugar and cornstarch."]},
+    {id:"chicken-tagine",name:"Chicken Tagine with Preserved Lemon",course:"curry",meat:"chicken",health:"everyday",time:60,spice:"mild",region:"Morocco",country:"morocco",servings:5,
+      desc:"Chicken slow-simmered with olives and preserved lemon in a conical tagine, fragrant with ginger and saffron.",
+      ing:["Chicken pieces, 1 kg","Preserved lemon, and green or violet olives","Ginger, saffron, turmeric","Onion, olive oil, coriander leaves"],
+      steps:["Sauté the onion with ginger, saffron and turmeric.","Add the chicken and brown lightly on all sides.","Add a little water, cover, and simmer gently until the chicken is tender.","Stir in preserved lemon and olives in the last 10 minutes.","Garnish with coriander and serve with bread or couscous."]},
+    {id:"beef-tagine-prunes",name:"Beef Tagine with Prunes",course:"curry",meat:"beef",health:"indulgent",time:90,spice:"mild",region:"Morocco",country:"morocco",servings:5,
+      desc:"A sweet-savory Moroccan stew where slow-cooked beef meets prunes, cinnamon and toasted almonds.",
+      ing:["Beef, cubed, 1 kg","Prunes, pitted","Cinnamon, ginger, honey","Onion, toasted almonds for garnish"],
+      steps:["Brown the beef with onion, cinnamon and ginger.","Add water, cover and simmer until the beef is nearly tender.","Add the prunes and a little honey, and continue simmering until the sauce thickens.","Toast the almonds separately until golden.","Serve the tagine topped with toasted almonds."]},
+    {id:"couscous-seven-vegetables",name:"Couscous with Seven Vegetables",course:"rice",meat:"vegetarian",health:"light",time:75,spice:"mild",region:"Morocco",country:"morocco",servings:6,
+      desc:"Steamed couscous served under a colorful medley of seven vegetables in a lightly spiced broth — a Friday tradition.",
+      ing:["Couscous, 3 cups","Seven vegetables (carrot, turnip, zucchini, cabbage, pumpkin, tomato, chickpeas)","Onion, ras el hanout spice blend","Olive oil or butter"],
+      steps:["Simmer the vegetables together with onion and ras el hanout in a flavorful broth until tender, adding harder vegetables first.","Steam the couscous (traditionally over the simmering vegetable pot) until light and fluffy, fluffing with a fork between steamings.","Fluff the finished couscous with olive oil or butter.","Mound the couscous on a large platter.","Top with the vegetables and a generous ladle of the broth."]},
+    {id:"harira",name:"Harira Soup",course:"soup",meat:"beef",health:"light",time:55,spice:"mild",region:"Morocco",country:"morocco",servings:6,
+      desc:"A hearty tomato, lentil and chickpea soup, traditionally the dish that breaks the fast during Ramadan.",
+      ing:["Lentils and chickpeas, cooked","Tomatoes, puréed","Beef, small cubes (optional)","Celery, coriander, flour or cornstarch slurry to thicken"],
+      steps:["Sauté the beef, if using, with celery and onion.","Add the puréed tomatoes, lentils and chickpeas along with water, and simmer until everything is soft.","Stir in a flour or cornstarch slurry to thicken slightly.","Add chopped coriander and simmer a few more minutes.","Serve hot with dates and bread, especially at iftar."]},
+    {id:"moroccan-mint-tea",name:"Moroccan Mint Tea",course:"drink",meat:"vegetarian",health:"light",time:10,spice:"mild",region:"Morocco",country:"morocco",servings:4,
+      desc:"Green tea brewed strong with fresh mint and plenty of sugar, poured from a height to create a light foam.",
+      ing:["Green tea leaves (gunpowder tea)","Fresh mint, a generous bunch","Sugar, to taste","Boiling water"],
+      steps:["Rinse the tea leaves briefly with a little boiling water, then discard that water.","Add fresh mint and sugar to the pot along with the tea leaves.","Pour in boiling water and let it steep for a few minutes.","Pour a glass out and back into the pot once or twice to mix.","Pour from a height into small glasses to create a foam on top."]},
+    {id:"chicken-bastilla",name:"Chicken Bastilla",course:"snack",meat:"chicken",health:"indulgent",time:90,spice:"mild",region:"Morocco",country:"morocco",servings:8,
+      desc:"A striking sweet-savory pie of spiced shredded chicken and almonds wrapped in crisp pastry, dusted with sugar and cinnamon.",
+      ing:["Chicken, cooked and shredded","Phyllo or warqa pastry sheets","Ground almonds, toasted, mixed with sugar and cinnamon","Eggs, onion, saffron, cinnamon, butter, powdered sugar for dusting"],
+      steps:["Simmer the chicken with onion, saffron and spices until tender, then shred and reduce the sauce.","Scramble eggs into the reduced sauce to make a thick, savory egg mixture.","Layer buttered phyllo sheets in a round pan, alternating layers of chicken, egg mixture and sweetened almonds.","Fold the phyllo over the top to enclose the filling completely and bake until golden and crisp.","Dust the top with powdered sugar and a lattice of cinnamon before serving."]},
+    {id:"koshari",name:"Koshari",course:"rice",meat:"vegetarian",health:"light",time:50,spice:"medium",region:"Egypt",country:"egypt",servings:5,
+      desc:"Egypt's national street food: a hearty layered mix of rice, lentils, pasta and chickpeas under a tangy tomato sauce and crispy onions.",
+      ing:["Rice, lentils, small pasta, and chickpeas, cooked separately","Tomato sauce, spiced with garlic and vinegar","Onion, thinly sliced and fried until crisp","Cumin, garlic vinegar sauce (dagga) on the side"],
+      steps:["Cook the rice, brown lentils, small pasta and chickpeas separately until each is tender.","Make a spiced tomato sauce with garlic, cumin and a touch of vinegar.","Fry the sliced onions until deeply crisp and golden.","Layer the rice, lentils, pasta and chickpeas in a bowl.","Top with tomato sauce, crispy onions, and a garlicky vinegar sauce on the side."]},
+    {id:"ful-medames",name:"Ful Medames",course:"snack",meat:"vegetarian",health:"light",time:25,spice:"mild",region:"Egypt",country:"egypt",servings:4,
+      desc:"Slow-simmered fava beans mashed with garlic, lemon and olive oil — Egypt's everyday breakfast.",
+      ing:["Fava beans, cooked (canned or dried and boiled), 3 cups","Garlic, lemon juice","Olive oil, cumin","Tomato, parsley, and boiled egg to garnish (optional)"],
+      steps:["Warm the cooked fava beans gently, mashing some lightly while leaving others whole.","Stir in crushed garlic, lemon juice, cumin and olive oil.","Adjust seasoning to taste.","Transfer to a serving bowl and top with chopped tomato and parsley.","Serve warm with flatbread."]},
+    {id:"molokhia",name:"Molokhia",course:"soup",meat:"chicken",health:"light",time:45,spice:"mild",region:"Egypt",country:"egypt",servings:5,
+      desc:"A distinctive, slightly mucilaginous green stew made from jute leaves, cooked in a garlicky coriander broth.",
+      ing:["Molokhia leaves (jute leaves), fresh or frozen, finely chopped","Chicken stock, and cooked chicken pieces","Garlic, coriander, ghee","Rice, to serve"],
+      steps:["Bring the chicken stock to a simmer.","Add the finely chopped molokhia leaves and simmer gently, stirring, until the stock thickens slightly.","In a separate small pan, fry crushed garlic and coriander in ghee until fragrant, then stir into the pot (the takleya).","Add the cooked chicken pieces and simmer a few more minutes.","Serve hot over rice."]},
+    {id:"egyptian-rice",name:"Egyptian Rice (Ruz bel Shaghria)",course:"rice",meat:"vegetarian",health:"everyday",time:25,spice:"mild",region:"Egypt",country:"egypt",servings:4,
+      desc:"Simple everyday Egyptian rice toasted with vermicelli, similar in spirit to Lebanese rice but a touch simpler.",
+      ing:["Short or medium-grain rice, 2 cups, rinsed","Vermicelli, broken","Butter or oil","Salt, water or stock"],
+      steps:["Toast the broken vermicelli in butter until golden.","Add the rinsed rice and stir to coat.","Add measured water or stock and salt, and bring to a boil.","Cover and simmer on low heat until tender and the liquid is absorbed.","Fluff and serve alongside any Egyptian stew."]},
+    {id:"egyptian-kofta",name:"Egyptian Grilled Kofta",course:"kebab",meat:"beef",health:"everyday",time:30,spice:"medium",region:"Egypt",country:"egypt",servings:4,
+      desc:"Minced beef seasoned with onion, parsley and warm spices, grilled on skewers — an Egyptian grill-house staple.",
+      ing:["Minced beef, 500 g","Onion and parsley, finely chopped","Cumin, coriander, allspice","Skewers"],
+      steps:["Mix the minced beef thoroughly with onion, parsley and spices.","Knead well until the mixture holds together.","Shape onto skewers.","Grill over charcoal, turning, until charred and cooked through.","Serve with flatbread, tahini sauce and salad."]},
+    {id:"om-ali",name:"Om Ali",course:"dessert",meat:"vegetarian",health:"indulgent",time:40,spice:"mild",region:"Egypt",country:"egypt",servings:6,
+      desc:"An Egyptian bread pudding baked with milk, nuts and raisins until bubbling and golden on top.",
+      ing:["Puff pastry or flaky bread, baked and broken into pieces","Full-fat milk and cream","Sugar, mixed nuts (pistachio, almond, coconut), raisins"],
+      steps:["Break the baked pastry into a baking dish.","Warm the milk with sugar until dissolved.","Pour the sweetened milk and cream over the pastry, then scatter nuts and raisins on top.","Bake until the top is golden and bubbling.","Serve warm, straight from the dish."]},
+    {id:"chicken-kabsa",name:"Chicken Kabsa",course:"rice",meat:"chicken",health:"everyday",time:65,spice:"medium",region:"Saudi Arabia & Gulf",country:"gulf",servings:6,
+      desc:"The signature Gulf rice dish: chicken and basmati rice cooked together in a warmly spiced tomato broth.",
+      ing:["Chicken, 1 kg","Basmati rice, 2.5 cups, soaked","Kabsa spice blend (cardamom, cinnamon, cloves, black lime)","Tomatoes, onion, fried nuts and raisins for garnish"],
+      steps:["Brown the chicken with onion and kabsa spices.","Add tomatoes and water, then simmer until the chicken is cooked; remove the chicken and set aside.","Cook the soaked rice in the remaining spiced broth until tender.","Grill or roast the chicken pieces briefly for color.","Serve the rice on a platter topped with the chicken, fried nuts and raisins."]},
+    {id:"lamb-mandi",name:"Lamb Mandi",course:"rice",meat:"mutton",health:"indulgent",time:150,spice:"mild",region:"Yemen/Gulf",country:"gulf",servings:6,
+      desc:"Slow-roasted lamb traditionally cooked in an underground pit, served over smoky, subtly spiced rice.",
+      ing:["Lamb, bone-in, 1.5 kg","Basmati rice, 3 cups","Mandi spice blend, saffron","Onion, whole garlic, a piece of charcoal for smoking (optional, for the smoky finish)"],
+      steps:["Rub the lamb with mandi spices and roast (or slow-bake) until deeply tender and browned.","Cook the rice in a well-seasoned stock, ideally made from the lamb's own drippings, with saffron and whole spices.","For a smoky finish, place a small piece of burning charcoal in a bowl set into the rice pot, cover tightly, and let the smoke infuse for a few minutes before removing it.","Arrange the rice on a large platter.","Top with the whole roasted lamb and serve family-style."]},
+    {id:"jareesh",name:"Jareesh",course:"dal",meat:"chicken",health:"everyday",time:70,spice:"mild",region:"Saudi Arabia & Gulf",country:"gulf",servings:5,
+      desc:"Cracked wheat cooked down into a thick, porridge-like dish with chicken or meat — a Gulf home-style comfort food.",
+      ing:["Cracked wheat (jareesh), 1.5 cups, soaked","Chicken pieces, 500 g","Onion, garlic, whole spices","Ghee, milk or yogurt (optional, for creaminess)"],
+      steps:["Boil the chicken with onion, garlic and whole spices until tender; remove and shred, reserving the stock.","Add the soaked cracked wheat to the stock and simmer, stirring frequently, until it breaks down into a thick porridge.","Stir the shredded chicken back in.","Finish with a little ghee or a swirl of yogurt for creaminess.","Serve hot in bowls."]},
+    {id:"machboos",name:"Machboos",course:"rice",meat:"chicken",health:"everyday",time:60,spice:"medium",region:"Bahrain/UAE",country:"gulf",servings:5,
+      desc:"A Gulf spiced rice dish similar to kabsa, distinguished by its use of dried lime (loomi) for a distinct tang.",
+      ing:["Chicken (or fish), 1 kg","Basmati rice, 2.5 cups, soaked","Dried black lime (loomi), whole","Machboos spice blend, tomato paste, onion, fried onion for garnish"],
+      steps:["Brown the chicken with onion and machboos spices.","Add tomato paste, dried lime and water, and simmer until the chicken is cooked.","Remove the chicken and cook the soaked rice in the remaining spiced stock.","Grill or lightly fry the chicken pieces for color if desired.","Serve the rice topped with the chicken and fried onion."]},
+    {id:"luqaimat",name:"Luqaimat",course:"dessert",meat:"vegetarian",health:"indulgent",time:35,spice:"mild",region:"Gulf",country:"gulf",servings:6,
+      desc:"Small, deep-fried dumplings with a crisp shell and soft center, drizzled with date syrup — a Ramadan favorite.",
+      ing:["Flour, yeast, and a little saffron or cardamom","Sugar, milk or water","Oil for deep frying","Date syrup (or honey), for drizzling"],
+      steps:["Mix flour, yeast, sugar and cardamom with milk or water into a thick, pourable batter.","Let the batter rest until slightly puffy.","Drop spoonfuls into hot oil and fry until golden and puffed, turning to cook evenly.","Drain on paper towels.","Drizzle generously with date syrup before serving warm."]},
+    {id:"qahwa-dates",name:"Arabic Coffee & Dates",course:"drink",meat:"vegetarian",health:"light",time:15,spice:"mild",region:"Gulf",country:"gulf",servings:4,
+      desc:"Lightly roasted, cardamom-spiced coffee served in small cups alongside fresh dates — the classic gesture of hospitality.",
+      ing:["Lightly roasted coffee beans, ground coarse","Green cardamom pods, crushed","Saffron (optional)","Fresh dates, to serve"],
+      steps:["Brew the ground coffee with water in a traditional pot (dallah) or a small saucepan.","Add crushed cardamom (and saffron, if using) and simmer gently for a few minutes.","Strain if needed for a clear pour.","Pour small amounts into small handleless cups.","Serve alongside a plate of fresh dates."]},
+    {id:"nasi-goreng",name:"Nasi Goreng",course:"rice",meat:"chicken",health:"everyday",time:25,spice:"medium",region:"Indonesia",country:"indonesia-malaysia",servings:4,
+      desc:"Indonesia's beloved fried rice, built on sweet soy sauce and a fried egg on top.",
+      ing:["Cooked, day-old rice, 4 cups","Chicken, diced, and shallots, garlic, chili, chopped","Sweet soy sauce (kecap manis)","Fried egg and prawn crackers to serve"],
+      steps:["Stir-fry the chopped shallots, garlic and chili until fragrant.","Add the diced chicken and cook through.","Add the cold rice and sweet soy sauce, tossing on high heat until well combined and slightly charred in places.","Fry an egg per portion, sunny-side up.","Serve the rice topped with the fried egg and prawn crackers."]},
+    {id:"beef-rendang",name:"Beef Rendang",course:"curry",meat:"beef",health:"indulgent",time:150,spice:"hot",region:"Indonesia/Malaysia",country:"indonesia-malaysia",servings:6,
+      desc:"Beef slow-cooked in coconut milk and spice paste until the liquid reduces to a thick, deeply caramelized coating.",
+      ing:["Beef, cubed, 1 kg","Coconut milk, 2 cans","Spice paste: shallots, garlic, ginger, galangal, lemongrass, chilies","Turmeric leaf and kaffir lime leaves (if available)"],
+      steps:["Blend the shallots, garlic, ginger, galangal, lemongrass and chilies into a fine paste.","Sauté the paste until fragrant, then add the beef and coat well.","Pour in the coconut milk and bring to a simmer.","Cook uncovered on low heat for 2–3 hours, stirring occasionally, until the liquid reduces and the beef turns a deep, dark brown.","Serve with steamed rice."]},
+    {id:"chicken-satay",name:"Chicken Satay with Peanut Sauce",course:"kebab",meat:"chicken",health:"everyday",time:35,spice:"medium",region:"Indonesia/Malaysia",country:"indonesia-malaysia",servings:4,
+      desc:"Skewered, marinated chicken grilled over charcoal and served with a rich peanut dipping sauce.",
+      ing:["Chicken, cubed, 1 kg","Turmeric, coriander, garlic, for the marinade","Peanuts, ground, for the sauce","Kecap manis, tamarind, chili, for the sauce","Skewers"],
+      steps:["Marinate the chicken in turmeric, coriander and garlic for at least 1 hour.","Thread onto skewers and grill over charcoal, turning, until charred and cooked through.","Make the peanut sauce by simmering ground peanuts with kecap manis, tamarind and chili until thick.","Serve the skewers with the peanut sauce for dipping.","Accompany with rice cakes or steamed rice."]},
+    {id:"nasi-lemak",name:"Nasi Lemak",course:"rice",meat:"fish",health:"indulgent",time:40,spice:"hot",region:"Malaysia",country:"indonesia-malaysia",servings:4,
+      desc:"Malaysia's national dish: coconut rice served with a fiery sambal, fried anchovies, peanuts and egg.",
+      ing:["Rice, cooked in coconut milk with pandan leaf","Dried anchovies, fried until crisp","Sambal (chili paste), roasted peanuts","Boiled or fried egg, cucumber slices"],
+      steps:["Cook the rice with coconut milk and a pandan leaf until fragrant and tender.","Fry the dried anchovies until crisp.","Prepare or warm the sambal chili paste.","Arrange the coconut rice on a plate with the anchovies, peanuts, egg and cucumber.","Serve with the sambal on the side or spooned over."]},
+    {id:"mee-goreng",name:"Mee Goreng",course:"rice",meat:"chicken",health:"everyday",time:25,spice:"medium",region:"Indonesia/Malaysia",country:"indonesia-malaysia",servings:4,
+      desc:"Stir-fried noodles tossed with chicken, vegetables and a savory-sweet sauce — a hawker-stall favorite.",
+      ing:["Yellow egg noodles, boiled and drained","Chicken, sliced, and mixed vegetables (cabbage, bean sprouts, carrot)","Garlic, shallots, chili","Sweet soy sauce (kecap manis), oil"],
+      steps:["Sauté garlic, shallots and chili until fragrant.","Add the chicken and cook until nearly done.","Add the vegetables and stir-fry briefly.","Add the noodles and sweet soy sauce, tossing well on high heat until everything is combined and slightly charred.","Serve hot, with a wedge of lime if available."]},
+    {id:"gado-gado",name:"Gado-Gado",course:"salad",meat:"vegetarian",health:"light",time:30,spice:"medium",region:"Indonesia",country:"indonesia-malaysia",servings:4,
+      desc:"A vibrant Indonesian salad of blanched vegetables, boiled egg and tofu, dressed generously in peanut sauce.",
+      ing:["Mixed vegetables (cabbage, bean sprouts, green beans, potato), blanched","Tofu, fried, and boiled eggs","Peanut sauce: ground peanuts, tamarind, chili, sugar","Prawn crackers (optional)"],
+      steps:["Blanch the vegetables briefly, keeping them crisp-tender.","Fry the tofu until golden and boil the eggs.","Make the peanut sauce by blending ground peanuts with tamarind, chili, sugar and water.","Arrange the vegetables, tofu and eggs on a plate.","Drizzle generously with peanut sauce and serve with prawn crackers if using."]},
+    {id:"beef-barbacoa-tacos",name:"Beef Barbacoa Tacos",course:"snack",meat:"beef",health:"everyday",time:180,spice:"medium",region:"Mexico",country:"mexico",servings:6,
+      desc:"Slow-cooked, deeply seasoned shredded beef piled onto warm tortillas — a halal-friendly take using beef instead of the traditional cut.",
+      ing:["Beef chuck or brisket, 1.5 kg","Dried chilies (guajillo, ancho), soaked","Garlic, cumin, bay leaves","Corn tortillas, chopped onion, coriander, lime"],
+      steps:["Blend the soaked chilies with garlic, cumin and a little water into a smooth sauce.","Coat the beef in the chili sauce and slow-cook (oven, slow cooker or stovetop) until completely tender and shreddable.","Shred the beef and mix it back through the cooking liquid.","Warm the tortillas.","Fill with the shredded beef and top with chopped onion, coriander and a squeeze of lime."]},
+    {id:"chicken-enchiladas-verdes",name:"Chicken Enchiladas Verdes",course:"curry",meat:"chicken",health:"indulgent",time:50,spice:"medium",region:"Mexico",country:"mexico",servings:5,
+      desc:"Corn tortillas rolled around shredded chicken and baked under a tangy green tomatillo sauce.",
+      ing:["Chicken, cooked and shredded","Tomatillos, green chilies, garlic, for the sauce","Corn tortillas","Cheese, onion, coriander, sour cream (optional) to finish"],
+      steps:["Simmer tomatillos, green chilies and garlic until soft, then blend into a smooth green sauce.","Warm the tortillas slightly so they roll without cracking.","Fill each tortilla with shredded chicken and roll tightly, placing seam-side down in a baking dish.","Pour the green sauce over the rolled tortillas and top with cheese.","Bake until bubbling, then garnish with onion and coriander."]},
+    {id:"guacamole",name:"Guacamole",course:"snack",meat:"vegetarian",health:"light",time:15,spice:"medium",region:"Mexico",country:"mexico",servings:4,
+      desc:"Ripe avocado mashed with lime, chili and coriander — simple, fresh and endlessly useful.",
+      ing:["Ripe avocados, 3","Lime juice, red onion, finely chopped","Green chili and coriander, chopped","Tomato, diced (optional), salt"],
+      steps:["Mash the avocados to a chunky consistency in a bowl.","Stir in lime juice, onion, chili and coriander.","Fold in diced tomato if using.","Season with salt to taste.","Serve immediately with tortilla chips to prevent browning."]},
+    {id:"elote",name:"Elote",course:"snack",meat:"vegetarian",health:"indulgent",time:20,spice:"medium",region:"Mexico",country:"mexico",servings:4,
+      desc:"Grilled corn on the cob slathered in a creamy, chili-lime dressing and crumbled cheese.",
+      ing:["Corn on the cob, 4 ears","Mayonnaise or a yogurt-mayo blend","Chili powder, lime juice","Crumbled cheese (such as cotija or feta), coriander"],
+      steps:["Grill the corn over charcoal or a hot grill pan, turning, until charred in spots.","Brush generously with mayonnaise while still warm.","Sprinkle with chili powder and crumbled cheese.","Squeeze lime juice over the top.","Garnish with coriander and serve immediately."]},
+    {id:"beef-fajitas",name:"Beef Fajitas",course:"kebab",meat:"beef",health:"everyday",time:30,spice:"medium",region:"Mexico/Tex-Mex",country:"mexico",servings:4,
+      desc:"Sizzling strips of marinated beef and peppers, served with warm tortillas to build your own wrap.",
+      ing:["Beef steak, sliced into strips, 700 g","Bell peppers and onion, sliced","Lime juice, garlic, cumin, chili powder","Flour or corn tortillas"],
+      steps:["Marinate the beef strips in lime juice, garlic, cumin and chili powder for at least 30 minutes.","Sear the beef in a very hot pan or skillet until browned, then set aside.","In the same pan, stir-fry the peppers and onion until just tender-crisp.","Return the beef to the pan and toss together briefly.","Serve sizzling with warm tortillas and toppings of choice."]},
+    {id:"chicken-tinga-tostadas",name:"Chicken Tinga Tostadas",course:"snack",meat:"chicken",health:"everyday",time:40,spice:"medium",region:"Mexico",country:"mexico",servings:4,
+      desc:"Shredded chicken simmered in a smoky chipotle-tomato sauce, piled onto crisp fried tortillas.",
+      ing:["Chicken, cooked and shredded","Tomatoes, chipotle chilies in adobo, onion, garlic","Corn tortillas, fried crisp (tostadas)","Lettuce, cream, crumbled cheese to finish"],
+      steps:["Blend tomatoes, chipotle chilies, onion and garlic into a smoky sauce.","Simmer the sauce until slightly reduced.","Add the shredded chicken and simmer until well coated and heated through.","Pile the chicken tinga onto crisp tostadas.","Top with shredded lettuce, cream and crumbled cheese."]},
+    {id:"beef-burger",name:"Classic Beef Burger",course:"snack",meat:"beef",health:"indulgent",time:25,spice:"mild",region:"United States",country:"usa",servings:4,
+      desc:"A juicy grilled beef patty on a soft bun with all the classic fixings — the quintessential American sandwich.",
+      ing:["Ground beef, 600 g","Burger buns, cheese slices (optional)","Lettuce, tomato, onion, pickles","Ketchup, mustard, mayonnaise"],
+      steps:["Shape the ground beef into patties, seasoning simply with salt and pepper.","Grill or pan-sear the patties over high heat until well browned, adding cheese near the end if using.","Toast the buns lightly.","Spread condiments on the buns and layer with lettuce, tomato and onion.","Assemble the burger with the patty and pickles, and serve hot."]},
+    {id:"buffalo-wings",name:"Buffalo Wings",course:"snack",meat:"chicken",health:"indulgent",time:40,spice:"hot",region:"Buffalo, New York, USA",country:"usa",servings:4,
+      desc:"Crisp fried chicken wings tossed in a tangy, buttery hot sauce, served with a cooling dip.",
+      ing:["Chicken wings, 1 kg","Hot sauce and butter, for the toss","Flour or cornstarch, for dredging","Celery sticks, and a yogurt-based ranch or blue-cheese-style dip"],
+      steps:["Dredge the wings lightly in flour or cornstarch.","Deep-fry or bake until crisp and cooked through.","Melt butter and whisk with hot sauce.","Toss the hot wings in the sauce until well coated.","Serve immediately with celery sticks and a cooling dip."]},
+    {id:"mac-and-cheese",name:"Mac and Cheese",course:"snack",meat:"vegetarian",health:"indulgent",time:30,spice:"mild",region:"United States",country:"usa",servings:4,
+      desc:"Elbow macaroni baked in a rich, creamy cheese sauce until bubbling — pure American comfort food.",
+      ing:["Elbow macaroni, 400 g","Cheddar cheese, grated, 2 cups","Butter, flour, milk (for the sauce)","Breadcrumbs (optional, for topping)"],
+      steps:["Boil the macaroni until just tender, then drain.","Make a roux with butter and flour, then whisk in milk to form a smooth sauce.","Stir in the grated cheese until melted and glossy.","Combine the sauce with the macaroni and transfer to a baking dish, topping with breadcrumbs if using.","Bake until bubbling and golden on top."]},
+    {id:"cornbread",name:"Cornbread",course:"bread",meat:"vegetarian",health:"indulgent",time:35,spice:"mild",region:"Southern United States",country:"usa",servings:8,
+      desc:"A slightly sweet, golden skillet bread made from cornmeal — a Southern table staple.",
+      ing:["Cornmeal, 1.5 cups, and flour, 1/2 cup","Sugar, baking powder","Milk, eggs, melted butter"],
+      steps:["Whisk together the cornmeal, flour, sugar and baking powder.","In a separate bowl, whisk the milk, eggs and melted butter.","Combine the wet and dry ingredients until just mixed.","Pour into a greased, hot skillet or baking pan.","Bake until golden and a toothpick comes out clean."]},
+    {id:"apple-pie",name:"Apple Pie",course:"dessert",meat:"vegetarian",health:"indulgent",time:75,spice:"mild",region:"United States",country:"usa",servings:8,
+      desc:"Spiced apple filling baked in a buttery, flaky double crust — the archetypal American dessert.",
+      ing:["Pie dough, for a double crust","Apples, peeled and sliced, 6-7","Sugar, cinnamon, nutmeg","Butter, lemon juice"],
+      steps:["Toss the sliced apples with sugar, cinnamon, nutmeg and lemon juice.","Line a pie dish with one round of dough and fill with the apple mixture, dotting with butter.","Cover with the second round of dough, sealing and crimping the edges, and cut a few steam vents.","Bake until the crust is deep golden and the filling is bubbling.","Cool slightly before slicing and serve warm, plain or with ice cream."]},
+    {id:"texas-beef-brisket",name:"Texas Beef Brisket",course:"kebab",meat:"beef",health:"indulgent",time:480,spice:"mild",region:"Texas, United States",country:"usa",servings:8,
+      desc:"A whole beef brisket rubbed with spices and smoked low and slow until fork-tender — the centerpiece of Texas barbecue.",
+      ing:["Beef brisket, whole, 3-4 kg","Dry rub: paprika, black pepper, garlic powder, salt","Wood chips, for smoking (if using a smoker)","BBQ sauce, to serve"],
+      steps:["Coat the brisket generously with the dry rub, ideally the night before.","Smoke or slow-roast at a low temperature for many hours, until the internal temperature reaches full tenderness.","Wrap in foil partway through cooking to retain moisture, if needed.","Rest the brisket for at least 30 minutes before slicing.","Slice against the grain and serve with barbecue sauce."]},
+    {id:"ayran",name:"Ayran",course:"drink",meat:"vegetarian",health:"light",time:5,spice:"mild",region:"Turkey",country:"turkey",servings:2,
+      desc:"A simple, salted, whipped yogurt drink — Turkey's everyday companion to grilled meat.",
+      ing:["Plain yogurt, 1.5 cups","Cold water","Salt, to taste","Ice cubes"],
+      steps:["Whisk the yogurt with cold water until smooth and frothy.","Season with a pinch of salt.","Adjust the water for a thinner or thicker consistency, to taste.","Serve over ice alongside grilled kebabs."]},
+    {id:"doogh",name:"Doogh",course:"drink",meat:"vegetarian",health:"light",time:5,spice:"mild",region:"Iran",country:"iran",servings:2,
+      desc:"A fizzy, minty Persian yogurt drink, traditionally served alongside kebabs and rice.",
+      ing:["Plain yogurt, 1.5 cups","Sparkling or plain water","Dried mint, salt","Ice cubes"],
+      steps:["Whisk the yogurt with water until smooth.","Season with salt and a pinch of dried mint.","Chill well, or use sparkling water for a fizzy version.","Serve over ice, garnished with a little more mint."]},
+    {id:"jallab",name:"Jallab",course:"drink",meat:"vegetarian",health:"light",time:15,spice:"mild",region:"Lebanon/Levant",country:"lebanon",servings:4,
+      desc:"A dark, date-and-grape-molasses drink dotted with pine nuts and raisins, popular through Ramadan.",
+      ing:["Jallab syrup (date molasses, grape molasses, rosewater)","Cold water, ice","Pine nuts and raisins, for garnish"],
+      steps:["Dilute the jallab syrup with cold water to taste.","Fill glasses generously with crushed ice.","Pour the diluted syrup over the ice.","Top with pine nuts and raisins.","Serve immediately, especially at iftar."]},
+    {id:"karak-chai",name:"Karak Chai",course:"drink",meat:"vegetarian",health:"everyday",time:15,spice:"mild",region:"Gulf",country:"gulf",servings:2,
+      desc:"A strong, sweet, cardamom-spiced milk tea, boiled until deeply flavored — a Gulf street-corner staple.",
+      ing:["Loose black tea, strongly brewed","Full-fat milk, evaporated milk for extra richness (optional)","Cardamom, sugar"],
+      steps:["Boil water with tea leaves and cardamom until dark and strong.","Add milk and sugar and bring back to a boil.","Simmer, stirring, allowing it to boil up a few times for a fuller flavor.","Strain into small cups.","Serve hot, freshly made."]},
+    {id:"masala-chai",name:"Masala Chai",course:"drink",meat:"vegetarian",health:"everyday",time:10,spice:"mild",region:"India",country:"india",servings:2,
+      desc:"Black tea simmered with milk and a warming blend of whole spices — India's everyday cup.",
+      ing:["Loose black tea","Full-fat milk and water","Whole spices: cardamom, cinnamon, cloves, ginger","Sugar, to taste"],
+      steps:["Simmer water with crushed whole spices for a few minutes to release their flavor.","Add tea leaves and simmer briefly.","Add milk and bring back to a gentle boil.","Add sugar and simmer a little longer until well infused.","Strain into cups and serve hot."]},
+    {id:"horchata",name:"Horchata",course:"drink",meat:"vegetarian",health:"light",time:20,spice:"mild",region:"Mexico",country:"mexico",servings:4,
+      desc:"A sweet, milky rice and cinnamon drink, blended and strained, served well chilled.",
+      ing:["Rice, soaked in water for several hours","Cinnamon stick","Sugar, and milk or condensed milk (optional)","Ice"],
+      steps:["Soak the rice with a cinnamon stick in water for at least 4 hours, or overnight.","Blend the soaked rice and water until smooth.","Strain through a fine cloth or sieve to remove the solids.","Sweeten with sugar (and milk for extra creaminess, if using).","Serve well chilled over ice."]},
+    {id:"agua-de-jamaica",name:"Agua de Jamaica",course:"drink",meat:"vegetarian",health:"light",time:15,spice:"mild",region:"Mexico",country:"mexico",servings:4,
+      desc:"A tart, ruby-red iced tea steeped from dried hibiscus flowers, sweetened and served ice cold.",
+      ing:["Dried hibiscus flowers (jamaica), 1 cup","Water","Sugar, to taste","Ice"],
+      steps:["Boil the dried hibiscus flowers in water for about 10 minutes.","Strain out the flowers, keeping the deep red liquid.","Sweeten with sugar while still warm, stirring to dissolve.","Chill completely.","Serve over ice."]},
+    {id:"classic-lemonade",name:"Classic Lemonade",course:"drink",meat:"vegetarian",health:"light",time:10,spice:"mild",region:"United States",country:"usa",servings:4,
+      desc:"Fresh-squeezed lemon juice, sugar and cold water — the simplest, most refreshing American cooler.",
+      ing:["Fresh lemon juice, 1 cup","Sugar, to taste","Cold water","Ice, and lemon slices for garnish"],
+      steps:["Dissolve the sugar in a little warm water to make a simple syrup.","Combine the lemon juice, syrup and cold water in a pitcher.","Adjust sweetness and tartness to taste.","Chill well.","Serve over ice, garnished with lemon slices."]},
+    {id:"sohan-asali",name:"Sohan Asali",course:"dessert",meat:"vegetarian",health:"indulgent",time:30,spice:"mild",region:"Qom, Iran",country:"iran",servings:10,
+      desc:"A brittle, saffron-and-honey nut candy from the city of Qom, a favorite Persian gift sweet.",
+      ing:["Sugar and honey, cooked to a caramel","Butter, saffron, dissolved in hot water","Sliced almonds and pistachios","A pinch of baking soda"],
+      steps:["Melt sugar, honey and butter together and cook, stirring, until it turns a light caramel color.","Stir in saffron water and the sliced nuts.","Add a pinch of baking soda to aerate the mixture slightly.","Pour thinly onto a greased tray or parchment.","Let it cool and harden, then break into pieces."]},
+    {id:"turkish-helva",name:"Turkish Helva",course:"dessert",meat:"vegetarian",health:"indulgent",time:25,spice:"mild",region:"Turkey",country:"turkey",servings:8,
+      desc:"A dense semolina sweet, toasted in butter and simmered with sweetened milk until it pulls together.",
+      ing:["Semolina, 2 cups","Butter, 1 cup","Milk, sugar, and pine nuts","Cinnamon, for dusting"],
+      steps:["Toast the pine nuts in butter until golden, then set aside.","Add the semolina to the same butter and roast over low heat until fragrant and golden.","Separately, heat milk with sugar until dissolved, then pour slowly into the roasted semolina, stirring constantly.","Cover and let it rest off the heat for 10 minutes to fully absorb the liquid.","Serve warm, dusted with cinnamon and topped with the toasted pine nuts."]},
+    {id:"basbousa",name:"Basbousa",course:"dessert",meat:"vegetarian",health:"indulgent",time:45,spice:"mild",region:"Egypt",country:"egypt",servings:10,
+      desc:"A dense semolina cake, baked until golden and soaked in a light syrup, often topped with almonds.",
+      ing:["Semolina, 2 cups","Yogurt, sugar, and melted butter","Baking powder","Sugar syrup (sugar, water, lemon juice), almonds for topping"],
+      steps:["Mix the semolina, yogurt, sugar, melted butter and baking powder into a thick batter.","Pour into a greased baking tray and score into diamond shapes, pressing an almond into each.","Bake until golden on top.","Prepare a light sugar syrup with lemon juice.","Pour the cool syrup over the hot cake as soon as it comes out of the oven."]},
+    {id:"chebakia",name:"Chebakia",course:"dessert",meat:"vegetarian",health:"indulgent",time:60,spice:"mild",region:"Morocco",country:"morocco",servings:12,
+      desc:"Flower-shaped, sesame-scented fried dough coated in warm honey — a Ramadan-table fixture in Morocco.",
+      ing:["Flour, sesame seeds, toasted","Cinnamon, saffron, aniseed, for the dough","Oil for deep frying","Honey, orange blossom water, for coating"],
+      steps:["Knead a dough from flour, spices, toasted sesame and a little oil.","Roll out and cut into strips, then fold and pinch into flower-like shapes.","Deep-fry until golden and crisp.","Warm the honey with a little orange blossom water.","Dip the hot fried shapes into the warm honey and drain before serving."]},
+    {id:"tres-leches-cake",name:"Tres Leches Cake",course:"dessert",meat:"vegetarian",health:"indulgent",time:60,spice:"mild",region:"Mexico",country:"mexico",servings:10,
+      desc:"A light sponge cake soaked in three kinds of milk until moist throughout, topped with whipped cream.",
+      ing:["Sponge cake, baked in advance","Evaporated milk, condensed milk, and full-fat milk (the three milks)","Whipped cream, for topping","Cinnamon or fruit, for garnish"],
+      steps:["Bake a simple sponge cake and let it cool slightly, then poke holes all over the top.","Whisk together the three milks.","Slowly pour the milk mixture over the cake, letting it soak in fully.","Chill for a few hours so the cake absorbs the liquid completely.","Top with whipped cream and a dusting of cinnamon before serving."]},
+    {id:"chocolate-chip-cookies",name:"Chocolate Chip Cookies",course:"dessert",meat:"vegetarian",health:"indulgent",time:25,spice:"mild",region:"United States",country:"usa",servings:12,
+      desc:"Buttery, chewy cookies studded with melting chocolate chips — an American classic in every lunchbox.",
+      ing:["Flour, butter, brown sugar and white sugar","Eggs, vanilla extract","Baking soda","Chocolate chips, 1.5 cups"],
+      steps:["Cream the butter with both sugars until light and fluffy.","Beat in the eggs and vanilla.","Fold in the flour and baking soda, then the chocolate chips.","Drop spoonfuls onto a baking tray, spaced well apart.","Bake until the edges are golden but the centers still look slightly soft."]},
+    {id:"brownies",name:"Brownies",course:"dessert",meat:"vegetarian",health:"indulgent",time:35,spice:"mild",region:"United States",country:"usa",servings:12,
+      desc:"Dense, fudgy chocolate squares with a crackly top — a quick, reliable American bake-sale favorite.",
+      ing:["Butter and dark chocolate, melted together","Sugar, eggs, vanilla extract","Flour, cocoa powder","Chopped walnuts (optional)"],
+      steps:["Melt the butter and chocolate together until smooth.","Whisk in the sugar, eggs and vanilla.","Fold in the flour and cocoa powder until just combined, along with walnuts if using.","Pour into a lined baking tray.","Bake until a slightly moist crumb clings to a toothpick, then cool before slicing."]},
   ];
 
   var FILTER_DEFS = [
+    {key:"country", label:"Country / Cuisine", options:[
+      {v:"pakistan",l:"🇵🇰 Pakistan"},{v:"india",l:"🇮🇳 India"},{v:"mediterranean",l:"🫒 Mediterranean"},
+      {v:"lebanon",l:"🇱🇧 Lebanon"},{v:"iraq",l:"🇮🇶 Iraq"},{v:"iran",l:"🇮🇷 Iran"},{v:"turkey",l:"🇹🇷 Turkey"},
+      {v:"morocco",l:"🇲🇦 Morocco"},{v:"egypt",l:"🇪🇬 Egypt"},{v:"gulf",l:"🇸🇦 Saudi Arabia & Gulf"},
+      {v:"indonesia-malaysia",l:"🇮🇩 Indonesia & Malaysia"},{v:"mexico",l:"🇲🇽 Mexico"},{v:"usa",l:"🇺🇸 United States"}
+    ]},
+    {key:"occasion", label:"Occasion", multi:true, options:[
+      {v:"ramadan",l:"Ramadan"},{v:"iftar",l:"Iftar"},{v:"eid-fitr",l:"Eid ul-Fitr"},{v:"eid-adha",l:"Eid ul-Adha"},
+      {v:"wedding",l:"Wedding"},{v:"nikkah",l:"Nikkah"},{v:"aqiqah",l:"Aqiqah"},{v:"family-gathering",l:"Family Gathering"},
+      {v:"school-lunch",l:"School Lunch"},{v:"office-lunch",l:"Office Lunch"},{v:"short-travel",l:"Short Travel"},{v:"long-travel",l:"Long Travel"}
+    ]},
     {key:"meat", label:"Protein", options:[
       {v:"chicken",l:"Chicken"},{v:"beef",l:"Beef"},{v:"mutton",l:"Mutton"},{v:"fish",l:"Fish"},{v:"vegetarian",l:"Vegetarian"}
     ]},
     {key:"health", label:"Health Category", options:[
       {v:"light",l:"Light & Fresh"},{v:"everyday",l:"Everyday"},{v:"indulgent",l:"Indulgent"}
     ]},
+    {key:"serve", label:"Served", options:[
+      {v:"hot",l:"Hot"},{v:"cold",l:"Cold"}
+    ]},
     {key:"timeBucket", label:"Cooking Time", options:[
       {v:"quick",l:"Quick — 30 min or less"},{v:"medium",l:"Medium — 31–60 min"},{v:"long",l:"Long — 60 min+"}
     ]},
     {key:"course", label:"Course", options:[
-      {v:"rice",l:"Rice & Biryani"},{v:"curry",l:"Curry & Salan"},{v:"dal",l:"Dal & Lentils"},{v:"kebab",l:"Kebab & BBQ"},
-      {v:"snack",l:"Snacks & Street Food"},{v:"bread",l:"Bread"},{v:"dessert",l:"Dessert"},{v:"drink",l:"Drinks"}
+      {v:"rice",l:"Rice, Noodles & Biryani"},{v:"curry",l:"Curry & Salan"},{v:"dal",l:"Dal & Lentils"},{v:"kebab",l:"Kebab & BBQ"},
+      {v:"snack",l:"Snacks & Street Food"},{v:"salad",l:"Salads"},{v:"soup",l:"Soups"},{v:"bread",l:"Bread"},{v:"dessert",l:"Dessert & Sweets"},{v:"drink",l:"Drinks & Juices"}
     ]},
     {key:"spice", label:"Spice Level", options:[
       {v:"mild",l:"Mild"},{v:"medium",l:"Medium"},{v:"hot",l:"Hot"}
@@ -937,35 +1348,91 @@
   ];
 
   function timeBucket(t){ return t<=30 ? "quick" : (t<=60 ? "medium" : "long"); }
-  RECIPES.forEach(function(r){ r.timeBucket = timeBucket(r.time); });
 
-  var active = {meat:new Set(), health:new Set(), timeBucket:new Set(), course:new Set(), spice:new Set()};
+  function computeOccasions(r){
+    var o = {};
+    function add(x){ o[x] = true; }
+    if (r.course==="drink" || r.course==="soup"){ add("ramadan"); add("iftar"); }
+    if (r.course==="snack"){ add("iftar"); }
+    if (r.course==="dessert"){ add("ramadan"); add("eid-fitr"); }
+    if (r.meat==="mutton" || (r.meat==="beef" && (r.health==="indulgent" || r.timeBucket==="long"))){
+      add("eid-adha"); add("aqiqah");
+    }
+    if (r.servings>=6 && (r.course==="rice" || r.course==="curry" || r.course==="kebab" || r.course==="dessert")){
+      add("wedding"); add("nikkah");
+    }
+    if (r.health==="indulgent" || r.servings>=5 || r.timeBucket==="long"){ add("family-gathering"); }
+    if ((r.course==="snack" || r.course==="bread" || r.course==="dal" || r.course==="salad") && r.timeBucket!=="long"){
+      add("school-lunch"); add("office-lunch");
+    }
+    if (r.course==="bread" || r.course==="snack" || r.course==="dessert"){ add("short-travel"); }
+    if (r.course==="bread" || (r.course==="snack" && r.health!=="indulgent") || r.course==="dessert"){ add("long-travel"); }
+    return Object.keys(o);
+  }
+
+  var HOT_DRINK_IDS = ["doodh-patti","kashmiri-chai","qahwa-dates","moroccan-mint-tea","karak-chai","masala-chai"];
+  var COLD_EXTRA_IDS = ["kheer","firni","kulfi","rabri","ras-malai","bastani-sonnati","barfi","mysore-pak","lokum",
+    "mediterranean-baklava","turkish-baklava","guacamole","dahi-puri","dahi-bhalla","samosa-chaat","fruit-chaat",
+    "papri-chaat","gado-gado","horchata","agua-de-jamaica","ayran","doogh","jallab","classic-lemonade","tres-leches-cake"];
+
+  function computeServe(r){
+    if (r.course==="drink") return HOT_DRINK_IDS.indexOf(r.id)!==-1 ? "hot" : "cold";
+    if (r.course==="salad") return "cold";
+    if (COLD_EXTRA_IDS.indexOf(r.id)!==-1) return "cold";
+    return "hot";
+  }
+
+  RECIPES.forEach(function(r){
+    if (!r.country) r.country = "pakistan";
+    r.timeBucket = timeBucket(r.time);
+  });
+  RECIPES.forEach(function(r){
+    r.occasions = computeOccasions(r);
+    r.serve = computeServe(r);
+  });
+
+  var active = {};
+  FILTER_DEFS.forEach(function(g){ active[g.key] = new Set(); });
   var searchTerm = "";
+
+  function groupMatches(g, r){
+    var set = active[g.key];
+    if (set.size===0) return true;
+    if (g.multi){
+      var vals = r[g.key] || [];
+      var ok = false;
+      set.forEach(function(v){ if (vals.indexOf(v)!==-1) ok = true; });
+      return ok;
+    }
+    return set.has(r[g.key]);
+  }
 
   function matchesRecipe(r){
     for (var i=0;i<FILTER_DEFS.length;i++){
-      var key = FILTER_DEFS[i].key;
-      var set = active[key];
-      if (set.size>0 && !set.has(r[key])) return false;
+      if (!groupMatches(FILTER_DEFS[i], r)) return false;
     }
     if (searchTerm){
-      var hay = (r.name+" "+r.desc+" "+r.region+" "+r.ing.join(" ")).toLowerCase();
+      var hay = (r.name+" "+r.desc+" "+r.region+" "+(r.country||"")+" "+r.ing.join(" ")).toLowerCase();
       if (hay.indexOf(searchTerm)===-1) return false;
     }
     return true;
   }
 
   function countFor(key, value){
+    var groupDef = null;
+    FILTER_DEFS.forEach(function(g){ if (g.key===key) groupDef = g; });
     return RECIPES.filter(function(r){
-      // count matches if this recipe would match given all OTHER active filters + this one option
       for (var i=0;i<FILTER_DEFS.length;i++){
-        var k = FILTER_DEFS[i].key;
-        var set = k===key ? new Set([value]) : active[k];
-        if (k===key){ if (r[k]!==value) return false; continue; }
-        if (set.size>0 && !set.has(r[k])) return false;
+        var g = FILTER_DEFS[i];
+        if (g.key===key){
+          if (g.multi){ if ((r[g.key]||[]).indexOf(value)===-1) return false; }
+          else { if (r[g.key]!==value) return false; }
+          continue;
+        }
+        if (!groupMatches(g, r)) return false;
       }
       if (searchTerm){
-        var hay = (r.name+" "+r.desc+" "+r.region+" "+r.ing.join(" ")).toLowerCase();
+        var hay = (r.name+" "+r.desc+" "+r.region+" "+(r.country||"")+" "+r.ing.join(" ")).toLowerCase();
         if (hay.indexOf(searchTerm)===-1) return false;
       }
       return true;
@@ -1020,6 +1487,12 @@
   var healthLabel = {light:"Light & Fresh", everyday:"Everyday", indulgent:"Indulgent"};
   var meatLabel = {chicken:"Chicken",beef:"Beef",mutton:"Mutton",fish:"Fish",vegetarian:"Vegetarian"};
 
+  var countryLabelMap = {}, occasionLabelMap = {};
+  FILTER_DEFS.forEach(function(g){
+    if (g.key==="country") g.options.forEach(function(o){ countryLabelMap[o.v]=o.l; });
+    if (g.key==="occasion") g.options.forEach(function(o){ occasionLabelMap[o.v]=o.l; });
+  });
+
   var resultTotalEl = document.getElementById("resultTotal");
 
   function renderGrid(){
@@ -1041,6 +1514,7 @@
           '<div class="card-region">'+r.region+'</div>'+
           '<p class="card-desc">'+r.desc+'</p>'+
           '<div class="badge-row">'+
+            '<span class="badge country">'+countryLabelMap[r.country]+'</span>'+
             '<span class="badge time">'+r.time+' min</span>'+
             '<span class="badge">'+meatLabel[r.meat]+'</span>'+
             '<span class="badge health-'+r.health+'">'+healthLabel[r.health]+'</span>'+
@@ -1092,6 +1566,7 @@
   var modalDesc = document.getElementById("modalDesc");
   var modalIngredients = document.getElementById("modalIngredients");
   var modalSteps = document.getElementById("modalSteps");
+  var modalOccasions = document.getElementById("modalOccasions");
   var lastFocused = null;
 
   function openModal(id){
@@ -1106,11 +1581,16 @@
     modalTitle.textContent = r.name;
     modalRegion.textContent = r.region + " · serves " + r.servings;
     modalBadges.innerHTML =
+      '<span class="badge country">'+countryLabelMap[r.country]+'</span>'+
       '<span class="badge time">'+r.time+' min</span>'+
       '<span class="badge">'+meatLabel[r.meat]+'</span>'+
       '<span class="badge health-'+r.health+'">'+healthLabel[r.health]+'</span>'+
+      '<span class="badge">'+(r.serve==="cold"?"❄ Served cold":"🔥 Served hot")+'</span>'+
       '<span class="badge">'+spiceDots(r.spice)+'</span>';
     modalDesc.textContent = r.desc;
+    modalOccasions.innerHTML = (r.occasions||[]).map(function(o){
+      return '<span>'+(occasionLabelMap[o]||o)+'</span>';
+    }).join("");
     modalIngredients.innerHTML = r.ing.map(function(i){return "<li>"+i+"</li>";}).join("");
     modalSteps.innerHTML = r.steps.map(function(s){return "<li>"+s+"</li>";}).join("");
     backdrop.classList.add("open");
@@ -1135,6 +1615,7 @@
 
   // ---------- Stats ----------
   document.getElementById("statTotal").textContent = RECIPES.length;
+  document.getElementById("statCountries").textContent = Object.keys(RECIPES.reduce(function(acc,r){ acc[r.country]=true; return acc; },{})).length;
   document.getElementById("statQuick").textContent = RECIPES.filter(function(r){return r.timeBucket==="quick";}).length;
   document.getElementById("statVeg").textContent = RECIPES.filter(function(r){return r.meat==="vegetarian";}).length;
 
