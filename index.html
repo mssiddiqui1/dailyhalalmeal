@@ -1,0 +1,1143 @@
+<title>The Pakistani Dastarkhwan</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --cream:#FBF3E4;
+    --paper:#F5E9D3;
+    --paper-2:#EDDCBC;
+    --ink:#2A2117;
+    --ink-soft:#6B5D48;
+    --green:#1E4B38;
+    --green-deep:#123326;
+    --saffron:#B87C1E;
+    --chili:#A8402B;
+    --line:rgba(42,33,23,0.15);
+    --shadow:rgba(42,33,23,0.14);
+    --chip-bg:#FFFDF8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --cream:#161109;
+      --paper:#211A10;
+      --paper-2:#2B2214;
+      --ink:#F1E6D2;
+      --ink-soft:#C6B79A;
+      --green:#57A084;
+      --green-deep:#1E4536;
+      --saffron:#E3A93B;
+      --chili:#E27A5F;
+      --line:rgba(241,230,210,0.16);
+      --shadow:rgba(0,0,0,0.45);
+      --chip-bg:#241C11;
+    }
+  }
+  :root[data-theme="dark"]{
+    --cream:#161109;
+    --paper:#211A10;
+    --paper-2:#2B2214;
+    --ink:#F1E6D2;
+    --ink-soft:#C6B79A;
+    --green:#57A084;
+    --green-deep:#1E4536;
+    --saffron:#E3A93B;
+    --chili:#E27A5F;
+    --line:rgba(241,230,210,0.16);
+    --shadow:rgba(0,0,0,0.45);
+    --chip-bg:#241C11;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Karla',ui-sans-serif,system-ui,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  .wrap{max-width:1180px;margin:0 auto;padding-inline:20px;}
+
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;text-wrap:balance;margin:0;}
+
+  .stripe{
+    height:6px;
+    background:repeating-linear-gradient(90deg,
+      var(--green) 0 40px, var(--saffron) 40px 80px,
+      var(--chili) 80px 120px, var(--paper) 120px 160px);
+    opacity:0.9;
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    background:
+      radial-gradient(ellipse at 12% -10%, color-mix(in srgb, var(--saffron) 18%, transparent), transparent 55%),
+      radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--green) 22%, transparent), transparent 60%),
+      var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-inner{padding-block:56px 40px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--chili);
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{content:"";width:18px;height:2px;background:var(--chili);display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.1rem, 5vw, 3.4rem);
+    font-weight:600;
+    color:var(--green-deep);
+    max-width:14ch;
+  }
+  :root[data-theme="dark"] .hero h1,
+  @media (prefers-color-scheme: dark){ }
+  .hero p.lede{
+    margin-top:16px;
+    max-width:56ch;
+    font-size:1.08rem;
+    color:var(--ink-soft);
+  }
+  .hero-stats{
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    margin-top:32px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+  }
+  .stat b{
+    display:block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:1.5rem;
+    color:var(--green-deep);
+    font-variant-numeric:tabular-nums;
+  }
+  .stat span{font-size:0.82rem;color:var(--ink-soft);}
+
+  /* ---------- Layout: sidebar + grid ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:272px 1fr;
+    gap:32px;
+    align-items:start;
+    padding-block:32px 64px;
+  }
+  main{min-width:0;}
+
+  .mobile-filter-toggle{
+    display:none;
+    width:100%;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:13px 16px;
+    margin-bottom:16px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Karla',sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    cursor:pointer;
+  }
+  .mobile-filter-toggle .chev{transition:transform 0.15s ease;color:var(--ink-soft);}
+  .mobile-filter-toggle[aria-expanded="true"] .chev{transform:rotate(180deg);}
+  .mf-badge{
+    background:var(--chili);
+    color:#fff;
+    border-radius:999px;
+    padding:2px 9px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    font-weight:600;
+  }
+
+  .sidebar{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:22px;
+    position:sticky;
+    top:20px;
+    max-height:calc(100vh - 40px);
+    overflow-y:auto;
+  }
+  .sidebar-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .sidebar-head h2{font-size:1.05rem;color:var(--green-deep);}
+
+  .search-box{position:relative;margin-bottom:14px;}
+  .search-box input{
+    width:100%;
+    padding:10px 14px 10px 38px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:var(--chip-bg);
+    color:var(--ink);
+    font-family:'Karla',sans-serif;
+    font-size:0.95rem;
+  }
+  .search-box input:focus{outline:2px solid var(--green);outline-offset:1px;}
+  .search-box::before{
+    content:"⌕";
+    position:absolute;
+    left:14px;top:50%;transform:translateY(-50%);
+    color:var(--ink-soft);
+    font-size:1.05rem;
+  }
+  .result-count{
+    display:block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    margin-bottom:20px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .result-count b{color:var(--green-deep);font-variant-numeric:tabular-nums;}
+  .reset-btn{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.74rem;
+    letter-spacing:0.03em;
+    color:var(--chili);
+    background:none;
+    border:1px solid var(--chili);
+    border-radius:999px;
+    padding:6px 12px;
+    cursor:pointer;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+  .reset-btn:hover{background:var(--chili);color:var(--cream);}
+
+  .filter-groups{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+  .filter-group{min-width:0;}
+  .filter-group-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+    display:block;
+  }
+  .chip-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{
+    font-family:'Karla',sans-serif;
+    font-size:0.8rem;
+    font-weight:600;
+    padding:7px 12px;
+    min-height:34px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:var(--chip-bg);
+    color:var(--ink);
+    cursor:pointer;
+    transition:background 0.12s, color 0.12s, border-color 0.12s;
+  }
+  .chip .n{color:var(--ink-soft);font-weight:500;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;}
+  .chip[aria-pressed="true"]{
+    background:var(--green-deep);
+    border-color:var(--green-deep);
+    color:#F6F0E1;
+  }
+  .chip[aria-pressed="true"] .n{color:#D7CBAE;}
+  .chip:hover{border-color:var(--green);}
+
+  /* ---------- Grid ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(240px,1fr));
+    gap:18px;
+  }
+  .empty-state{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--ink-soft);
+  }
+  .empty-state h3{color:var(--ink);margin-bottom:8px;font-size:1.3rem;}
+
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    cursor:pointer;
+    text-align:left;
+    padding:0;
+    font:inherit;
+    color:inherit;
+    box-shadow:0 1px 2px var(--shadow);
+    transition:transform 0.14s ease, box-shadow 0.14s ease;
+  }
+  .card:hover, .card:focus-visible{
+    transform:translateY(-3px);
+    box-shadow:0 10px 24px var(--shadow);
+  }
+  .card:focus-visible{outline:2px solid var(--green);outline-offset:2px;}
+  .card-band{height:7px;background:linear-gradient(90deg,var(--course-a),var(--course-b));}
+  [data-course="rice"]{--course-a:var(--green);--course-b:var(--saffron);}
+  [data-course="curry"]{--course-a:var(--chili);--course-b:var(--saffron);}
+  [data-course="dal"]{--course-a:var(--saffron);--course-b:var(--green);}
+  [data-course="kebab"]{--course-a:var(--chili);--course-b:var(--green-deep);}
+  [data-course="snack"]{--course-a:var(--saffron);--course-b:var(--chili);}
+  [data-course="bread"]{--course-a:var(--green);--course-b:var(--green-deep);}
+  [data-course="dessert"]{--course-a:var(--saffron);--course-b:#D9B45A;}
+  [data-course="drink"]{--course-a:var(--green);--course-b:var(--paper-2);}
+
+  .card-body{padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px;flex:1;}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .card-title{font-size:1.2rem;font-weight:600;color:var(--green-deep);line-height:1.2;min-width:0;}
+  .course-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.66rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    white-space:nowrap;
+    flex-shrink:0;
+    padding-top:3px;
+  }
+  .card-region{font-size:0.78rem;color:var(--ink-soft);font-style:italic;margin-top:-6px;}
+  .card-desc{font-size:0.88rem;color:var(--ink-soft);flex:1;}
+  .badge-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;}
+  .badge{
+    font-size:0.72rem;
+    font-weight:600;
+    padding:4px 9px;
+    border-radius:7px;
+    background:var(--chip-bg);
+    border:1px solid var(--line);
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    color:var(--ink);
+  }
+  .badge.time{font-family:'IBM Plex Mono',monospace;color:var(--green-deep);}
+  .badge.health-light{color:var(--green-deep);}
+  .badge.health-indulgent{color:var(--chili);}
+  .spice-dots{display:inline-flex;gap:2px;}
+  .spice-dots i{width:6px;height:6px;border-radius:50%;background:var(--line);display:inline-block;}
+  .spice-dots i.on{background:var(--chili);}
+
+  /* ---------- Modal ---------- */
+  .backdrop{
+    position:fixed;inset:0;
+    background:rgba(20,15,8,0.55);
+    display:none;
+    align-items:flex-start;
+    justify-content:center;
+    padding:5vh 16px;
+    overflow-y:auto;
+    z-index:50;
+  }
+  .backdrop.open{display:flex;}
+  .modal{
+    background:var(--cream);
+    border-radius:16px;
+    max-width:640px;
+    width:100%;
+    box-shadow:0 24px 60px rgba(0,0,0,0.35);
+    overflow:hidden;
+    margin-block:auto;
+  }
+  .modal-band{height:8px;}
+  .modal-head{padding:26px 28px 10px;position:relative;}
+  .modal-close{
+    position:absolute;top:18px;right:18px;
+    width:34px;height:34px;border-radius:50%;
+    border:1px solid var(--line);background:var(--paper);
+    color:var(--ink);font-size:1.1rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .modal-close:hover{background:var(--chili);color:#fff;border-color:var(--chili);}
+  .modal h2{font-size:1.6rem;color:var(--green-deep);max-width:26ch;}
+  .modal .card-region{margin-top:6px;}
+  .modal .badge-row{margin-top:14px;}
+  .modal-desc{padding:6px 28px 0;color:var(--ink-soft);font-size:0.95rem;}
+  .modal-body{padding:20px 28px 30px;display:grid;grid-template-columns:1fr 1.3fr;gap:26px;}
+  @media (max-width:520px){.modal-body{grid-template-columns:1fr;}}
+  .modal-body h3{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .modal-body ul, .modal-body ol{margin:0;padding-left:20px;font-size:0.92rem;}
+  .modal-body li{margin-bottom:7px;}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding-block:26px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:0.85rem;
+  }
+  footer .stripe{margin-bottom:26px;}
+
+  [hidden]{display:none !important;}
+
+  /* ---------- Responsive: collapse sidebar below 900px ---------- */
+  @media (max-width:900px){
+    .layout{grid-template-columns:1fr;gap:0;padding-block:20px 48px;}
+    .mobile-filter-toggle{display:flex;}
+    .sidebar{
+      position:static;
+      max-height:none;
+      display:none;
+      margin-bottom:20px;
+      top:auto;
+    }
+    .sidebar.open{display:block;}
+  }
+
+  /* ---------- Mobile refinements ---------- */
+  @media (max-width:480px){
+    .wrap{padding-inline:16px;}
+    .hero-inner{padding-block:36px 28px;}
+    .hero h1{max-width:none;}
+    .hero-stats{gap:18px 24px;}
+    .grid{grid-template-columns:1fr;}
+    .modal{border-radius:14px;}
+    .modal-head{padding:22px 18px 8px;}
+    .modal-desc{padding:6px 18px 0;}
+    .modal-body{padding:16px 18px 24px;}
+    .backdrop{padding:0;align-items:flex-end;}
+    .modal{max-height:92vh;overflow-y:auto;border-radius:16px 16px 0 0;}
+  }
+</style>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">A field guide to home cooking</div>
+    <h1>The Pakistani Dastarkhwan</h1>
+    <p class="lede">A hundred-plus recipes pulled straight from the everyday spread — from karahi and biryani to nihari that simmers all night. Filter by protein, richness, time on the stove, or course to find what to cook tonight.</p>
+    <div class="hero-stats">
+      <div class="stat"><b id="statTotal">—</b><span>recipes</span></div>
+      <div class="stat"><b>8</b><span>courses, rice to dessert</span></div>
+      <div class="stat"><b id="statQuick">—</b><span>ready in 30 min or less</span></div>
+      <div class="stat"><b id="statVeg">—</b><span>vegetarian</span></div>
+    </div>
+  </div>
+</header>
+<div class="stripe"></div>
+
+<div class="wrap layout">
+  <button class="mobile-filter-toggle" id="mobileFilterToggle" type="button" aria-expanded="false" aria-controls="sidebar">
+    <span>Filters<span class="mf-badge" id="mobileFilterCount" hidden>0</span></span>
+    <span class="chev">▾</span>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <h2>Filters</h2>
+      <button class="reset-btn" id="resetBtn" type="button">Clear</button>
+    </div>
+    <div class="search-box">
+      <input id="searchInput" type="text" placeholder="Search name, ingredient, region…" aria-label="Search recipes">
+    </div>
+    <div class="result-count"><b id="resultCount">—</b> of <span id="resultTotal">—</span> recipes</div>
+    <div class="filter-groups" id="filterGroups"></div>
+  </aside>
+
+  <main>
+    <div class="grid" id="grid"></div>
+    <div class="empty-state" id="emptyState" hidden>
+      <h3>No dish matches that combination</h3>
+      <p>Try clearing a filter or two — even nihari and lassi don't belong on the same plate.</p>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="stripe"></div>
+  <div class="wrap">Recipes reflect common home-cooking methods and proportions across Pakistani households — regional versions vary from kitchen to kitchen. Adjust chili and salt to taste.</div>
+</footer>
+
+<div class="backdrop" id="backdrop">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-band" id="modalBand"></div>
+    <div class="modal-head">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <h2 id="modalTitle"></h2>
+      <div class="card-region" id="modalRegion"></div>
+      <div class="badge-row" id="modalBadges"></div>
+    </div>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div class="modal-body">
+      <div>
+        <h3>Ingredients</h3>
+        <ul id="modalIngredients"></ul>
+      </div>
+      <div>
+        <h3>Method</h3>
+        <ol id="modalSteps"></ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var RECIPES = [
+    {id:"chicken-biryani",name:"Chicken Biryani",course:"rice",meat:"chicken",health:"everyday",time:75,spice:"hot",region:"Karachi-style",servings:6,
+      desc:"Layered basmati rice and spiced chicken curry, finished on dum with saffron milk and fried onions.",
+      ing:["Chicken, 1 kg, cut into pieces","Basmati rice, 500 g, soaked 30 min","Yogurt, 1 cup","Fried onions (birista), 1 cup","Ginger-garlic paste, 2 tbsp","Tomatoes, 2, chopped","Whole spices: bay leaf, black cardamom, cloves, cinnamon","Biryani masala, 3 tbsp","Green chilies, mint and coriander leaves","Saffron soaked in warm milk, ghee"],
+      steps:["Cook chicken with yogurt, ginger-garlic paste, tomatoes, biryani masala and half the fried onions until the oil separates.","Parboil the soaked rice with whole spices and salt until about 70% done, then drain.","Layer half the rice over the chicken curry, scatter mint, coriander, remaining birista and green chilies, then top with the rest of the rice.","Drizzle saffron milk and a little ghee over the top layer.","Cover tightly and cook on dum (very low heat) for 20–25 minutes until fragrant.","Rest for 10 minutes, then fold gently before serving."]},
+    {id:"sindhi-biryani",name:"Sindhi Biryani",course:"rice",meat:"beef",health:"indulgent",time:90,spice:"hot",region:"Sindh",servings:6,
+      desc:"A tangier, more fiery biryani from Sindh, layered with potatoes and dried plums.",
+      ing:["Beef, 1 kg","Basmati rice, 500 g, soaked","Yogurt, 1 cup","Potatoes, 2, halved","Dried plums (aloo bukhara), 8–10","Tomatoes, 3","Fried onions, ginger-garlic paste","Red chili powder, 2 tbsp, and biryani masala","Green chilies, mint, coriander","A few drops of food-safe orange color (optional), ghee"],
+      steps:["Brown the beef with ginger-garlic paste, tomatoes and spices until thick and well cooked.","Fry the potatoes until golden and stir them into the curry along with the plums.","Parboil the rice with whole spices until nearly done.","Layer the rice over the curry, scattering herbs, fried onions and a few drops of color.","Seal the pot and cook on dum for 20–25 minutes.","Mix gently and serve hot with raita."]},
+    {id:"beef-yakhni-pulao",name:"Beef Yakhni Pulao",course:"rice",meat:"beef",health:"everyday",time:70,spice:"mild",region:"Punjab",servings:6,
+      desc:"Fragrant rice cooked in a clarified beef stock, perfumed with whole spices and gently spiced.",
+      ing:["Beef with bone, 1 kg","Basmati rice, 500 g","Whole spices (cinnamon, cloves, black cardamom, bay leaf, coriander seeds) tied in muslin","Onion, 1","Ginger-garlic paste, yogurt, 1/2 cup","Whole black pepper, ghee, fried onions for garnish"],
+      steps:["Boil the beef with the whole-spice potli, onion and salt until tender; strain and reserve the stock (yakhni).","Sear the cooked beef in ghee with ginger-garlic paste until lightly browned.","Add yogurt and cook briefly.","Add the soaked rice and measured yakhni (about 2 cups stock per cup of rice) and bring to a boil.","Cover and cook on low heat until the rice is done and the stock is absorbed.","Rest, fluff gently, and top with fried onions."]},
+    {id:"vegetable-pulao",name:"Vegetable Pulao",course:"rice",meat:"vegetarian",health:"light",time:30,spice:"mild",region:"Everyday",servings:4,
+      desc:"A quick, everyday rice dish with mixed vegetables and whole spices — light enough for a weeknight.",
+      ing:["Basmati rice, 2 cups, soaked","Mixed vegetables (carrots, peas, potatoes, beans), 2 cups","Onion, 1, sliced","Ginger-garlic paste, 1 tbsp","Whole spices: cumin seeds, cinnamon, cardamom","Vegetable stock or water, oil"],
+      steps:["Sauté the onion until golden, then add ginger-garlic paste and whole spices.","Add the vegetables and stir-fry briefly.","Add the rice and gently toss to coat.","Pour in the stock, season, and bring to a boil.","Cover and simmer on low heat for 15–18 minutes until the rice is fluffy.","Rest for 5 minutes before serving."]},
+    {id:"chicken-karahi",name:"Chicken Karahi",course:"curry",meat:"chicken",health:"everyday",time:40,spice:"hot",region:"Peshawari-style",servings:4,
+      desc:"Chicken cooked fast in a wok-style karahi with tomatoes, ginger and green chilies — a restaurant classic.",
+      ing:["Chicken, 1 kg","Tomatoes, 4–5, chopped or puréed","Ginger, julienned, and garlic paste","Green chilies, 6–8","Oil or ghee","Whole cumin and coriander seeds, red chili flakes, garam masala","Fresh coriander"],
+      steps:["Heat oil in a karahi and sear the chicken pieces until sealed.","Add garlic paste and tomatoes; cook until the oil separates.","Add green chilies and ginger, then season with salt and spices.","Cook uncovered on medium-high heat, stirring, until the chicken is tender and the sauce clings to it.","Finish with garam masala and fresh coriander.","Serve sizzling with naan."]},
+    {id:"nihari",name:"Nihari",course:"curry",meat:"beef",health:"indulgent",time:240,spice:"medium",region:"Delhi/Karachi",servings:6,
+      desc:"A slow-simmered, deeply spiced beef shank stew, traditionally cooked overnight and eaten at breakfast.",
+      ing:["Beef shank with bone marrow, 1.5 kg","Nihari masala (includes fennel, ginger powder, nutmeg)","Wheat flour, 3 tbsp, for thickening","Ginger-garlic paste, fried onions, ghee","Garnish: julienned ginger, green chilies, coriander, lemon"],
+      steps:["Sear the beef in ghee with fried onions and ginger-garlic paste.","Add the nihari masala and enough water to cover generously.","Simmer very gently, covered, for 3–4 hours until the meat is falling-apart tender.","Whisk the flour with water into a slurry and stir it in to thicken the gravy.","Simmer for 15 more minutes.","Serve topped with ginger, chilies, coriander and a squeeze of lemon."]},
+    {id:"haleem",name:"Haleem",course:"curry",meat:"mutton",health:"indulgent",time:210,spice:"medium",region:"Hyderabadi/Karachi",servings:8,
+      desc:"A rich, slow-cooked porridge of shredded meat, wheat and lentils, spiced and topped with fried onions.",
+      ing:["Mutton (or beef), 1 kg","Mixed lentils and cracked wheat, 1.5 cups","Wheat or barley (optional), 1/2 cup","Ginger-garlic paste, whole spices","Garnish: fried onions, ginger, mint, lemon, chaat masala, ghee"],
+      steps:["Boil the meat with whole spices and ginger-garlic paste until very tender, then shred it finely.","Separately, cook the lentil-wheat mixture until soft and mashable.","Combine the meat and lentils and blend or mash to a thick, uniform porridge.","Simmer on low heat, stirring often, for 1–2 hours, adding stock as needed.","Finish with a ghee tempering of cumin and chili.","Serve topped with fried onions, ginger, mint, lemon and chaat masala."]},
+    {id:"chicken-korma",name:"Chicken Korma",course:"curry",meat:"chicken",health:"indulgent",time:50,spice:"mild",region:"Mughlai",servings:5,
+      desc:"A creamy, mildly spiced curry enriched with yogurt, browned onion paste and a touch of cream.",
+      ing:["Chicken, 1 kg","Yogurt, 1 cup","Browned onion paste, ginger-garlic paste","Cashew or almond paste, 2 tbsp","Whole garam spices, cream or milk, ghee"],
+      steps:["Sauté whole spices in ghee, then add ginger-garlic paste.","Add the chicken and sear briefly.","Stir in the yogurt, browned onion paste and nut paste.","Simmer covered on low heat until the chicken is cooked and the sauce is creamy.","Finish with a splash of cream and a pinch of garam masala.","Serve with naan or pulao."]},
+    {id:"aloo-keema",name:"Aloo Keema",course:"curry",meat:"beef",health:"everyday",time:40,spice:"medium",region:"Homestyle",servings:4,
+      desc:"Everyday minced beef simmered with potatoes and tomatoes — classic home-cooked comfort food.",
+      ing:["Minced beef (keema), 500 g","Potatoes, 2, diced","Onion, 1, and tomatoes, 2","Ginger-garlic paste","Cumin, coriander powder, turmeric, red chili powder","Green peas (optional), coriander leaves"],
+      steps:["Sauté the onion until golden, then add ginger-garlic paste.","Add the minced beef and cook until browned, breaking up any lumps.","Add the tomatoes and spices and cook until the oil separates.","Add the potatoes with a little water; cover and simmer until the potatoes are soft.","Stir in peas if using and cook 5 more minutes.","Garnish with coriander and serve with roti."]},
+    {id:"fish-curry",name:"Fish Curry (Machli Salan)",course:"curry",meat:"fish",health:"light",time:30,spice:"medium",region:"Sindhi coastal",servings:4,
+      desc:"A tangy, tomato-based curry from Pakistan's coastal Sindh, light and quick to prepare.",
+      ing:["Fish fillets or steaks, 600 g","Tomatoes, 3, and onion, 1","Ginger-garlic paste","Tamarind pulp or lemon juice","Turmeric, red chili powder, coriander powder","Coriander leaves, oil"],
+      steps:["Marinate the fish briefly with turmeric and salt.","Sauté the onion, then add ginger-garlic paste and spices.","Add the tomatoes and cook into a thick masala.","Add tamarind pulp and a little water and bring to a simmer.","Gently slide in the fish and simmer until just cooked through.","Finish with coriander and serve with plain rice."]},
+    {id:"chana-masala",name:"Chana Masala (Chholay)",course:"curry",meat:"vegetarian",health:"light",time:40,spice:"medium",region:"Street food",servings:4,
+      desc:"Spiced chickpeas simmered until thick — a beloved street-food and breakfast staple, often served with puri.",
+      ing:["Chickpeas, 2 cups, soaked and boiled (or 2 cans)","Onion, 1, and tomatoes, 2","Ginger-garlic paste, chana masala spice blend","A tea bag (traditional touch, for color)","Green chilies, coriander leaves"],
+      steps:["Sauté the onion until golden, then add ginger-garlic paste.","Add the tomatoes and chana masala and cook until the oil separates.","Add the boiled chickpeas with a little of their cooking liquid (with a tea bag, if using, for deep color).","Simmer, mashing a few chickpeas to thicken the gravy.","Adjust the seasoning and simmer until thick.","Top with green chilies and coriander; serve with puri or naan."]},
+    {id:"daal-chana",name:"Chana Daal",course:"dal",meat:"vegetarian",health:"light",time:35,spice:"mild",region:"Everyday",servings:4,
+      desc:"A simple, everyday split-chickpea lentil, finished with a fragrant tempering of cumin and garlic.",
+      ing:["Chana daal (split chickpea lentils), 1 cup","Onion, 1, and tomato, 1","Ginger-garlic paste, turmeric","Tempering (tarka): ghee, cumin seeds, dried red chilies, garlic slivers"],
+      steps:["Boil the daal with turmeric and salt until soft.","Sauté the onion, then add ginger-garlic paste and tomato and cook to a paste.","Stir the masala into the cooked daal and simmer for 10 minutes.","In a small pan, heat ghee and fry cumin, red chilies and garlic until fragrant.","Pour the tempering over the daal.","Serve with steamed rice or roti."]},
+    {id:"sarson-saag",name:"Sarson ka Saag",course:"curry",meat:"vegetarian",health:"light",time:55,spice:"mild",region:"Punjab, winter",servings:4,
+      desc:"A slow-cooked mustard and spinach greens dish, a Punjabi winter classic, best with makai roti.",
+      ing:["Mustard greens, 500 g, and spinach, 250 g","Onion, 1, and tomato, 1","Ginger-garlic paste","Corn flour or maize flour, to thicken","Ghee, green chilies"],
+      steps:["Wash and roughly chop the greens, then boil until very soft.","Blend to a coarse purée.","Sauté onion, ginger-garlic paste, tomato and green chilies in ghee.","Stir in the greens purée and a little maize flour to thicken.","Simmer on low heat, stirring occasionally, for 20–30 minutes.","Finish with a spoon of ghee and serve with makai (corn) roti."]},
+    {id:"karahi-gosht",name:"Karahi Gosht",course:"curry",meat:"mutton",health:"indulgent",time:70,spice:"hot",region:"Punjabi/Peshawari",servings:5,
+      desc:"Bone-in mutton cooked karahi-style with tomatoes and ginger until tender, in a thick reduced sauce.",
+      ing:["Mutton, bone-in, 1 kg","Tomatoes, 5","Ginger, julienned, and garlic paste","Green chilies","Whole cumin and coriander seeds, red chili flakes","Oil or ghee, coriander leaves"],
+      steps:["Sear the mutton in hot oil until browned.","Add garlic paste and tomatoes and cook down until thick.","Cover and simmer on low heat, adding a splash of water as needed, until the mutton is tender (about 45–50 minutes).","Uncover and cook on higher heat to thicken the sauce, then add ginger and chilies.","Finish with garam masala and coriander.","Serve with naan."]},
+    {id:"seekh-kebab",name:"Seekh Kebab",course:"kebab",meat:"beef",health:"everyday",time:35,spice:"medium",region:"BBQ",servings:4,
+      desc:"Spiced minced beef shaped onto skewers and grilled over charcoal for a smoky, charred finish.",
+      ing:["Minced beef, 500 g","Onion, grated and squeezed dry","Ginger-garlic paste","Roasted, crushed cumin and coriander","Green chilies, chopped, and fresh coriander","A little gram flour (besan) to bind"],
+      steps:["Combine the minced beef with grated onion, ginger-garlic paste, spices, chilies and coriander.","Knead well and rest for 20 minutes in the fridge to firm up.","Shape onto skewers into long cylinders.","Grill over charcoal or a hot grill, turning, until charred and cooked through.","Baste lightly with butter while grilling.","Serve with naan, chutney and sliced onions."]},
+    {id:"chapli-kebab",name:"Chapli Kebab",course:"kebab",meat:"beef",health:"everyday",time:25,spice:"hot",region:"Peshawar",servings:4,
+      desc:"A flat, crisp-edged spiced patty from Peshawar, studded with tomato and coriander seeds.",
+      ing:["Minced beef, 500 g","Tomato, finely chopped and drained","Onion, finely chopped","Crushed coriander seeds and dried red chilies","Ginger-garlic paste","Cornflour or gram flour to bind, oil for shallow-frying"],
+      steps:["Mix the minced beef with chopped tomato, onion, crushed spices and ginger-garlic paste.","Shape into flat, wide patties.","Shallow-fry in oil over medium heat until deeply golden and crisp on both sides.","Drain on paper towels.","Serve hot with naan and yogurt chutney."]},
+    {id:"chicken-tikka",name:"Chicken Tikka",course:"kebab",meat:"chicken",health:"light",time:40,spice:"medium",region:"Tandoor/BBQ",servings:4,
+      desc:"Yogurt and spice-marinated chicken pieces, chargrilled for a smoky, tangy classic.",
+      ing:["Chicken, bone-in or boneless, 1 kg","Yogurt, 1 cup","Ginger-garlic paste, tikka masala spice blend","Lemon juice, mustard oil (optional, traditional)"],
+      steps:["Whisk the yogurt with ginger-garlic paste, spices and lemon juice.","Marinate the chicken for at least 2 hours, ideally overnight.","Thread onto skewers.","Grill over charcoal or a hot oven grill, turning and basting, until charred and cooked through.","Rest briefly before serving.","Serve with mint chutney and salad."]},
+    {id:"shami-kebab",name:"Shami Kebab",course:"kebab",meat:"beef",health:"everyday",time:45,spice:"mild",region:"Homestyle",servings:4,
+      desc:"Minced meat and lentils simmered together, ground fine, then shaped and pan-fried until golden.",
+      ing:["Minced beef, 500 g","Chana daal, 1/2 cup, and whole spices","Ginger-garlic paste, onion","Egg, for binding","Fresh coriander and mint, oil for shallow-frying"],
+      steps:["Cook the minced beef with chana daal, whole spices, ginger-garlic paste and a little water until very tender and the liquid has evaporated.","Grind the mixture to a smooth, firm paste.","Mix in chopped onion, herbs, and a beaten egg.","Shape into small patties.","Shallow-fry until golden brown on both sides.","Serve with chutney as a snack or side."]},
+    {id:"samosa",name:"Samosa",course:"snack",meat:"vegetarian",health:"indulgent",time:55,spice:"medium",region:"Street food",servings:6,
+      desc:"Crisp, deep-fried pastry parcels filled with spiced potatoes and peas — the essential teatime snack.",
+      ing:["Samosa pastry sheets (or homemade dough)","Potatoes, boiled and mashed, 4","Green peas, 1/2 cup","Cumin seeds, ginger and green chilies, chopped","Coriander leaves, garam masala, oil for deep frying"],
+      steps:["Sauté cumin seeds, ginger and chilies in a little oil.","Add the mashed potatoes, peas, garam masala and coriander; mix well and cool.","Fold the pastry into cones, fill with the potato mixture, and seal the edges with a flour paste.","Heat oil to medium and deep-fry the samosas until golden and crisp, turning occasionally.","Drain on paper towels.","Serve hot with tamarind and mint chutneys."]},
+    {id:"pakora",name:"Pakora",course:"snack",meat:"vegetarian",health:"indulgent",time:20,spice:"medium",region:"Monsoon street food",servings:4,
+      desc:"Vegetables dipped in a spiced gram-flour batter and deep-fried — the classic rainy-day snack.",
+      ing:["Gram flour (besan), 1.5 cups","Mixed vegetables (onion, potato, spinach), sliced thin","Cumin seeds, ajwain (carom seeds), red chili powder","Water, oil for deep frying"],
+      steps:["Whisk the gram flour with water, cumin, ajwain, chili powder and salt into a thick batter.","Toss the sliced vegetables through the batter to coat.","Heat oil for deep-frying.","Drop spoonfuls of the coated vegetables into the hot oil and fry until golden and crisp.","Drain on paper towels.","Serve hot with ketchup or tamarind chutney and chai."]},
+    {id:"dahi-bhalla",name:"Dahi Bhalla Chaat",course:"snack",meat:"vegetarian",health:"light",time:30,spice:"mild",region:"Street food",servings:4,
+      desc:"Soft lentil dumplings soaked in cooling yogurt and topped with tangy-sweet chutneys — a chaat favorite.",
+      ing:["Split urad daal, 1 cup, soaked and ground into a batter","Yogurt, 2 cups, whisked","Tamarind chutney and mint-coriander chutney","Roasted cumin powder, red chili powder, chaat masala","Sev (crispy noodles) for topping"],
+      steps:["Deep-fry the ground urad daal batter into small dumplings (bhallas) until golden.","Soak the bhallas in warm water briefly, then squeeze out the excess water.","Arrange the bhallas on a plate and pour the whisked yogurt over them.","Drizzle tamarind and mint chutneys generously.","Sprinkle roasted cumin, chili powder and chaat masala.","Top with sev and serve chilled."]},
+    {id:"naan",name:"Naan",course:"bread",meat:"vegetarian",health:"everyday",time:40,spice:"mild",region:"Tandoor",servings:6,
+      desc:"Soft, pillowy leavened flatbread traditionally baked in a clay tandoor.",
+      ing:["All-purpose flour, 3 cups","Yogurt, 1/2 cup","Yeast or baking powder, sugar, salt","Milk or water","Nigella seeds (optional), ghee or butter for brushing"],
+      steps:["Mix the flour, yeast, sugar and salt; add yogurt and enough milk to form a soft dough.","Knead well and let rest, covered, for about an hour until puffy.","Divide into balls and roll or stretch into teardrop shapes.","Cook on a very hot tawa or in a hot oven until bubbled and lightly charred, flipping once.","Brush with melted butter or ghee.","Serve warm alongside any curry."]},
+    {id:"aloo-paratha",name:"Aloo Paratha",course:"bread",meat:"vegetarian",health:"indulgent",time:25,spice:"mild",region:"Breakfast",servings:4,
+      desc:"Whole-wheat flatbread stuffed with spiced mashed potato and pan-fried until golden and flaky.",
+      ing:["Whole-wheat flour dough","Potatoes, boiled and mashed","Onion, finely chopped, and green chilies","Coriander leaves, cumin, red chili powder","Ghee or oil for cooking"],
+      steps:["Mix the mashed potatoes with onion, chilies, coriander and spices.","Divide the dough into balls, flatten, and place a portion of filling inside, then seal and re-roll gently.","Roll out into a flatbread, taking care not to tear it.","Cook on a hot tawa with ghee, flipping until golden brown spots appear on both sides.","Serve hot with yogurt, pickle or chutney."]},
+    {id:"gulab-jamun",name:"Gulab Jamun",course:"dessert",meat:"vegetarian",health:"indulgent",time:45,spice:"mild",region:"Festive",servings:8,
+      desc:"Soft, deep-fried milk-solid dumplings soaked in rose-scented sugar syrup — a festive favorite.",
+      ing:["Khoya (milk solids) or milk powder, 1 cup","Flour, 2 tbsp, and a pinch of baking soda","Milk, as needed","Sugar, 2 cups, and water, 1.5 cups","Cardamom pods, rose water, oil or ghee for frying"],
+      steps:["Make a sugar syrup by simmering sugar, water and cardamom until slightly thick, then stir in rose water.","Knead the khoya, flour and baking soda with a little milk into a smooth, crack-free dough.","Shape into smooth small balls.","Deep-fry on low-medium heat, stirring gently, until evenly deep brown.","Drop the warm fried balls into the warm syrup and soak for at least an hour.","Serve warm or at room temperature."]},
+    {id:"kheer",name:"Kheer",course:"dessert",meat:"vegetarian",health:"indulgent",time:45,spice:"mild",region:"Festive",servings:6,
+      desc:"A creamy rice pudding simmered slowly in milk and perfumed with cardamom and nuts.",
+      ing:["Rice, 1/4 cup, soaked","Full-fat milk, 1.5 liters","Sugar, to taste","Green cardamom, saffron","Slivered almonds and pistachios"],
+      steps:["Bring the milk to a boil, then reduce to a simmer.","Add the soaked, drained rice and cook on low heat, stirring frequently to prevent sticking.","Simmer until the rice is very soft and the milk has reduced and thickened, about 30–35 minutes.","Stir in the sugar, cardamom and saffron.","Simmer a few more minutes.","Garnish with nuts and serve warm or chilled."]},
+    {id:"sheer-khurma",name:"Sheer Khurma",course:"dessert",meat:"vegetarian",health:"indulgent",time:25,spice:"mild",region:"Eid morning",servings:6,
+      desc:"A festive vermicelli pudding cooked in milk with dates, nuts and saffron — traditionally served on Eid morning.",
+      ing:["Vermicelli (seviyan), 1 cup","Full-fat milk, 1 liter","Sugar, to taste, and dates, chopped","Mixed nuts (almonds, pistachios, cashews), saffron, ghee"],
+      steps:["Lightly roast the vermicelli in ghee until golden.","Bring the milk to a boil in a separate pot.","Add the roasted vermicelli to the milk and simmer until softened.","Stir in the sugar, chopped dates, nuts and saffron.","Simmer a few more minutes until slightly thickened.","Serve warm, garnished with extra nuts."]},
+    {id:"doodh-patti",name:"Doodh Patti Chai",course:"drink",meat:"vegetarian",health:"everyday",time:10,spice:"mild",region:"Everyday",servings:2,
+      desc:"A strong, milky tea brewed directly with loose tea leaves — the everyday cup found in every home.",
+      ing:["Whole milk, 2 cups, and water, 1/2 cup","Loose black tea leaves, 2 tbsp","Sugar, to taste","Green cardamom (optional)"],
+      steps:["Bring the milk and water to a boil together.","Add the tea leaves and cardamom, reduce the heat and simmer for a few minutes until deep in color.","Add sugar and simmer briefly more.","Strain into cups.","Serve hot, ideally with biscuits."]},
+    {id:"lassi",name:"Lassi",course:"drink",meat:"vegetarian",health:"light",time:5,spice:"mild",region:"Punjab",servings:2,
+      desc:"A thick, chilled yogurt drink, served sweet or salted, that cools down even the spiciest meal.",
+      ing:["Plain yogurt, 2 cups","Chilled water or milk","Sugar (for sweet) or salt and roasted cumin (for salted)","Ice cubes"],
+      steps:["Blend the yogurt with chilled water or milk until smooth.","Sweeten with sugar, or season with salt and a pinch of roasted cumin for a savory version.","Blend again briefly until frothy.","Pour over ice and serve immediately."]},
+    {id:"falooda",name:"Rooh Afza Falooda",course:"drink",meat:"vegetarian",health:"indulgent",time:20,spice:"mild",region:"Dessert drink",servings:4,
+      desc:"A layered rose-flavored dessert drink with vermicelli, basil seeds, jelly and a scoop of kulfi.",
+      ing:["Rose syrup (such as Rooh Afza)","Cooked vermicelli, cooled","Basil seeds (sabja), soaked in water","Milk, chilled, and jelly cubes (optional)","Kulfi or vanilla ice cream"],
+      steps:["Soak the basil seeds in water until they swell and turn gelatinous.","Layer a glass with rose syrup, then cooked vermicelli, then soaked basil seeds and jelly cubes.","Pour chilled milk over the layers.","Top with a scoop of kulfi or ice cream.","Serve immediately with a long spoon, stirring before drinking."]},
+    {id:"mutton-pulao",name:"Mutton Pulao",course:"rice",meat:"mutton",health:"everyday",time:75,spice:"mild",region:"Punjab",servings:6,
+      desc:"Basmati rice cooked in a mild mutton stock, similar to yakhni pulao but richer with bone-in mutton.",
+      ing:["Mutton, bone-in, 1 kg","Basmati rice, 500 g, soaked","Whole spices: cinnamon, cloves, black cardamom, bay leaf","Onion, 1, and ginger-garlic paste","Yogurt, 1/2 cup","Ghee, fried onions for garnish"],
+      steps:["Boil the mutton with whole spices, onion and salt until tender; strain and reserve the stock.","Sear the cooked mutton in ghee with ginger-garlic paste, then stir in yogurt.","Add the soaked rice and measured stock (about 2 cups per cup of rice) and bring to a boil.","Cover and cook on low heat until the rice is done and the liquid is absorbed.","Rest, fluff gently and top with fried onions."]},
+    {id:"chicken-pulao",name:"Chicken Pulao",course:"rice",meat:"chicken",health:"everyday",time:45,spice:"mild",region:"Homestyle",servings:5,
+      desc:"A lighter, everyday cousin of chicken biryani, with rice and chicken cooked together rather than layered.",
+      ing:["Chicken, 1 kg","Basmati rice, 2.5 cups, soaked","Onion, 1, and tomatoes, 2","Ginger-garlic paste, whole garam spices","Yogurt, 1/2 cup, and fried onions"],
+      steps:["Sauté the onion until golden, then add ginger-garlic paste and whole spices.","Add the chicken and cook until lightly browned, then stir in tomatoes and yogurt.","Add the soaked rice and measured water, season, and bring to a boil.","Cover and simmer on low heat until the rice is tender and the liquid is absorbed.","Rest, fluff, and top with fried onions."]},
+    {id:"kabuli-pulao",name:"Kabuli Pulao",course:"rice",meat:"mutton",health:"indulgent",time:80,spice:"mild",region:"Peshawari, Afghan-influenced",servings:6,
+      desc:"A sweet-savory rice dish topped with caramelized carrots, raisins and nuts, popular across the northwest.",
+      ing:["Mutton, bone-in, 1 kg","Basmati rice, 500 g, soaked","Carrots, julienned, and raisins","Onion, 1, and whole garam spices","Sugar, a little, for caramelizing carrots","Ghee, slivered almonds"],
+      steps:["Boil the mutton with onion and whole spices until tender; reserve the stock.","Caramelize the julienned carrots with a little sugar and ghee until glossy; toss raisins in briefly at the end.","Cook the soaked rice in the reserved mutton stock until nearly done, then layer with the mutton.","Cover and cook on low heat (dum) until the rice is fully tender.","Top generously with the caramelized carrots, raisins and almonds before serving."]},
+    {id:"prawn-biryani",name:"Prawn Biryani",course:"rice",meat:"fish",health:"everyday",time:50,spice:"hot",region:"Karachi coastal",servings:5,
+      desc:"A quicker coastal biryani built on a fiery prawn masala, layered with rice and finished on dum.",
+      ing:["Prawns, cleaned and deveined, 700 g","Basmati rice, 2.5 cups, soaked","Tomatoes, 3, and yogurt, 1/2 cup","Ginger-garlic paste, biryani masala","Fried onions, mint and coriander, green chilies"],
+      steps:["Cook a masala of tomatoes, yogurt, ginger-garlic paste and biryani masala until the oil separates.","Add the prawns and cook briefly, just until they turn pink — do not overcook.","Parboil the soaked rice with whole spices and salt, then drain.","Layer the rice over the prawn masala with herbs and fried onions, then seal and cook on dum for 15–20 minutes.","Fold gently and serve hot."]},
+    {id:"tehri",name:"Tehri",course:"rice",meat:"vegetarian",health:"light",time:35,spice:"mild",region:"Homestyle",servings:4,
+      desc:"A turmeric-yellow potato rice, traditionally a budget-friendly, meatless take on pulao.",
+      ing:["Basmati rice, 2 cups, soaked","Potatoes, 2, diced","Onion, 1, and tomato, 1","Turmeric, cumin seeds, whole garam spices","Ginger-garlic paste, oil"],
+      steps:["Sauté the onion until golden, then add cumin seeds and whole spices.","Add the potatoes and turmeric and fry briefly, then add the tomato.","Add the rice and gently toss to coat in the masala.","Pour in measured water, season, and bring to a boil.","Cover and simmer on low heat until the rice and potatoes are tender."]},
+    {id:"khichdi",name:"Khichdi",course:"rice",meat:"vegetarian",health:"light",time:30,spice:"mild",region:"Homestyle comfort food",servings:4,
+      desc:"A soft, one-pot rice and lentil porridge, the dish most Pakistani households turn to when someone is unwell.",
+      ing:["Rice, 1 cup, and split moong or masoor daal, 1/2 cup","Onion, 1, and cumin seeds","Turmeric, ginger-garlic paste (optional)","Ghee, for tempering"],
+      steps:["Wash the rice and lentils together and set aside.","Sauté the onion and cumin seeds in ghee until golden.","Add the rice, lentils, turmeric and enough water; bring to a boil.","Simmer, stirring occasionally, until soft and porridge-like.","Finish with a spoon of ghee and serve with yogurt or pickle."]},
+    {id:"chicken-handi",name:"Chicken Handi",course:"curry",meat:"chicken",health:"indulgent",time:45,spice:"medium",region:"Lahori",servings:5,
+      desc:"A creamy, restaurant-style chicken curry cooked in a handi pot with cream and crushed spices.",
+      ing:["Chicken, 1 kg","Yogurt, 1/2 cup, and cream, 1/2 cup","Tomatoes, 3, and ginger-garlic paste","Green chilies, crushed coriander seeds","Butter or ghee, fresh coriander"],
+      steps:["Cook the chicken with ginger-garlic paste, tomatoes and spices until the oil separates.","Stir in the yogurt and simmer until the chicken is tender.","Add the cream and green chilies and simmer a few more minutes.","Finish with a swirl of butter and fresh coriander.","Serve with naan."]},
+    {id:"chicken-achari",name:"Chicken Achari",course:"curry",meat:"chicken",health:"everyday",time:40,spice:"hot",region:"Homestyle",servings:4,
+      desc:"A tangy, pickle-spiced chicken curry built on mustard oil and whole pickling spices.",
+      ing:["Chicken, 1 kg","Mustard oil","Whole achar spices: fennel, nigella, mustard seeds, fenugreek","Tomatoes, 2, and ginger-garlic paste","Green chilies, dried red chilies"],
+      steps:["Heat mustard oil until smoking, then let it cool slightly before use.","Temper the whole achar spices in the oil until fragrant.","Add ginger-garlic paste, tomatoes and chicken, and cook until the oil separates.","Cover and simmer until the chicken is tender and the sauce is thick.","Finish with green chilies and serve with roti."]},
+    {id:"kofta-curry",name:"Beef Kofta Curry",course:"curry",meat:"beef",health:"indulgent",time:55,spice:"medium",region:"Homestyle",servings:5,
+      desc:"Spiced minced beef meatballs simmered gently in a rich onion-tomato gravy.",
+      ing:["Minced beef, 500 g, and onion, grated","Ginger-garlic paste, garam masala","Onion, tomatoes and yogurt for the gravy","Whole garam spices, coriander leaves"],
+      steps:["Mix the minced beef with grated onion, ginger-garlic paste and spices, then shape into small balls.","Make a gravy base by cooking onion, tomatoes and whole spices in oil until thick.","Stir in yogurt, then gently lower in the koftas.","Cover and simmer on low heat, without stirring too much, until the koftas are cooked through.","Garnish with coriander and serve with rice or naan."]},
+    {id:"bhindi-gosht",name:"Bhindi Gosht",course:"curry",meat:"beef",health:"everyday",time:50,spice:"medium",region:"Homestyle",servings:4,
+      desc:"Okra simmered together with beef in a tomato masala — a home-style pairing of vegetable and meat.",
+      ing:["Beef, 500 g, cubed","Okra (bhindi), 300 g, trimmed","Onion, 1, and tomatoes, 2","Ginger-garlic paste, turmeric, red chili powder","Oil"],
+      steps:["Cook the beef with ginger-garlic paste, onion and tomatoes until tender and the oil separates.","In a separate pan, shallow-fry the okra briefly to reduce its sliminess.","Add the fried okra to the beef curry.","Simmer gently for 10–15 minutes until the flavors combine.","Serve with roti."]},
+    {id:"baingan-salan",name:"Baingan ka Salan",course:"curry",meat:"vegetarian",health:"light",time:35,spice:"medium",region:"Homestyle",servings:4,
+      desc:"Eggplant simmered in a tangy tomato and onion gravy — a simple, satisfying vegetarian curry.",
+      ing:["Eggplant, 500 g, cut into chunks","Onion, 1, and tomatoes, 2","Ginger-garlic paste, turmeric, red chili powder","Oil, coriander leaves"],
+      steps:["Shallow-fry the eggplant pieces lightly and set aside.","Sauté the onion, then add ginger-garlic paste and spices.","Add the tomatoes and cook to a thick masala.","Return the eggplant to the pan and simmer gently until soft and infused with the masala.","Finish with coriander and serve with roti."]},
+    {id:"aloo-gosht",name:"Aloo Gosht",course:"curry",meat:"mutton",health:"everyday",time:55,spice:"medium",region:"Homestyle",servings:4,
+      desc:"A classic home-cooked mutton and potato curry, simple, hearty and found on nearly every family table.",
+      ing:["Mutton, bone-in, 500 g","Potatoes, 2, quartered","Onion, 1, and tomatoes, 2","Ginger-garlic paste, turmeric, coriander powder, red chili powder","Oil"],
+      steps:["Sauté the onion until golden, then add ginger-garlic paste and mutton.","Cook until the mutton is lightly browned, then add tomatoes and spices.","Add water, cover and simmer until the mutton is nearly tender.","Add the potatoes and continue simmering until both meat and potatoes are soft.","Serve with roti or rice."]},
+    {id:"palak-gosht",name:"Palak Gosht",course:"curry",meat:"mutton",health:"everyday",time:55,spice:"mild",region:"Punjab",servings:4,
+      desc:"Tender mutton simmered into a spinach purée — a warming, iron-rich winter favorite.",
+      ing:["Mutton, bone-in, 500 g","Spinach, 500 g, blanched and puréed","Onion, 1, and tomato, 1","Ginger-garlic paste, whole garam spices","Ghee"],
+      steps:["Sear the mutton with ginger-garlic paste and whole spices until browned.","Add onion and tomato and cook until softened.","Add water, cover and simmer until the mutton is tender.","Stir in the spinach purée and simmer until the flavors meld.","Finish with a spoon of ghee and serve with makai or wheat roti."]},
+    {id:"kaleji-masala",name:"Kaleji Masala",course:"curry",meat:"mutton",health:"indulgent",time:30,spice:"hot",region:"Homestyle",servings:4,
+      desc:"Mutton liver quickly cooked with onions, tomatoes and a generous hit of black pepper and chili.",
+      ing:["Mutton liver, 500 g, cleaned and sliced","Onion, 1, and tomatoes, 2","Ginger-garlic paste, crushed black pepper","Red chili powder, oil, coriander leaves"],
+      steps:["Sauté the onion until golden, then add ginger-garlic paste.","Add the liver and cook briefly on high heat, being careful not to overcook it.","Add the tomatoes and spices and cook until the masala thickens.","Finish with crushed black pepper and coriander.","Serve hot with naan."]},
+    {id:"paya",name:"Paya",course:"curry",meat:"mutton",health:"indulgent",time:300,spice:"mild",region:"Homestyle breakfast",servings:6,
+      desc:"Trotters slow-simmered for hours into a gelatinous, deeply savory soup-curry, traditionally a breakfast dish.",
+      ing:["Mutton or beef trotters, cleaned, 1.5 kg","Onion, 1, and ginger-garlic paste","Whole spices: bay leaf, cloves, cinnamon, black cardamom","Turmeric, red chili powder","Garnish: ginger julienne, coriander, lemon"],
+      steps:["Blanch the trotters briefly, then discard the water and rinse.","Combine the trotters with onion, ginger-garlic paste, whole spices and enough water in a large pot.","Simmer very gently, covered, for 4–5 hours (or use a pressure cooker to shorten this) until the meat and marrow are soft and the broth is rich.","Adjust seasoning and simmer a little further to thicken slightly.","Serve hot, topped with ginger, coriander and lemon."]},
+    {id:"mutton-rara",name:"Mutton Rara",course:"curry",meat:"mutton",health:"indulgent",time:75,spice:"hot",region:"Punjabi",servings:5,
+      desc:"A rich Punjabi curry combining minced and chunked mutton in one fiery, deeply spiced gravy.",
+      ing:["Mutton, bone-in chunks, 500 g, and minced mutton, 250 g","Onion, 1, and tomatoes, 3","Ginger-garlic paste, whole garam spices","Green chilies, ghee, coriander leaves"],
+      steps:["Cook the chunked mutton with ginger-garlic paste and whole spices until nearly tender.","Separately, brown the minced mutton and set aside.","Cook onion and tomatoes into a thick masala, then combine both meats into it.","Simmer together until the sauce is rich and reduced.","Finish with ghee, green chilies and coriander."]},
+    {id:"chicken-jalfrezi",name:"Chicken Jalfrezi",course:"curry",meat:"chicken",health:"everyday",time:35,spice:"hot",region:"Pakistani-British fusion",servings:4,
+      desc:"Chicken stir-fried with bell peppers and onions in a spicy, tangy sauce — a favorite on Pakistani restaurant menus abroad.",
+      ing:["Chicken, 700 g, boneless","Bell peppers and onion, sliced","Tomatoes, 2, and ginger-garlic paste","Green chilies, soy sauce (optional, for a fusion touch)","Oil, coriander leaves"],
+      steps:["Sear the chicken until nearly cooked and set aside.","In the same pan, sauté onion, ginger-garlic paste and tomatoes into a thick sauce.","Return the chicken to the pan along with the bell peppers.","Cook on high heat until the peppers are just tender-crisp and the sauce clings to everything.","Finish with coriander and serve with rice or naan."]},
+    {id:"prawn-curry",name:"Prawn Curry (Jheenga Curry)",course:"curry",meat:"fish",health:"light",time:30,spice:"medium",region:"Karachi coastal",servings:4,
+      desc:"A quick coastal curry of prawns simmered briefly in a spiced onion-tomato gravy.",
+      ing:["Prawns, cleaned and deveined, 500 g","Onion, 1, and tomatoes, 2","Ginger-garlic paste, turmeric, red chili powder, coriander powder","Oil, coriander leaves"],
+      steps:["Sauté the onion until golden, then add ginger-garlic paste and spices.","Add the tomatoes and cook into a thick masala.","Add a little water and bring to a simmer.","Add the prawns and cook briefly, just until pink and cooked through.","Finish with coriander and serve with rice."]},
+    {id:"chicken-do-pyaza",name:"Chicken Do Pyaza",course:"curry",meat:"chicken",health:"everyday",time:45,spice:"medium",region:"Homestyle",servings:4,
+      desc:"Chicken curry built on a double portion of onions, added at two stages for a layered sweetness.",
+      ing:["Chicken, 1 kg","Onion, a generous amount, split into two portions","Tomatoes, 2, and ginger-garlic paste","Turmeric, red chili powder, garam masala","Oil, coriander leaves"],
+      steps:["Sauté the first portion of onion until deep golden, then add ginger-garlic paste and chicken.","Add tomatoes and spices and cook until the oil separates.","Cover and simmer until the chicken is tender.","Fry the second portion of onion until golden and stir it in near the end for texture and sweetness.","Finish with garam masala and coriander."]},
+    {id:"mutton-kunna",name:"Mutton Kunna",course:"curry",meat:"mutton",health:"indulgent",time:150,spice:"medium",region:"Bannu",servings:6,
+      desc:"A minimal-spice, clay-pot mutton curry from Bannu, slow-cooked until the meat is deeply tender.",
+      ing:["Mutton, bone-in, 1 kg","Ginger-garlic paste, whole black pepper","Red chili powder, a little wheat flour to thicken","Ghee, fried onions for garnish"],
+      steps:["Sear the mutton in ghee with ginger-garlic paste until browned.","Add spices and enough water to cover; bring to a boil.","Reduce heat and simmer very slowly, covered, for 2–3 hours until the meat is fall-apart tender.","Stir in a little flour slurry to thicken the gravy slightly.","Serve garnished with fried onions."]},
+    {id:"karela-gosht",name:"Karela Gosht",course:"curry",meat:"beef",health:"everyday",time:55,spice:"medium",region:"Homestyle",servings:4,
+      desc:"Bitter gourd cooked down with beef, its sharpness mellowed by the meat and spices.",
+      ing:["Beef, 500 g, cubed","Bitter gourd (karela), 300 g, deseeded and sliced","Onion, 1, and tomatoes, 2","Ginger-garlic paste, turmeric, red chili powder","Oil"],
+      steps:["Salt the sliced bitter gourd and let it sit for 20 minutes to draw out bitterness, then rinse and pat dry.","Shallow-fry the bitter gourd until lightly browned and set aside.","Cook the beef with onion, tomatoes, ginger-garlic paste and spices until tender.","Stir in the fried bitter gourd and simmer for 10 more minutes.","Serve with roti."]},
+    {id:"achari-gosht",name:"Achari Gosht",course:"curry",meat:"mutton",health:"indulgent",time:60,spice:"hot",region:"Homestyle",servings:5,
+      desc:"Mutton cooked in mustard oil with whole pickling spices for a tangy, robust curry.",
+      ing:["Mutton, bone-in, 1 kg","Mustard oil","Whole achar spices: fennel, mustard, nigella, fenugreek seeds","Tomatoes, 2, and ginger-garlic paste","Dried red chilies, green chilies"],
+      steps:["Heat the mustard oil until smoking, then let it cool slightly.","Temper the whole achar spices in the oil until fragrant.","Add ginger-garlic paste, tomatoes and mutton, and cook until the oil separates.","Cover and simmer until the mutton is tender and the sauce is thick.","Finish with green chilies and serve with naan."]},
+    {id:"bhindi-masala",name:"Bhindi Masala",course:"curry",meat:"vegetarian",health:"light",time:30,spice:"medium",region:"Homestyle",servings:4,
+      desc:"Dry-spiced okra, fried until lightly crisp and tossed with onion and tomato — a quick vegetarian side.",
+      ing:["Okra (bhindi), 400 g, sliced","Onion, 1, and tomato, 1","Turmeric, red chili powder, coriander powder, amchur (dry mango powder)","Oil"],
+      steps:["Wash and thoroughly dry the okra before slicing to reduce sliminess.","Fry the okra in oil until lightly browned and set aside.","Sauté the onion, then add tomato and spices.","Return the okra to the pan and toss together on high heat for a few minutes.","Serve as a side with roti and daal."]},
+    {id:"turai-curry",name:"Turai Curry",course:"curry",meat:"vegetarian",health:"light",time:30,spice:"mild",region:"Homestyle",servings:4,
+      desc:"Ridge gourd simmered with tomatoes and gram — a light, easy-to-digest vegetable curry.",
+      ing:["Ridge gourd (turai), 500 g, peeled and cubed","Onion, 1, and tomatoes, 2","Ginger-garlic paste, turmeric, cumin seeds","Oil, coriander leaves"],
+      steps:["Sauté cumin seeds in oil, then add onion and cook until soft.","Add ginger-garlic paste and tomatoes and cook briefly.","Add the ridge gourd and turmeric, cover and cook on low heat — it releases its own moisture.","Simmer until soft, mashing lightly if a thicker consistency is preferred.","Finish with coriander and serve with roti."]},
+    {id:"daal-makhani",name:"Daal Makhani",course:"dal",meat:"vegetarian",health:"indulgent",time:75,spice:"mild",region:"Punjabi",servings:6,
+      desc:"Whole black lentils and kidney beans simmered low and slow with butter and cream until velvety.",
+      ing:["Whole black lentils (maash), 1 cup, soaked overnight","Red kidney beans, 1/4 cup, soaked","Butter and cream","Tomatoes, 2, and ginger-garlic paste","Cumin, garam masala"],
+      steps:["Boil the soaked lentils and beans until very soft.","Sauté ginger-garlic paste and tomatoes in butter until thick.","Add the cooked lentils and beans and simmer on low heat, mashing some for creaminess.","Continue simmering for 30–40 minutes, stirring occasionally, adding water as needed.","Finish with a swirl of cream and a knob of butter."]},
+    {id:"masoor-daal",name:"Masoor Daal",course:"dal",meat:"vegetarian",health:"light",time:30,spice:"mild",region:"Everyday",servings:4,
+      desc:"Quick-cooking split red lentils, simmered simply and finished with a garlic tarka.",
+      ing:["Split red lentils (masoor daal), 1 cup","Onion, 1, and tomato, 1","Turmeric","Tempering: ghee, cumin seeds, garlic, dried red chili"],
+      steps:["Boil the lentils with turmeric and salt until soft and broken down.","Sauté the onion and tomato in a little oil and stir into the daal.","Simmer for a few minutes to combine.","Heat ghee in a small pan and fry cumin, garlic and red chili until fragrant.","Pour the tempering over the daal and serve with rice or roti."]},
+    {id:"daal-mash",name:"Maash ki Daal",course:"dal",meat:"vegetarian",health:"light",time:40,spice:"mild",region:"Homestyle",servings:4,
+      desc:"Split white lentils cooked until creamy, a gentle, easy-to-digest everyday lentil.",
+      ing:["Split white lentils (maash daal), 1 cup","Onion, 1, and ginger, julienned","Turmeric","Tempering: ghee, cumin seeds, dried red chili"],
+      steps:["Boil the lentils with turmeric and salt until soft.","Mash lightly for a creamier texture.","Sauté onion and ginger in a little oil and stir in.","Prepare a tempering of ghee, cumin and red chili and pour over the daal.","Serve with rice or roti."]},
+    {id:"moong-daal",name:"Moong Daal",course:"dal",meat:"vegetarian",health:"light",time:30,spice:"mild",region:"Everyday",servings:4,
+      desc:"A light, mild split lentil often cooked for family members who are unwell or simply craving something gentle.",
+      ing:["Split yellow moong lentils, 1 cup","Onion, 1, and tomato, 1","Turmeric, cumin seeds","Ghee, garlic"],
+      steps:["Boil the lentils with turmeric and salt until soft.","Sauté onion, tomato and cumin seeds in ghee until softened.","Stir the sautéed mixture into the cooked lentils.","Simmer briefly to combine the flavors.","Serve with steamed rice."]},
+    {id:"kadhi-pakora",name:"Kadhi Pakora",course:"dal",meat:"vegetarian",health:"everyday",time:45,spice:"medium",region:"Punjabi",servings:4,
+      desc:"A tangy yogurt and gram-flour curry studded with crisp pakoras — a Punjabi household favorite.",
+      ing:["Yogurt, 2 cups, and gram flour (besan), 1/2 cup","Turmeric, red chili powder","Onion pakoras (fritters), pre-fried","Tempering: ghee, cumin, mustard seeds, curry leaves, dried red chili"],
+      steps:["Whisk the yogurt and gram flour with turmeric and water into a smooth, thin batter.","Bring to a gentle boil, stirring constantly to prevent curdling, then simmer for 20–30 minutes until thickened.","Add the pre-fried pakoras and simmer a further 5 minutes so they soften slightly.","Prepare a tempering of ghee, cumin, mustard seeds and dried red chili.","Pour the tempering over the kadhi and serve with rice."]},
+    {id:"lauki-chana-daal",name:"Lauki Chana Daal",course:"dal",meat:"vegetarian",health:"light",time:40,spice:"mild",region:"Homestyle",servings:4,
+      desc:"Bottle gourd simmered with split chickpea lentils into a mild, comforting everyday dish.",
+      ing:["Chana daal, 1/2 cup","Bottle gourd (lauki), 300 g, peeled and cubed","Onion, 1, and tomato, 1","Turmeric, cumin seeds","Ghee, garlic"],
+      steps:["Boil the chana daal with turmeric until nearly soft.","Add the bottle gourd and continue cooking until both are tender.","Sauté onion, tomato and cumin in ghee and stir into the daal.","Simmer a few more minutes to combine.","Serve with roti."]},
+    {id:"sabut-masoor",name:"Sabut Masoor",course:"dal",meat:"vegetarian",health:"light",time:35,spice:"mild",region:"Homestyle",servings:4,
+      desc:"Whole brown lentils simmered until tender, keeping a bit more bite than the split version.",
+      ing:["Whole brown lentils (sabut masoor), 1 cup, soaked","Onion, 1, and tomato, 1","Ginger-garlic paste, turmeric","Ghee, cumin seeds"],
+      steps:["Boil the soaked lentils with turmeric and salt until tender but still holding their shape.","Sauté onion, ginger-garlic paste and tomato in ghee until soft.","Stir the masala into the lentils and simmer for 10 minutes.","Finish with a cumin tempering.","Serve with rice or roti."]},
+    {id:"daal-palak",name:"Daal Palak",course:"dal",meat:"vegetarian",health:"light",time:35,spice:"mild",region:"Homestyle",servings:4,
+      desc:"Lentils simmered with spinach for extra body and a gentle earthiness.",
+      ing:["Split lentils (chana or masoor daal), 1 cup","Spinach, 200 g, chopped","Onion, 1, and tomato, 1","Turmeric, ginger-garlic paste","Ghee, cumin seeds"],
+      steps:["Boil the lentils with turmeric until nearly soft.","Add the chopped spinach and continue cooking until wilted and the lentils are fully tender.","Sauté onion, ginger-garlic paste and tomato in ghee and stir in.","Simmer for a few more minutes.","Serve with roti."]},
+    {id:"malai-boti",name:"Malai Boti",course:"kebab",meat:"chicken",health:"indulgent",time:35,spice:"mild",region:"BBQ",servings:4,
+      desc:"Boneless chicken marinated in cream and mild spices, grilled until juicy with almost no heat from chili.",
+      ing:["Chicken, boneless, 1 kg, cubed","Cream, 1/2 cup, and yogurt, 1/4 cup","Ginger-garlic paste, white pepper","Cheese (processed, optional, traditional touch)","Skewers"],
+      steps:["Whisk the cream, yogurt, ginger-garlic paste and white pepper together, adding grated cheese if using.","Marinate the chicken for at least 2 hours.","Thread onto skewers.","Grill over charcoal or under a hot broiler, basting with butter, until charred and cooked through.","Serve with mint chutney and salad."]},
+    {id:"reshmi-kebab",name:"Reshmi Kebab",course:"kebab",meat:"chicken",health:"indulgent",time:35,spice:"mild",region:"BBQ",servings:4,
+      desc:"Silky, minced chicken kebabs, named for their smooth (reshmi means silken) texture.",
+      ing:["Minced chicken, 500 g","Cream, and cashew paste","Ginger-garlic paste, white pepper","Green chilies, finely chopped (optional)","Skewers"],
+      steps:["Combine the minced chicken with cream, cashew paste, ginger-garlic paste and white pepper.","Blend or knead until very smooth.","Shape onto skewers.","Grill gently over charcoal or in a hot oven, turning carefully, until cooked through and lightly charred.","Serve with naan and chutney."]},
+    {id:"bihari-kebab",name:"Bihari Kebab",course:"kebab",meat:"beef",health:"everyday",time:40,spice:"medium",region:"Karachi, Mohajir cuisine",servings:4,
+      desc:"Thin strips of beef marinated in a mustard-oil and roasted-gram spice paste, grilled until charred.",
+      ing:["Beef, thinly sliced, 500 g","Mustard oil, papaya paste (as a tenderizer)","Roasted gram flour (sattu), fried onion paste","Ginger-garlic paste, garam masala"],
+      steps:["Blend fried onion, mustard oil, roasted gram flour, ginger-garlic paste and spices into a marinade.","Coat the beef strips thoroughly and marinate for at least 4 hours, ideally overnight.","Thread the strips onto skewers, weaving them slightly.","Grill over charcoal, turning often, until charred at the edges and cooked through.","Serve with sliced onions and naan."]},
+    {id:"boti-kebab",name:"Beef Boti Kebab",course:"kebab",meat:"beef",health:"everyday",time:35,spice:"medium",region:"BBQ",servings:4,
+      desc:"Cubed beef marinated in yogurt and spices, skewered and grilled until tender and smoky.",
+      ing:["Beef, cubed, 1 kg","Yogurt, 1/2 cup","Ginger-garlic paste, papaya paste (tenderizer)","Garam masala, red chili powder","Skewers"],
+      steps:["Whisk the yogurt with ginger-garlic paste, papaya paste and spices.","Marinate the beef cubes for at least 3–4 hours.","Thread onto skewers.","Grill over charcoal, turning and basting with butter, until charred and cooked through.","Rest briefly, then serve with naan and salad."]},
+    {id:"gola-kebab",name:"Gola Kebab",course:"kebab",meat:"beef",health:"everyday",time:30,spice:"medium",region:"Lahori",servings:4,
+      desc:"Coarsely minced beef kebabs, shaped into thick rounds and grilled directly over open flame.",
+      ing:["Minced beef, coarsely ground, 500 g","Onion, finely chopped","Ginger-garlic paste, crushed coriander seeds","Green chilies, fat (beef fat or tail fat, traditional)","Skewers"],
+      steps:["Mix the minced beef with onion, ginger-garlic paste, spices and a little fat for juiciness.","Shape into thick, round patties around skewers.","Grill directly over hot charcoal, turning frequently, until charred outside and cooked through.","Baste lightly with butter while grilling.","Serve with naan and chutney."]},
+    {id:"kaleji-tikka",name:"Kaleji Tikka",course:"kebab",meat:"mutton",health:"indulgent",time:25,spice:"hot",region:"BBQ",servings:4,
+      desc:"Skewered, spice-marinated liver, grilled quickly so it stays tender inside with a charred crust.",
+      ing:["Mutton liver, cleaned and cubed, 500 g","Yogurt, ginger-garlic paste","Red chili powder, crushed black pepper, garam masala","Lemon juice, skewers"],
+      steps:["Whisk the yogurt with ginger-garlic paste, spices and lemon juice.","Marinate the liver pieces for 30–45 minutes (not much longer, to keep it tender).","Thread onto skewers.","Grill quickly over high heat, turning once, until just cooked through — a few minutes per side.","Serve immediately with naan."]},
+    {id:"fish-tikka",name:"Fish Tikka",course:"kebab",meat:"fish",health:"light",time:30,spice:"medium",region:"BBQ, coastal",servings:4,
+      desc:"Firm fish chunks marinated in yogurt and spices, grilled or pan-seared for a smoky, tangy finish.",
+      ing:["Firm white fish, cubed, 600 g","Yogurt, 1/2 cup","Ginger-garlic paste, tikka masala spice blend","Lemon juice, skewers or a grill pan"],
+      steps:["Whisk the yogurt with ginger-garlic paste, spices and lemon juice.","Marinate the fish gently for 20–30 minutes (fish needs less time than meat).","Thread onto skewers, or place directly in a hot grill pan.","Cook briefly on each side until just opaque and lightly charred — fish cooks fast.","Serve with mint chutney and salad."]},
+    {id:"aloo-tikki",name:"Aloo Tikki",course:"snack",meat:"vegetarian",health:"indulgent",time:30,spice:"mild",region:"Street food",servings:4,
+      desc:"Crisp, pan-fried spiced potato patties, often the base for a full chaat plate.",
+      ing:["Potatoes, boiled and mashed, 500 g","Cornflour, to bind","Green chilies, ginger, coriander leaves, chopped","Roasted cumin powder, chaat masala","Oil for shallow-frying"],
+      steps:["Mix the mashed potatoes with cornflour, chilies, ginger, coriander and spices.","Shape into flat, round patties.","Shallow-fry in oil until golden and crisp on both sides.","Drain on paper towels.","Serve with chutneys, or top with chickpeas and yogurt for a fuller chaat."]},
+    {id:"dahi-puri",name:"Dahi Puri",course:"snack",meat:"vegetarian",health:"light",time:25,spice:"mild",region:"Street food",servings:4,
+      desc:"Crisp hollow puris filled with potato, chickpeas, yogurt and chutneys — a burst of textures in one bite.",
+      ing:["Small crisp puris (store-bought or homemade)","Potatoes, boiled and diced, and boiled chickpeas","Yogurt, whisked, and tamarind chutney","Mint-coriander chutney, chaat masala, sev"],
+      steps:["Gently crack a hole in the top of each puri.","Fill with a little potato, chickpeas, and a spoon of whisked yogurt.","Top with tamarind and mint chutneys.","Sprinkle with chaat masala and sev.","Serve immediately, before the puris soften."]},
+    {id:"papri-chaat",name:"Papri Chaat",course:"snack",meat:"vegetarian",health:"indulgent",time:30,spice:"medium",region:"Street food",servings:4,
+      desc:"Crisp fried dough wafers layered with potatoes, chickpeas, yogurt and tangy chutneys.",
+      ing:["Papri (crisp fried wheat wafers)","Potatoes, boiled and diced, and boiled chickpeas","Yogurt, whisked","Tamarind and mint chutneys, chaat masala, sev"],
+      steps:["Arrange the papri on a plate as a base.","Top with diced potato and chickpeas.","Pour whisked yogurt generously over the top.","Drizzle both chutneys and sprinkle with chaat masala.","Finish with sev and serve right away."]},
+    {id:"fruit-chaat",name:"Fruit Chaat",course:"snack",meat:"vegetarian",health:"light",time:15,spice:"mild",region:"Street food",servings:4,
+      desc:"A refreshing mix of seasonal fruits tossed with chaat masala and a squeeze of lemon.",
+      ing:["Mixed seasonal fruits (apple, banana, guava, pomegranate, grapes)","Chaat masala, black salt","Lemon juice","Fresh mint (optional)"],
+      steps:["Chop all the fruit into bite-sized pieces.","Toss together in a large bowl.","Sprinkle with chaat masala, black salt and lemon juice.","Toss gently to coat evenly.","Serve chilled, garnished with mint if using."]},
+    {id:"bun-kebab",name:"Bun Kebab",course:"snack",meat:"beef",health:"indulgent",time:30,spice:"medium",region:"Karachi street food",servings:4,
+      desc:"A spiced beef or lentil patty in a soft bun with chutney and egg — Karachi's answer to the burger.",
+      ing:["Beef patty (minced beef, chana daal, spices) or ready patties","Buns, soft","Fried egg (optional, traditional)","Chutney and ketchup","Onion and cucumber, sliced"],
+      steps:["Shallow-fry the patties until golden and cooked through.","Lightly toast the buns.","Spread chutney and ketchup on the buns.","Layer with the patty, a fried egg if using, and sliced onion and cucumber.","Serve warm, wrapped in paper as sold at roadside stalls."]},
+    {id:"chicken-frankie",name:"Chicken Frankie Roll",course:"snack",meat:"chicken",health:"everyday",time:30,spice:"medium",region:"Karachi street food",servings:4,
+      desc:"Spiced chicken tikka rolled inside a paratha with chutney and onions — a popular grab-and-go meal.",
+      ing:["Chicken tikka or boti, cooked (see Chicken Tikka)","Parathas or roomali roti","Mint chutney, and sliced onions with lemon","Chaat masala"],
+      steps:["Warm the parathas lightly on a tawa.","Spread mint chutney over each paratha.","Fill with pieces of cooked chicken tikka and sliced onions.","Sprinkle with chaat masala and a squeeze of lemon.","Roll up tightly and serve immediately."]},
+    {id:"veg-spring-rolls",name:"Vegetable Spring Rolls",course:"snack",meat:"vegetarian",health:"indulgent",time:35,spice:"mild",region:"Pakistani-Chinese",servings:4,
+      desc:"Crisp fried rolls stuffed with stir-fried vegetables — a staple of Pakistan's popular Chinese-style menus.",
+      ing:["Spring roll wrappers","Cabbage, carrot and capsicum, julienned","Soy sauce, black pepper, ginger-garlic paste","Cornflour paste (to seal), oil for deep frying"],
+      steps:["Stir-fry the julienned vegetables quickly on high heat with ginger-garlic paste, soy sauce and pepper; cool completely.","Place a portion of filling on each wrapper and roll tightly, sealing the edge with cornflour paste.","Heat oil for deep-frying.","Fry the rolls until golden and crisp.","Drain and serve with sweet chili or soy-vinegar dip."]},
+    {id:"kachori",name:"Kachori",course:"snack",meat:"vegetarian",health:"indulgent",time:45,spice:"medium",region:"Street food",servings:6,
+      desc:"Deep-fried pastry stuffed with a spiced lentil filling, crisp outside and savory within.",
+      ing:["Flour dough (similar to samosa pastry)","Split moong or urad daal, soaked and coarsely ground","Fennel seeds, coriander seeds, crushed red chili","Asafoetida (hing), oil for deep frying"],
+      steps:["Cook the ground daal with spices until dry and fragrant, then cool.","Divide the dough into balls, flatten, and fill with a portion of the daal mixture.","Seal and gently flatten into a small disc.","Deep-fry on low-medium heat until deep golden and crisp.","Serve with tamarind chutney or on its own with tea."]},
+    {id:"aloo-chaat",name:"Aloo Chaat",course:"snack",meat:"vegetarian",health:"light",time:25,spice:"medium",region:"Street food",servings:4,
+      desc:"Boiled potato cubes fried until crisp-edged, then tossed with chaat masala and tangy chutneys.",
+      ing:["Potatoes, boiled and cubed, 500 g","Oil, for shallow-frying","Chaat masala, red chili powder, black salt","Tamarind chutney, chopped coriander"],
+      steps:["Shallow-fry the boiled potato cubes until golden and slightly crisp at the edges.","Drain and toss immediately with chaat masala, chili powder and black salt.","Drizzle with tamarind chutney.","Garnish with coriander.","Serve warm as a snack or side."]},
+    {id:"chicken-65",name:"Chicken 65",course:"snack",meat:"chicken",health:"indulgent",time:35,spice:"hot",region:"Pakistani-Chinese",servings:4,
+      desc:"Deep-fried, deeply spiced boneless chicken bites, a favorite from Pakistan's Chinese-style restaurant menus.",
+      ing:["Chicken, boneless, cubed, 500 g","Yogurt, ginger-garlic paste, red chili powder","Cornflour and egg, for the batter","Curry leaves, green chilies, oil for frying"],
+      steps:["Marinate the chicken in yogurt, ginger-garlic paste and chili powder for 30 minutes.","Coat in a batter of cornflour and egg.","Deep-fry until golden and crisp.","In a separate pan, quickly temper curry leaves and green chilies in a little oil and toss the fried chicken through.","Serve hot as a starter."]},
+    {id:"chicken-corn-soup",name:"Chicken Corn Soup",course:"snack",meat:"chicken",health:"light",time:25,spice:"mild",region:"Pakistani-Chinese",servings:4,
+      desc:"A comforting, cornstarch-thickened soup with shredded chicken and sweetcorn, a menu staple everywhere.",
+      ing:["Chicken stock, 1.5 liters","Shredded cooked chicken, 1 cup","Sweetcorn kernels or creamed corn, 1 cup","Cornflour slurry, egg (optional, for egg-drop style)","White pepper, soy sauce"],
+      steps:["Bring the chicken stock to a simmer.","Add the shredded chicken and corn and simmer for 10 minutes.","Stir in the cornflour slurry to thicken slightly.","Drizzle in beaten egg while stirring, if using, for thin egg ribbons.","Season with white pepper and a dash of soy sauce; serve hot."]},
+    {id:"samosa-chaat",name:"Samosa Chaat",course:"snack",meat:"vegetarian",health:"indulgent",time:20,spice:"medium",region:"Street food",servings:4,
+      desc:"Leftover or fresh samosas broken up and dressed with chickpeas, yogurt and chutneys — samosas reinvented as a chaat.",
+      ing:["Samosas, 4–6, cooked","Boiled chickpeas or white chana","Yogurt, whisked","Tamarind and mint chutneys, chaat masala, sev"],
+      steps:["Place the samosas on a plate and lightly crush them.","Top with boiled chickpeas.","Pour whisked yogurt over everything.","Drizzle with both chutneys and sprinkle with chaat masala.","Top with sev and serve immediately."]},
+    {id:"roghni-naan",name:"Roghni Naan",course:"bread",meat:"vegetarian",health:"everyday",time:45,spice:"mild",region:"Tandoor",servings:6,
+      desc:"A richer, slightly sweet tandoor naan brushed with a milk-egg glaze and topped with sesame seeds.",
+      ing:["All-purpose flour, 3 cups","Yogurt, milk, sugar, yeast","Egg, for the glaze","Sesame or nigella seeds"],
+      steps:["Make a soft dough with flour, yogurt, milk, sugar and yeast; let it rest until puffy.","Divide into balls and roll into rounds.","Brush the tops with a milk-egg glaze and scatter sesame seeds.","Bake in a very hot tandoor or oven until golden and puffed.","Serve warm."]},
+    {id:"sheermal",name:"Sheermal",course:"bread",meat:"vegetarian",health:"indulgent",time:50,spice:"mild",region:"Mohajir/Lucknowi",servings:6,
+      desc:"A lightly sweet, saffron-scented flatbread enriched with milk and ghee — festive and fragrant.",
+      ing:["All-purpose flour, 3 cups","Milk, ghee, sugar","Saffron, soaked in warm milk","Yeast or baking powder"],
+      steps:["Make a soft, enriched dough with flour, milk, ghee, sugar and yeast.","Let it rest until puffy.","Divide into balls and roll into thick rounds.","Brush with saffron milk and bake in a hot oven until lightly golden.","Brush again with ghee while warm and serve."]},
+    {id:"kulcha",name:"Kulcha",course:"bread",meat:"vegetarian",health:"everyday",time:40,spice:"mild",region:"Homestyle",servings:6,
+      desc:"A soft, slightly leavened flatbread, plain or stuffed, cooked on a tawa or in a tandoor.",
+      ing:["All-purpose flour, 3 cups","Yogurt, baking powder, sugar","Nigella seeds, coriander leaves (optional, for topping)","Ghee or butter"],
+      steps:["Mix flour, yogurt, baking powder, sugar and salt into a soft dough.","Rest for 30–40 minutes.","Divide into balls and roll into rounds, pressing on nigella seeds and coriander if using.","Cook on a hot tawa or in a hot oven until golden with light char spots.","Brush with ghee and serve warm."]},
+    {id:"tandoori-roti",name:"Tandoori Roti",course:"bread",meat:"vegetarian",health:"everyday",time:25,spice:"mild",region:"Tandoor",servings:4,
+      desc:"A simple whole-wheat flatbread baked against the wall of a hot clay tandoor for a smoky char.",
+      ing:["Whole-wheat flour, 2 cups","Water, salt","A little oil or ghee (optional, for softness)"],
+      steps:["Knead the flour, water and salt into a firm dough; rest for 20 minutes.","Divide into balls and roll into rounds.","Wet one side lightly and stick it against the hot tandoor wall (or cook on a very hot tawa, flipping).","Cook until puffed with charred spots.","Serve hot with any curry."]},
+    {id:"puri",name:"Puri",course:"bread",meat:"vegetarian",health:"indulgent",time:25,spice:"mild",region:"Breakfast",servings:4,
+      desc:"Small discs of dough deep-fried until they puff into golden, crisp-edged breads, classic with chana masala.",
+      ing:["Whole-wheat flour, 2 cups","Water, salt, a little oil","Oil for deep frying"],
+      steps:["Knead a firm dough with flour, water, salt and a little oil.","Rest briefly, then divide into small balls and roll into thin rounds.","Heat oil until quite hot.","Slide in the rounds one at a time, pressing gently so they puff up, and fry until golden.","Drain and serve immediately with chana masala or halwa."]},
+    {id:"lachha-paratha",name:"Lachha Paratha",course:"bread",meat:"vegetarian",health:"indulgent",time:30,spice:"mild",region:"Homestyle",servings:4,
+      desc:"A layered, flaky flatbread made by folding the dough repeatedly with ghee before cooking.",
+      ing:["Whole-wheat flour, 2 cups","Ghee or oil, for layering and cooking","Water, salt"],
+      steps:["Knead a soft dough with flour, water and salt; rest for 20 minutes.","Roll out a portion thinly, brush with ghee, and fold into pleats, then coil into a spiral.","Roll the spiral out gently into a round, keeping the layers intact.","Cook on a hot tawa with ghee, flipping until golden and flaky on both sides.","Serve warm, pulling apart the layers."]},
+    {id:"gajar-halwa",name:"Gajar ka Halwa",course:"dessert",meat:"vegetarian",health:"indulgent",time:60,spice:"mild",region:"Winter festive",servings:6,
+      desc:"Grated carrots slow-cooked in milk and sugar until dense and fudgy, a winter classic.",
+      ing:["Carrots, grated, 1 kg","Full-fat milk, 1 liter","Sugar, to taste","Ghee, and mixed nuts (almonds, pistachios)","Green cardamom"],
+      steps:["Cook the grated carrots in milk over medium heat, stirring occasionally, until the milk has mostly evaporated.","Add sugar and continue cooking, stirring, as the mixture thickens further.","Add ghee and cardamom and cook until the halwa turns a deep orange-red and pulls away from the pan.","Toast the nuts separately in a little ghee.","Garnish with the nuts and serve warm."]},
+    {id:"suji-halwa",name:"Suji ka Halwa",course:"dessert",meat:"vegetarian",health:"indulgent",time:20,spice:"mild",region:"Everyday sweet",servings:4,
+      desc:"A quick semolina halwa, roasted in ghee and cooked with sugar syrup — a common Eid and everyday treat.",
+      ing:["Semolina (suji/sooji), 1 cup","Ghee, 1/2 cup","Sugar, 1 cup, dissolved in water","Green cardamom, slivered almonds"],
+      steps:["Roast the semolina in ghee over medium heat until golden and fragrant.","Slowly pour in the sugar syrup while stirring continuously (it will splutter).","Add cardamom and continue cooking, stirring, until the halwa thickens and separates from the pan.","Garnish with almonds.","Serve warm."]},
+    {id:"jalebi",name:"Jalebi",course:"dessert",meat:"vegetarian",health:"indulgent",time:40,spice:"mild",region:"Street food",servings:6,
+      desc:"Crisp, spiral-shaped fried batter soaked in saffron sugar syrup — a breakfast and festive favorite.",
+      ing:["All-purpose flour and a little yogurt, fermented briefly","Sugar, water, and saffron or food color","Oil or ghee for frying","Cardamom"],
+      steps:["Whisk flour and yogurt with water into a smooth, slightly thick batter; let it ferment for a few hours.","Make a sugar syrup with water, saffron and cardamom, kept warm.","Heat oil and pipe the batter into hot oil in overlapping spirals, frying until crisp and golden.","Immediately transfer the fried jalebis into the warm syrup and soak briefly.","Serve warm."]},
+    {id:"kulfi",name:"Kulfi",course:"dessert",meat:"vegetarian",health:"indulgent",time:20,spice:"mild",region:"Summer",servings:6,
+      desc:"A dense, slow-reduced milk ice cream, traditionally frozen in cone-shaped molds.",
+      ing:["Full-fat milk, 1.5 liters","Sugar, condensed milk (for extra creaminess)","Green cardamom, chopped pistachios and almonds"],
+      steps:["Simmer the milk over low heat, stirring often, until reduced by about half.","Stir in sugar and condensed milk and continue simmering until thick.","Add cardamom and chopped nuts.","Pour into kulfi molds or small cups and freeze for at least 6 hours.","Unmold and serve garnished with more nuts."]},
+    {id:"barfi",name:"Barfi",course:"dessert",meat:"vegetarian",health:"indulgent",time:35,spice:"mild",region:"Festive",servings:8,
+      desc:"A dense, fudge-like milk sweet, cut into diamonds and often topped with edible silver leaf.",
+      ing:["Khoya (milk solids) or milk powder, 2 cups","Sugar, 1 cup","Milk, a little, to loosen","Ghee, cardamom, chopped pistachios"],
+      steps:["Cook the khoya with sugar and a splash of milk over low heat, stirring constantly.","Continue cooking until the mixture thickens and starts to leave the sides of the pan.","Stir in cardamom and pour onto a greased tray, spreading evenly.","Top with chopped pistachios and press gently.","Cool completely, then cut into squares or diamonds."]},
+    {id:"rabri",name:"Rabri",course:"dessert",meat:"vegetarian",health:"indulgent",time:60,spice:"mild",region:"Festive",servings:6,
+      desc:"Milk reduced very slowly, layering the cream that forms on top back into itself, for an ultra-rich dessert.",
+      ing:["Full-fat milk, 2 liters","Sugar, to taste","Green cardamom, saffron","Slivered pistachios and almonds"],
+      steps:["Simmer the milk in a wide, heavy pan over low heat.","As a layer of cream forms on top, push it to the side of the pan; repeat this often as the milk reduces.","Continue until the milk has reduced by more than half and thickened.","Stir in sugar, cardamom and saffron.","Chill and serve topped with nuts."]},
+    {id:"firni",name:"Firni",course:"dessert",meat:"vegetarian",health:"indulgent",time:30,spice:"mild",region:"Festive",servings:6,
+      desc:"A ground-rice milk pudding, smoother than kheer, traditionally set and served in small clay bowls.",
+      ing:["Rice, soaked and coarsely ground, 1/4 cup","Full-fat milk, 1 liter","Sugar, to taste","Green cardamom, saffron, slivered pistachios"],
+      steps:["Bring the milk to a boil, then whisk in the ground rice paste.","Simmer, stirring frequently, until the mixture thickens to a pourable custard consistency.","Stir in sugar, cardamom and saffron.","Pour into small bowls.","Chill until set and garnish with pistachios before serving."]},
+    {id:"shahi-tukda",name:"Shahi Tukda",course:"dessert",meat:"vegetarian",health:"indulgent",time:30,spice:"mild",region:"Mughlai",servings:4,
+      desc:"Fried bread slices soaked in sweet reduced milk, a royal dessert built from humble ingredients.",
+      ing:["Bread slices, crusts removed","Ghee, for frying","Full-fat milk, reduced with sugar (like a thin rabri)","Cardamom, saffron, slivered nuts"],
+      steps:["Fry the bread slices in ghee until golden and crisp on both sides.","Prepare a lightly sweetened reduced milk with cardamom and saffron.","Soak the fried bread slices in the reduced milk briefly.","Arrange on a plate and pour a little more milk over the top.","Garnish with nuts and serve warm or chilled."]},
+    {id:"zarda",name:"Zarda",course:"dessert",meat:"vegetarian",health:"indulgent",time:45,spice:"mild",region:"Festive",servings:6,
+      desc:"Sweet, saffron-yellow rice studded with nuts and dried fruit — a festive finish to a big meal.",
+      ing:["Basmati rice, 2 cups, soaked","Sugar, 1.5 cups","Ghee, saffron or yellow food color","Mixed nuts and raisins, green cardamom"],
+      steps:["Parboil the soaked rice until about 80% cooked, then drain.","In a separate pan, melt ghee and add sugar with a little water to make a light syrup.","Add the parboiled rice, saffron and cardamom to the syrup and mix gently.","Cover and cook on very low heat until the rice fully absorbs the syrup and turns golden.","Garnish with nuts and raisins fried in ghee."]},
+    {id:"ras-malai",name:"Ras Malai",course:"dessert",meat:"vegetarian",health:"indulgent",time:45,spice:"mild",region:"Festive",servings:6,
+      desc:"Soft cheese patties simmered in sugar syrup, then soaked in chilled, cardamom-scented sweetened milk.",
+      ing:["Milk, curdled with lemon juice to make fresh cheese (paneer/chenna)","Sugar, water, for the syrup","Full-fat milk, reduced, for the rabri-style sauce","Cardamom, saffron, chopped pistachios"],
+      steps:["Curdle the milk with lemon juice, strain, and knead the fresh cheese until smooth.","Shape into small flat discs.","Simmer the discs in sugar syrup until they double in size and turn spongy.","Squeeze gently and transfer into chilled, reduced sweetened milk flavored with cardamom and saffron.","Chill for a few hours and serve garnished with pistachios."]},
+    {id:"kashmiri-chai",name:"Kashmiri Chai (Pink Tea)",course:"drink",meat:"vegetarian",health:"indulgent",time:20,spice:"mild",region:"Kashmiri/Northern areas",servings:4,
+      desc:"A distinctive pink-hued tea made from green tea leaves, baking soda and a splash of milk, topped with nuts.",
+      ing:["Green tea leaves (Kashmiri chai leaves)","Baking soda, a pinch","Milk, sugar or salt to taste","Crushed pistachios and almonds, for garnish"],
+      steps:["Boil the tea leaves with water and a pinch of baking soda, whisking occasionally, until the liquid darkens.","Continue simmering and whisking vigorously to aerate — this is key to developing the pink color.","Add cold water and repeat the boil-and-whisk process a few times.","Stir in milk and sweeten to taste, watching the color turn a rosy pink.","Serve hot, garnished with crushed nuts."]},
+    {id:"sugarcane-juice",name:"Sugarcane Juice",course:"drink",meat:"vegetarian",health:"light",time:10,spice:"mild",region:"Street food",servings:2,
+      desc:"Freshly pressed sugarcane juice, often sold roadside with a twist of ginger, lemon and mint.",
+      ing:["Sugarcane stalks, peeled","Fresh ginger, a small piece","Lemon juice, mint leaves","Ice"],
+      steps:["Pass the peeled sugarcane through a press along with ginger to extract the juice.","Strain the juice to remove fibers.","Stir in lemon juice and a few mint leaves.","Serve over ice immediately, as it is best fresh."]},
+    {id:"rooh-afza-sharbat",name:"Rooh Afza Sharbat",course:"drink",meat:"vegetarian",health:"light",time:5,spice:"mild",region:"Everyday/Ramadan",servings:4,
+      desc:"A simple, fragrant rose-flavored syrup diluted with chilled water or milk — a Ramadan iftar staple.",
+      ing:["Rose syrup (such as Rooh Afza)","Chilled water or milk","Ice cubes"],
+      steps:["Pour a few tablespoons of rose syrup into each glass.","Top up with chilled water or milk, to taste.","Stir well.","Add ice and serve immediately."]},
+    {id:"nimbu-pani",name:"Nimbu Pani",course:"drink",meat:"vegetarian",health:"light",time:5,spice:"mild",region:"Everyday",servings:2,
+      desc:"A simple, sharp lemonade, sweet or salted, that is the go-to cooler in the summer heat.",
+      ing:["Fresh lemon juice","Water, chilled","Sugar or black salt and roasted cumin","Mint leaves, ice"],
+      steps:["Whisk lemon juice with water and sugar (or black salt and roasted cumin for a salted version).","Adjust sweetness or salt to taste.","Add a few mint leaves for freshness.","Serve over ice."]},
+    {id:"mango-lassi",name:"Mango Lassi",course:"drink",meat:"vegetarian",health:"light",time:10,spice:"mild",region:"Summer",servings:2,
+      desc:"A thick, chilled yogurt drink blended with ripe mango pulp — a summer favorite when mangoes are in season.",
+      ing:["Ripe mango, peeled and chopped (or mango pulp), 1 cup","Plain yogurt, 1.5 cups","Sugar, to taste","Ice cubes"],
+      steps:["Blend the mango, yogurt and sugar together until completely smooth.","Adjust sweetness to taste, depending on the mango's ripeness.","Blend briefly with ice or pour over ice.","Serve immediately, garnished with a small mango piece if desired."]},
+    {id:"jaljeera",name:"Jaljeera",course:"drink",meat:"vegetarian",health:"light",time:10,spice:"medium",region:"Ramadan/summer",servings:2,
+      desc:"A tangy, spiced cumin-mint water, drunk chilled as a digestive and refresher, especially popular for iftar.",
+      ing:["Fresh mint and coriander leaves","Roasted cumin powder, black salt, black pepper","Tamarind pulp or lemon juice","Chilled water, ice"],
+      steps:["Blend mint, coriander, roasted cumin, black salt, pepper and tamarind pulp with a little water into a smooth paste.","Strain if a clearer drink is preferred.","Dilute with chilled water to taste.","Serve over ice, garnished with a mint sprig."]},
+  ];
+
+  var FILTER_DEFS = [
+    {key:"meat", label:"Protein", options:[
+      {v:"chicken",l:"Chicken"},{v:"beef",l:"Beef"},{v:"mutton",l:"Mutton"},{v:"fish",l:"Fish"},{v:"vegetarian",l:"Vegetarian"}
+    ]},
+    {key:"health", label:"Health Category", options:[
+      {v:"light",l:"Light & Fresh"},{v:"everyday",l:"Everyday"},{v:"indulgent",l:"Indulgent"}
+    ]},
+    {key:"timeBucket", label:"Cooking Time", options:[
+      {v:"quick",l:"Quick — 30 min or less"},{v:"medium",l:"Medium — 31–60 min"},{v:"long",l:"Long — 60 min+"}
+    ]},
+    {key:"course", label:"Course", options:[
+      {v:"rice",l:"Rice & Biryani"},{v:"curry",l:"Curry & Salan"},{v:"dal",l:"Dal & Lentils"},{v:"kebab",l:"Kebab & BBQ"},
+      {v:"snack",l:"Snacks & Street Food"},{v:"bread",l:"Bread"},{v:"dessert",l:"Dessert"},{v:"drink",l:"Drinks"}
+    ]},
+    {key:"spice", label:"Spice Level", options:[
+      {v:"mild",l:"Mild"},{v:"medium",l:"Medium"},{v:"hot",l:"Hot"}
+    ]}
+  ];
+
+  function timeBucket(t){ return t<=30 ? "quick" : (t<=60 ? "medium" : "long"); }
+  RECIPES.forEach(function(r){ r.timeBucket = timeBucket(r.time); });
+
+  var active = {meat:new Set(), health:new Set(), timeBucket:new Set(), course:new Set(), spice:new Set()};
+  var searchTerm = "";
+
+  function matchesRecipe(r){
+    for (var i=0;i<FILTER_DEFS.length;i++){
+      var key = FILTER_DEFS[i].key;
+      var set = active[key];
+      if (set.size>0 && !set.has(r[key])) return false;
+    }
+    if (searchTerm){
+      var hay = (r.name+" "+r.desc+" "+r.region+" "+r.ing.join(" ")).toLowerCase();
+      if (hay.indexOf(searchTerm)===-1) return false;
+    }
+    return true;
+  }
+
+  function countFor(key, value){
+    return RECIPES.filter(function(r){
+      // count matches if this recipe would match given all OTHER active filters + this one option
+      for (var i=0;i<FILTER_DEFS.length;i++){
+        var k = FILTER_DEFS[i].key;
+        var set = k===key ? new Set([value]) : active[k];
+        if (k===key){ if (r[k]!==value) return false; continue; }
+        if (set.size>0 && !set.has(r[k])) return false;
+      }
+      if (searchTerm){
+        var hay = (r.name+" "+r.desc+" "+r.region+" "+r.ing.join(" ")).toLowerCase();
+        if (hay.indexOf(searchTerm)===-1) return false;
+      }
+      return true;
+    }).length;
+  }
+
+  var filterGroupsEl = document.getElementById("filterGroups");
+
+  function renderFilterGroups(){
+    filterGroupsEl.innerHTML = "";
+    FILTER_DEFS.forEach(function(group){
+      var wrap = document.createElement("div");
+      wrap.className = "filter-group";
+      var label = document.createElement("span");
+      label.className = "filter-group-label";
+      label.textContent = group.label;
+      wrap.appendChild(label);
+      var row = document.createElement("div");
+      row.className = "chip-row";
+      group.options.forEach(function(opt){
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "chip";
+        var pressed = active[group.key].has(opt.v);
+        btn.setAttribute("aria-pressed", pressed ? "true":"false");
+        var n = countFor(group.key, opt.v);
+        btn.innerHTML = opt.l + ' <span class="n">'+n+'</span>';
+        btn.addEventListener("click", function(){
+          if (active[group.key].has(opt.v)) active[group.key]["delete"](opt.v);
+          else active[group.key].add(opt.v);
+          renderAll();
+        });
+        row.appendChild(btn);
+      });
+      wrap.appendChild(row);
+      filterGroupsEl.appendChild(wrap);
+    });
+  }
+
+  var grid = document.getElementById("grid");
+  var emptyState = document.getElementById("emptyState");
+  var resultCount = document.getElementById("resultCount");
+
+  function spiceDots(level){
+    var n = level==="mild"?1:(level==="medium"?2:3);
+    var html = '<span class="spice-dots" title="Spice: '+level+'">';
+    for (var i=1;i<=3;i++) html += '<i class="'+(i<=n?"on":"")+'"></i>';
+    html += "</span>";
+    return html;
+  }
+
+  var healthLabel = {light:"Light & Fresh", everyday:"Everyday", indulgent:"Indulgent"};
+  var meatLabel = {chicken:"Chicken",beef:"Beef",mutton:"Mutton",fish:"Fish",vegetarian:"Vegetarian"};
+
+  var resultTotalEl = document.getElementById("resultTotal");
+
+  function renderGrid(){
+    var filtered = RECIPES.filter(matchesRecipe);
+    resultCount.textContent = filtered.length;
+    resultTotalEl.textContent = RECIPES.length;
+    grid.innerHTML = "";
+    emptyState.hidden = filtered.length>0;
+    filtered.forEach(function(r){
+      var card = document.createElement("button");
+      card.type = "button";
+      card.className = "card";
+      card.setAttribute("data-course", r.course);
+      card.setAttribute("aria-haspopup","dialog");
+      card.innerHTML =
+        '<div class="card-band"></div>'+
+        '<div class="card-body">'+
+          '<div class="card-top"><h3 class="card-title">'+r.name+'</h3><span class="course-tag">'+r.course+'</span></div>'+
+          '<div class="card-region">'+r.region+'</div>'+
+          '<p class="card-desc">'+r.desc+'</p>'+
+          '<div class="badge-row">'+
+            '<span class="badge time">'+r.time+' min</span>'+
+            '<span class="badge">'+meatLabel[r.meat]+'</span>'+
+            '<span class="badge health-'+r.health+'">'+healthLabel[r.health]+'</span>'+
+            '<span class="badge">'+spiceDots(r.spice)+'</span>'+
+          '</div>'+
+        '</div>';
+      card.addEventListener("click", function(){ openModal(r.id); });
+      grid.appendChild(card);
+    });
+  }
+
+  var mobileFilterCount = document.getElementById("mobileFilterCount");
+
+  function renderAll(){
+    renderFilterGroups();
+    renderGrid();
+    var activeCount = 0;
+    FILTER_DEFS.forEach(function(g){ activeCount += active[g.key].size; });
+    mobileFilterCount.hidden = activeCount===0;
+    mobileFilterCount.textContent = activeCount;
+  }
+
+  document.getElementById("searchInput").addEventListener("input", function(e){
+    searchTerm = e.target.value.trim().toLowerCase();
+    renderAll();
+  });
+
+  document.getElementById("resetBtn").addEventListener("click", function(){
+    FILTER_DEFS.forEach(function(g){ active[g.key] = new Set(); });
+    searchTerm = "";
+    document.getElementById("searchInput").value = "";
+    renderAll();
+  });
+
+  // ---------- Mobile filter panel toggle ----------
+  var sidebarEl = document.getElementById("sidebar");
+  var mobileToggle = document.getElementById("mobileFilterToggle");
+  mobileToggle.addEventListener("click", function(){
+    var isOpen = sidebarEl.classList.toggle("open");
+    mobileToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
+
+  // ---------- Modal ----------
+  var backdrop = document.getElementById("backdrop");
+  var modalBand = document.getElementById("modalBand");
+  var modalTitle = document.getElementById("modalTitle");
+  var modalRegion = document.getElementById("modalRegion");
+  var modalBadges = document.getElementById("modalBadges");
+  var modalDesc = document.getElementById("modalDesc");
+  var modalIngredients = document.getElementById("modalIngredients");
+  var modalSteps = document.getElementById("modalSteps");
+  var lastFocused = null;
+
+  function openModal(id){
+    var r = RECIPES.filter(function(x){return x.id===id;})[0];
+    if (!r) return;
+    lastFocused = document.activeElement;
+    modalBand.setAttribute("data-course", r.course);
+    modalBand.style.background = "linear-gradient(90deg, var(--course-a), var(--course-b))";
+    modalBand.setAttribute("style","background:linear-gradient(90deg,"+"var(--course-a),var(--course-b))");
+    modalBand.className = "modal-band";
+    modalBand.setAttribute("data-course", r.course);
+    modalTitle.textContent = r.name;
+    modalRegion.textContent = r.region + " · serves " + r.servings;
+    modalBadges.innerHTML =
+      '<span class="badge time">'+r.time+' min</span>'+
+      '<span class="badge">'+meatLabel[r.meat]+'</span>'+
+      '<span class="badge health-'+r.health+'">'+healthLabel[r.health]+'</span>'+
+      '<span class="badge">'+spiceDots(r.spice)+'</span>';
+    modalDesc.textContent = r.desc;
+    modalIngredients.innerHTML = r.ing.map(function(i){return "<li>"+i+"</li>";}).join("");
+    modalSteps.innerHTML = r.steps.map(function(s){return "<li>"+s+"</li>";}).join("");
+    backdrop.classList.add("open");
+    document.getElementById("modalClose").focus();
+    document.addEventListener("keydown", onKeydown);
+  }
+
+  function closeModal(){
+    backdrop.classList.remove("open");
+    document.removeEventListener("keydown", onKeydown);
+    if (lastFocused) lastFocused.focus();
+  }
+
+  function onKeydown(e){
+    if (e.key === "Escape") closeModal();
+  }
+
+  document.getElementById("modalClose").addEventListener("click", closeModal);
+  backdrop.addEventListener("click", function(e){
+    if (e.target === backdrop) closeModal();
+  });
+
+  // ---------- Stats ----------
+  document.getElementById("statTotal").textContent = RECIPES.length;
+  document.getElementById("statQuick").textContent = RECIPES.filter(function(r){return r.timeBucket==="quick";}).length;
+  document.getElementById("statVeg").textContent = RECIPES.filter(function(r){return r.meat==="vegetarian";}).length;
+
+  renderAll();
+})();
+</script>
