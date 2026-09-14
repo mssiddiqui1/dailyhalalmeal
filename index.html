@@ -134,6 +134,39 @@
     font-size:1.08rem;
     color:var(--ink-soft);
   }
+  .hero-cta{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:26px;
+  }
+  .pick-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 24px;
+    border-radius:999px;
+    border:none;
+    background:linear-gradient(120deg, var(--chili), var(--saffron));
+    color:#FFF8EC;
+    font-family:'Karla',sans-serif;
+    font-weight:700;
+    font-size:1rem;
+    cursor:pointer;
+    box-shadow:0 6px 18px var(--shadow);
+    transition:transform 0.14s ease, box-shadow 0.14s ease;
+  }
+  .pick-btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px var(--shadow);}
+  .pick-btn:active{transform:translateY(0);box-shadow:0 4px 12px var(--shadow);}
+  .pick-btn:focus-visible{outline:2px solid var(--green-deep);outline-offset:3px;}
+  .pick-btn .dice{display:inline-block;font-size:1.25rem;transition:transform 0.5s ease;}
+  .pick-btn.spin .dice{transform:rotate(360deg);}
+  .hero-cta-hint{font-size:0.86rem;color:var(--ink-soft);}
+  @media (max-width:480px){
+    .hero-cta{flex-direction:column;align-items:flex-start;gap:10px;}
+    .pick-btn{width:100%;justify-content:center;}
+  }
   .hero-stats{
     display:flex;
     flex-wrap:wrap;
@@ -430,15 +463,34 @@
     margin-block:auto;
   }
   .modal-band{height:8px;}
-  .modal-head{padding:26px 28px 10px;position:relative;}
+  .modal-head{padding:20px 28px 10px;position:relative;}
+  .modal-toolbar{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:10px;margin-bottom:12px;}
+  .modal-reroll{
+    display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    min-height:40px;padding:0 16px;
+    border-radius:999px;
+    border:1px solid var(--line);background:var(--paper);
+    color:var(--ink);font-family:'Karla',sans-serif;font-weight:700;font-size:0.85rem;
+    cursor:pointer;white-space:nowrap;flex-shrink:0;
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+    transition:background 0.12s, color 0.12s, border-color 0.12s;
+  }
+  .modal-reroll:hover{background:var(--chili);color:#fff;border-color:var(--chili);}
+  .modal-reroll:active{background:var(--chili);color:#fff;border-color:var(--chili);}
+  .modal-reroll:focus-visible{outline:2px solid var(--green-deep);outline-offset:2px;}
+  .modal-reroll .dice{display:inline-block;transition:transform 0.4s ease;}
+  .modal-reroll.spin .dice{transform:rotate(360deg);}
   .modal-close{
-    position:absolute;top:18px;right:18px;
-    width:34px;height:34px;border-radius:50%;
+    width:40px;height:40px;border-radius:50%;flex-shrink:0;
     border:1px solid var(--line);background:var(--paper);
     color:var(--ink);font-size:1.1rem;cursor:pointer;
     display:flex;align-items:center;justify-content:center;
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
   }
   .modal-close:hover{background:var(--chili);color:#fff;border-color:var(--chili);}
+  .modal-close:active{background:var(--chili);color:#fff;border-color:var(--chili);}
   .modal h2{font-size:1.6rem;color:var(--green-deep);max-width:26ch;}
   .modal .card-region{margin-top:6px;}
   .modal .badge-row{margin-top:14px;}
@@ -531,11 +583,19 @@
     .hero-stats{gap:18px 24px;}
     .grid{grid-template-columns:1fr;}
     .modal{border-radius:14px;}
-    .modal-head{padding:22px 18px 8px;}
+    .modal-head{padding:18px 16px 8px;}
+    .modal-toolbar{gap:8px;margin-bottom:10px;}
+    .modal-reroll{min-height:44px;padding:0 16px;font-size:0.86rem;}
+    .modal-close{width:44px;height:44px;font-size:1.2rem;}
     .modal-desc{padding:6px 18px 0;}
     .modal-body{padding:16px 18px 24px;}
     .backdrop{padding:0;align-items:flex-end;}
     .modal{max-height:92vh;overflow-y:auto;border-radius:16px 16px 0 0;}
+  }
+  @media (max-width:360px){
+    .modal-reroll span:last-child{display:none;}
+    .modal-reroll{padding:0;width:44px;}
+    .modal-reroll .dice{font-size:1.15rem;}
   }
 </style>
 </head>
@@ -547,6 +607,13 @@
     <div class="eyebrow">A world of halal home cooking</div>
     <h1>Daily Halal Meal</h1>
     <p class="lede">Halal recipes from Pakistan to Mexico — Lebanese mezze, Iraqi stews, Iranian kebabs, Turkish grills, Moroccan tagines, Indian curries, Gulf rice, and American classics, all cooked without pork or alcohol. Filter by country, occasion, protein, or time on the stove to find what to cook next.</p>
+    <div class="hero-cta">
+      <button class="pick-btn" id="pickForMeBtn" type="button">
+        <span class="dice" aria-hidden="true">🎲</span>
+        <span>Pick for me</span>
+      </button>
+      <span class="hero-cta-hint">Can't decide? Get a random dish — keep clicking until one looks right.</span>
+    </div>
     <div class="hero-stats">
       <div class="stat"><b id="statTotal">—</b><span>recipes</span></div>
       <div class="stat"><b id="statCountries">—</b><span>countries & cuisines</span></div>
@@ -603,7 +670,12 @@
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-band" id="modalBand"></div>
     <div class="modal-head">
-      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <div class="modal-toolbar">
+        <button class="modal-reroll" id="modalReroll" type="button" title="Pick another random recipe" aria-label="Pick another random recipe">
+          <span class="dice" aria-hidden="true">🎲</span><span>Pick Again</span>
+        </button>
+        <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      </div>
       <h2 id="modalTitle"></h2>
       <div class="card-region" id="modalRegion"></div>
       <div class="badge-row" id="modalBadges"></div>
@@ -8996,6 +9068,44 @@
   document.getElementById("modalClose").addEventListener("click", closeModal);
   backdrop.addEventListener("click", function(e){
     if (e.target === backdrop) closeModal();
+  });
+
+  // ---------- Pick for me ----------
+  var lastPickedId = null;
+  function getPickPool(){
+    var filtered = RECIPES.filter(matchesRecipe);
+    return filtered.length ? filtered : RECIPES;
+  }
+  function pickForMe(){
+    var pool = getPickPool();
+    if (!pool.length) return;
+    var choice = pool[0];
+    if (pool.length === 1){
+      choice = pool[0];
+    } else {
+      var tries = 0;
+      do {
+        choice = pool[Math.floor(Math.random()*pool.length)];
+        tries++;
+      } while (choice.id === lastPickedId && tries < 12);
+    }
+    lastPickedId = choice.id;
+    openModal(choice.id);
+  }
+  function spinIcon(btn){
+    btn.classList.remove("spin");
+    void btn.offsetWidth;
+    btn.classList.add("spin");
+  }
+  var pickForMeBtn = document.getElementById("pickForMeBtn");
+  pickForMeBtn.addEventListener("click", function(){
+    spinIcon(pickForMeBtn);
+    pickForMe();
+  });
+  var modalRerollBtn = document.getElementById("modalReroll");
+  modalRerollBtn.addEventListener("click", function(){
+    spinIcon(modalRerollBtn);
+    pickForMe();
   });
 
   // ---------- Stats ----------
