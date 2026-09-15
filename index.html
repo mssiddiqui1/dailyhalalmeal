@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Daily Halal Meal">
 <meta property="og:title" content="Daily Halal Meal — 2,000+ Halal Recipes from Around the World">
-<meta property="og:description" content="Halal recipes from Pakistan to Mexico — Lebanese mezze, Iraqi stews, Turkish grills, Moroccan tagines, Indian curries, Gulf rice, and American classics. Filter by country, occasion, protein, or cook time.">
+<meta property="og:description" content="Halal recipes from Pakistan to Mexico — Lebanese mezze, Iraqi stews, Turkish grills, Moroccan tagines, Indian curries, Gulf rice, and American classics, all cooked with halal ingredients. Filter by country, occasion, protein, or cook time.">
 <meta property="og:url" content="https://dailyhalalmeal.com/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Daily Halal Meal — 2,000+ Halal Recipes from Around the World">
@@ -8906,6 +8906,10 @@
 
   var filterGroupsEl = document.getElementById("filterGroups");
 
+  function trackEvent(name, params){
+    if (typeof gtag === "function") gtag('event', name, params || {});
+  }
+
   function renderFilterGroups(){
     filterGroupsEl.innerHTML = "";
     FILTER_DEFS.forEach(function(group){
@@ -8928,6 +8932,7 @@
         btn.addEventListener("click", function(){
           if (active[group.key].has(opt.v)) active[group.key]["delete"](opt.v);
           else active[group.key].add(opt.v);
+          trackEvent('filter_chip_click', {filter_group: group.key, filter_value: opt.v, filter_active: !pressed});
           renderAll();
         });
         row.appendChild(btn);
@@ -8990,7 +8995,10 @@
             '<span class="badge">'+spiceDots(r.spice)+'</span>'+
           '</div>'+
         '</div>';
-      card.addEventListener("click", function(){ openModal(r.id); });
+      card.addEventListener("click", function(){
+        trackEvent('recipe_card_open', {recipe_id: r.id, recipe_name: r.name, recipe_country: r.country});
+        openModal(r.id);
+      });
       grid.appendChild(card);
     });
   }
@@ -9006,15 +9014,21 @@
     mobileFilterCount.textContent = activeCount;
   }
 
+  var searchTrackTimer = null;
   document.getElementById("searchInput").addEventListener("input", function(e){
     searchTerm = e.target.value.trim().toLowerCase();
     renderAll();
+    clearTimeout(searchTrackTimer);
+    searchTrackTimer = setTimeout(function(){
+      if (searchTerm) trackEvent('search', {search_term: searchTerm});
+    }, 600);
   });
 
   document.getElementById("resetBtn").addEventListener("click", function(){
     FILTER_DEFS.forEach(function(g){ active[g.key] = new Set(); });
     searchTerm = "";
     document.getElementById("searchInput").value = "";
+    trackEvent('reset_filters');
     renderAll();
   });
 
@@ -9038,11 +9052,19 @@
     document.body.style.overflow = "";
   }
   mobileToggle.addEventListener("click", function(){
-    if (sidebarEl.classList.contains("open")) closeDrawer(); else openDrawer();
+    if (sidebarEl.classList.contains("open")){
+      closeDrawer();
+    } else {
+      trackEvent('mobile_filters_open');
+      openDrawer();
+    }
   });
   sidebarClose.addEventListener("click", closeDrawer);
   filterBackdrop.addEventListener("click", closeDrawer);
-  showResultsBtn.addEventListener("click", closeDrawer);
+  showResultsBtn.addEventListener("click", function(){
+    trackEvent('mobile_show_results');
+    closeDrawer();
+  });
   document.addEventListener("keydown", function(e){
     if (e.key === "Escape" && sidebarEl.classList.contains("open")) closeDrawer();
   });
@@ -9102,9 +9124,15 @@
     if (e.key === "Escape") closeModal();
   }
 
-  document.getElementById("modalClose").addEventListener("click", closeModal);
+  document.getElementById("modalClose").addEventListener("click", function(){
+    trackEvent('modal_close', {method: 'close_button'});
+    closeModal();
+  });
   backdrop.addEventListener("click", function(e){
-    if (e.target === backdrop) closeModal();
+    if (e.target === backdrop){
+      trackEvent('modal_close', {method: 'backdrop'});
+      closeModal();
+    }
   });
 
   // ---------- Pick for me ----------
@@ -9137,11 +9165,13 @@
   var pickForMeBtn = document.getElementById("pickForMeBtn");
   pickForMeBtn.addEventListener("click", function(){
     spinIcon(pickForMeBtn);
+    trackEvent('pick_for_me', {source: 'main_button'});
     pickForMe();
   });
   var modalRerollBtn = document.getElementById("modalReroll");
   modalRerollBtn.addEventListener("click", function(){
     spinIcon(modalRerollBtn);
+    trackEvent('pick_for_me', {source: 'modal_reroll'});
     pickForMe();
   });
 
