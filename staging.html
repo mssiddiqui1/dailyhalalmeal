@@ -9145,44 +9145,49 @@
   // load, the card falls back to a plain icon automatically instead of showing
   // a broken image.
   // ============================================================================
+  
+  
   var KITCHEN_ESSENTIALS = [
-    {label:"KITCHEN_ESSENTIALS", sub:"kxyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    {label:"KITCHEN_ESSENTIALS", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    {label:"KITCHEN_ESSENTIALS", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
+    {label:"Instant Pot Duo", sub:"Instant Pot Duo 6 Qt 7-in-1 Electric Pressure Cooker, Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
+    {label:"Crock-Pot 6 Quart Cook", sub:"Crock-Pot 6 Quart Cook & Carry Programmable Slow Cooker with Digital Timer Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71kvTVtnrRL._AC_SL1500_.jpg", url:"https://amzn.to/4yEe3iz"},
+    {label:"BLACK+DECKER 4-Slice Toaster", sub:"BLACK+DECKER 4-Slice Toaster Oven with Natural Convection, Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/7110zCGndjL._AC_SL1500_.jpg", url:"https://amzn.to/4huskbC"},
+    {label:"TrendPlain 16oz/470ml Glass Olive Oil Sprayer", sub:"TrendPlain 16oz/470ml Glass Olive Oil Sprayer for Cooking – 2 in 1 Olive Oil Dispenser Bottle for Kitchen Gadgets - Black", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/716HuBmcRsL._AC_SL1500_.jpg", url:"https://amzn.to/4hfLIbo"},
+    {label:"Corelle Vitrelle 18-Piece Service", sub:"Corelle Vitrelle 18-Piece Service for 6 Dinnerware Set Triple Layer Glass and Chip Resistant, Lightweight Round Plates and Bowls Set, Ocean Blue", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71RSZg1VxwL._AC_SL1500_.jpg", url:"https://amzn.to/4ipXJgt"},
+    {label:"Silverware Set for 12,60 Piece Stainless", sub:"Silverware Set for 12,60 Piece Stainless Steel Flatware Utensil Cutlery Set", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/615Ybjlk5kL._AC_SL1500_.jpg", url:"https://amzn.to/4xZ69jT"}
   ];
 
   var COURSE_PRODUCTS = {
-    rice: {label:"rice", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    curry: {label:"curry", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    dal: {label:"dal", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    kebab: {label:"kebab", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    snack: {label:"snack", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    salad: {label:"salad", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    soup: {label:"soup", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    bread: {label:"bread", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    dessert: {label:"dessert", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    drink: {label:"drink", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"}
+    
+	rice: {label:"Instant Pot Duo", sub:"Instant Pot Duo 6 Qt 7-in-1 Electric Pressure Cooker, Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
+    curry: {label:"Crock-Pot 6 Quart Cook", sub:"Crock-Pot 6 Quart Cook & Carry Programmable Slow Cooker with Digital Timer Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71kvTVtnrRL._AC_SL1500_.jpg", url:"https://amzn.to/4yEe3iz"},
+    dal: {label:"BLACK+DECKER 4-Slice Toaster", sub:"BLACK+DECKER 4-Slice Toaster Oven with Natural Convection, Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/7110zCGndjL._AC_SL1500_.jpg", url:"https://amzn.to/4huskbC"},
+    kebab: {label:"TrendPlain 16oz/470ml Glass Olive Oil Sprayer", sub:"TrendPlain 16oz/470ml Glass Olive Oil Sprayer for Cooking – 2 in 1 Olive Oil Dispenser Bottle for Kitchen Gadgets - Black", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/716HuBmcRsL._AC_SL1500_.jpg", url:"https://amzn.to/4hfLIbo"},
+    snack: {label:"Corelle Vitrelle 18-Piece Service", sub:"Corelle Vitrelle 18-Piece Service for 6 Dinnerware Set Triple Layer Glass and Chip Resistant, Lightweight Round Plates and Bowls Set, Ocean Blue", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71RSZg1VxwL._AC_SL1500_.jpg", url:"https://amzn.to/4ipXJgt"},
+    soup:{label:"Silverware Set for 12,60 Piece Stainless", sub:"Silverware Set for 12,60 Piece Stainless Steel Flatware Utensil Cutlery Set", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/615Ybjlk5kL._AC_SL1500_.jpg", url:"https://amzn.to/4xZ69jT"},
+	salad: {label:"Instant Pot Duo", sub:"Instant Pot Duo 6 Qt 7-in-1 Electric Pressure Cooker, Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
+    bread: {label:"Crock-Pot 6 Quart Cook", sub:"Crock-Pot 6 Quart Cook & Carry Programmable Slow Cooker with Digital Timer Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71kvTVtnrRL._AC_SL1500_.jpg", url:"https://amzn.to/4yEe3iz"},
+    dal: {label:"BLACK+DECKER 4-Slice Toaster", sub:"BLACK+DECKER 4-Slice Toaster Oven with Natural Convection, Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/7110zCGndjL._AC_SL1500_.jpg", url:"https://amzn.to/4huskbC"},
+    drink: {label:"TrendPlain 16oz/470ml Glass Olive Oil Sprayer", sub:"TrendPlain 16oz/470ml Glass Olive Oil Sprayer for Cooking – 2 in 1 Olive Oil Dispenser Bottle for Kitchen Gadgets - Black", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/716HuBmcRsL._AC_SL1500_.jpg", url:"https://amzn.to/4hfLIbo"}	
   };
 
   var MEAT_PRODUCTS = {
-    chicken: {label:"xyzMEAT_PRODUCTS", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    beef: {label:"xyzMEAT_PRODUCTS", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    mutton: {label:"xMEAT_PRODUCTSyz", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    fish: {label:"xMEAT_PRODUCTSyz", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    vegetarian: {label:"xMEAT_PRODUCTSyz", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"}
+    chicken: {label:"TrendPlain 16oz/470ml Glass Olive Oil Sprayer", sub:"TrendPlain 16oz/470ml Glass Olive Oil Sprayer for Cooking – 2 in 1 Olive Oil Dispenser Bottle for Kitchen Gadgets - Black", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/716HuBmcRsL._AC_SL1500_.jpg", url:"https://amzn.to/4hfLIbo"},
+    mutton: {label:"BLACK+DECKER 4-Slice Toaster", sub:"BLACK+DECKER 4-Slice Toaster Oven with Natural Convection, Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/7110zCGndjL._AC_SL1500_.jpg", url:"https://amzn.to/4huskbC"},
+    fish: {label:"Corelle Vitrelle 18-Piece Service", sub:"Corelle Vitrelle 18-Piece Service for 6 Dinnerware Set Triple Layer Glass and Chip Resistant, Lightweight Round Plates and Bowls Set, Ocean Blue", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71RSZg1VxwL._AC_SL1500_.jpg", url:"https://amzn.to/4ipXJgt"},
+    vegetarian: {label:"Corelle Vitrelle 18-Piece Service", sub:"Corelle Vitrelle 18-Piece Service for 6 Dinnerware Set Triple Layer Glass and Chip Resistant, Lightweight Round Plates and Bowls Set, Ocean Blue", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71RSZg1VxwL._AC_SL1500_.jpg", url:"https://amzn.to/4ipXJgt"}
   };
 
   var COUNTRY_PRODUCTS = {
-    morocco: {label:"xmoroccoyz", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    turkey: {label:"turkey", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    gulf: {label:"gulf", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    "indonesia-malaysia": {label:"xmalysiayz", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    mexico: {label:"mexico", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    usa: {label:"usa", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    afghanistan: {label:"afghanistanxyz", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    nigeria: {label:"xynigeriaz", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    lebanon: {label:"xylebanonz", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"},
-    mediterranean: {label:"xmediterraneanyz", sub:"xyz", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Z401LjFFL._AC_SL1500_.jpg", url:"https://amzn.to/4xk75Ot"}
+    morocco: {label:"BLACK+DECKER 4-Slice Toaster", sub:"BLACK+DECKER 4-Slice Toaster Oven with Natural Convection, Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/7110zCGndjL._AC_SL1500_.jpg", url:"https://amzn.to/4huskbC"},
+    turkey: {label:"Corelle Vitrelle 18-Piece Service", sub:"Corelle Vitrelle 18-Piece Service for 6 Dinnerware Set Triple Layer Glass and Chip Resistant, Lightweight Round Plates and Bowls Set, Ocean Blue", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71RSZg1VxwL._AC_SL1500_.jpg", url:"https://amzn.to/4ipXJgt"},
+    gulf: {label:"Corelle Vitrelle 18-Piece Service", sub:"Corelle Vitrelle 18-Piece Service for 6 Dinnerware Set Triple Layer Glass and Chip Resistant, Lightweight Round Plates and Bowls Set, Ocean Blue", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71RSZg1VxwL._AC_SL1500_.jpg", url:"https://amzn.to/4ipXJgt"},
+    "indonesia-malaysia": {label:"TrendPlain 16oz/470ml Glass Olive Oil Sprayer", sub:"TrendPlain 16oz/470ml Glass Olive Oil Sprayer for Cooking – 2 in 1 Olive Oil Dispenser Bottle for Kitchen Gadgets - Black", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/716HuBmcRsL._AC_SL1500_.jpg", url:"https://amzn.to/4hfLIbo"},
+    mexico: {label:"Corelle Vitrelle 18-Piece Service", sub:"Corelle Vitrelle 18-Piece Service for 6 Dinnerware Set Triple Layer Glass and Chip Resistant, Lightweight Round Plates and Bowls Set, Ocean Blue", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71RSZg1VxwL._AC_SL1500_.jpg", url:"https://amzn.to/4ipXJgt"},
+    usa: {label:"TrendPlain 16oz/470ml Glass Olive Oil Sprayer", sub:"TrendPlain 16oz/470ml Glass Olive Oil Sprayer for Cooking – 2 in 1 Olive Oil Dispenser Bottle for Kitchen Gadgets - Black", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/716HuBmcRsL._AC_SL1500_.jpg", url:"https://amzn.to/4hfLIbo"},
+    afghanistan: {label:"BLACK+DECKER 4-Slice Toaster", sub:"BLACK+DECKER 4-Slice Toaster Oven with Natural Convection, Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/7110zCGndjL._AC_SL1500_.jpg", url:"https://amzn.to/4huskbC"},
+    nigeria: {label:"BLACK+DECKER 4-Slice Toaster", sub:"BLACK+DECKER 4-Slice Toaster Oven with Natural Convection, Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/7110zCGndjL._AC_SL1500_.jpg", url:"https://amzn.to/4huskbC"},
+    lebanon: {label:"BLACK+DECKER 4-Slice Toaster", sub:"BLACK+DECKER 4-Slice Toaster Oven with Natural Convection, Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/7110zCGndjL._AC_SL1500_.jpg", url:"https://amzn.to/4huskbC"},
+    mediterranean: {label:"BLACK+DECKER 4-Slice Toaster", sub:"BLACK+DECKER 4-Slice Toaster Oven with Natural Convection, Stainless Steel", img:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/7110zCGndjL._AC_SL1500_.jpg", url:"https://amzn.to/4huskbC"}
   };
 
   // Always pulls from three different category sources — course tool, meat/protein
@@ -9411,7 +9416,7 @@
   function renderShopRecipe(r){
     var picks = getRecipeProductSuggestions(r);
     modalShop.innerHTML =
-      '<h3>Shop this recipe</h3>' +
+      '<h3>Amazing Deals</h3>' +
       '<div class="shop-recipe-disclosure">As an Amazon Associate, we earn from qualifying purchases.</div>' +
       '<div class="shop-recipe-grid">' +
       picks.map(function(item){ return buildPromoCardHTML(item, 'shop_this_recipe'); }).join("") +
